@@ -42,17 +42,5 @@ public class HomeController {
 		return "/header";
 	}
 	
-	@RequestMapping("/login")
-	public String login()
-	{
-		return "/login";
-	}
-	
-	@RequestMapping("/invest/invest_write")
-	public String invest_write()
-	{
-		return "/invest/invest_write";
-	}
-	
 	
 }

@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybats-3-mapper.dtd">
 
-<mapper namespace="kr.co.mock.dao.BoardDao">
-
+<mapper namespace="kr.co.mock.dao.MockDao">
+	<insert id="in_regi_ok" parameterType="kr.co.mock.dto.MockDto">
+		insert into invest(userid,start,end,mileage)
+		values(#{param2},now(),date_add(start,interval ${param3} month),${param4})
+	</insert>
+	
+	<select id="login_ok" parameterType="kr.co.mock.dto.UserDto" resultType="kr.co.mock.dto.UserDto">
+	select * from user where userid=#{userid} and pwd=#{pwd}
+	
+	</select>
 </mapper>

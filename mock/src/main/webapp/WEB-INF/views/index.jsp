@@ -6,13 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-<div id="main">
-<form method="post" action="login_ok">
-	<input type="text" name="userid" placeholder="로그인"><p>
-	<input type="password" name="pwd" placeholder="비밀번호"><p>
-	<input type="submit" value="로그인">
-	</form>
+<div id="main">메인창
+${userid}
+${mo_month}
+${mileage}
 </div>
-</body>
 </html>
