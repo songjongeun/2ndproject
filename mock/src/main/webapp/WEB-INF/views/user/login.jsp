@@ -10,11 +10,11 @@
  function userid_search()
  {
 	 // window.open();
-	 open("user/userid_search","","width=400,height=250");
+	 open("userid_search","","width=400,height=250");
  }
  function userpwd_search()
  {
-	 open("user/pwd_search","","width=400,height=300");
+	 open("pwd_search","","width=400,height=300");
  }
 </script>
 <style>
