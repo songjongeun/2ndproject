@@ -11,7 +11,7 @@
 	<div align="center" style="padding-left:500px;padding-top:100px">
        <c:if test="${userid==null }"><!-- 로그인을 안했을경우 -->
          <a href="login">로그인</a>  
-         <a href="member_input">회원가입</a>
+         <a href="member">회원가입</a>
        </c:if>
        <c:if test="${userid!=null }"><!-- 로그인을 했을 경우 -->
 	     ${username }님  
