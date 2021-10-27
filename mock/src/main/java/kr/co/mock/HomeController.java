@@ -33,7 +33,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return "redirect:/main_view";
 	}
 	
 	@RequestMapping("/header")
@@ -42,16 +42,16 @@ public class HomeController {
 		return "/header";
 	}
 	
-	@RequestMapping("/login")
-	public String login()
-	{
-		return "/login";
-	}
-	
 	@RequestMapping("/invest/invest_write")
 	public String invest_write()
 	{
 		return "/invest/invest_write";
+	}
+	
+	@RequestMapping("/main_view")
+	public String main_view()
+	{
+		return "/main_view";
 	}
 	
 	
