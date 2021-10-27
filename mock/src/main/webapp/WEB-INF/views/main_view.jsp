@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body> <!-- main_view 로그인 확인용 샘플 -->
+<body> <!-- main_view 로그인 확인용 샘플(없에도 됨) -->
 	<div align="center" style="padding-left:500px;padding-top:100px">
        <c:if test="${userid==null }"><!-- 로그인을 안했을경우 -->
          <a href="login">로그인</a>  
