@@ -2,7 +2,6 @@ package kr.co.mock.dto;
 
 public class UserDto {
 //  사용자 user
-        private int m_appply;
 	private String userid,pwd,username,email;
 // 관심종목interests  관심id 종목코드                userid로 찾기
 	private String i_id,code;
@@ -44,15 +43,6 @@ public class UserDto {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public int getM_apply() {
-		return m_apply;
-	}
-
-	public void setM_apply(int m_apply){
-		this.m_apply= m_apply;
-	}
-
 	
 	// 관심종목
 
