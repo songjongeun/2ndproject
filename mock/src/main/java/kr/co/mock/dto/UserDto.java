@@ -5,10 +5,10 @@ public class UserDto {
 	private String userid,pwd,username,email;
 // 관심종목interests  관심id 종목코드                userid로 찾기
 	private String i_id,code;
-// 종목 stocks       종목명   대비        거래량       code로 찾기
-	private String name,diff,vol;
-// 실시간종목 realtime  시간id 현재가                  code로 찾기
-	private String r_id,cprice;
+// 종목 stocks_a     종목명       code로 찾기
+	private String name;
+// 실시간종목 realtime  시간id 현재가         대비     총 거래량                 code로 찾기
+	private int    r_id,cprice,diff,vol;
 
 
 	// 사용자
@@ -43,7 +43,7 @@ public class UserDto {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+		
 	// 관심종목
 
 	public String getI_id() {
@@ -70,35 +70,35 @@ public class UserDto {
 		this.name = name;
 	}
 
-	public String getDiff() {
+	public int getDiff() {
 		return diff;
 	}
 
-	public void setDiff(String diff) {
+	public void setDiff(int diff) {
 		this.diff = diff;
 	}
 
-	public String getVol() {
+	public int getVol() {
 		return vol;
 	}
 
-	public void setVol(String vol) {
+	public void setVol(int vol) {
 		this.vol = vol;
 	}
 
-	public String getR_id() {
+	public int getR_id() {
 		return r_id;
 	}
 
-	public void setR_id(String r_id) {
+	public void setR_id(int r_id) {
 		this.r_id = r_id;
 	}
 
-	public String getCprice() {
+	public int getCprice() {
 		return cprice;
 	}
 
-	public void setCprice(String cprice) {
+	public void setCprice(int cprice) {
 		this.cprice = cprice;
 	}
 	
