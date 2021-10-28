@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,11 +23,11 @@
           <td>거래량</td>
         </tr>
         <c:forEach items="${udto2}" var="udto2">
-          <tr onclick="${udto2.code}"><!-- 종목으로가기 -->
-            <td>${udto2.name}</td>
-            <td>${udto2.cprice}</td>
-            <td>${udto2.diff}</td>
-            <td>${udto2.vol}</td>
+          <tr style="text-align:center">
+            <td><a href="${udto2.code}">${udto2.name}</a></td><!-- 종목으로가기 -->
+            <td><fmt:formatNumber value="${udto2.cprice}" pattern="#,##0" /></td>
+            <td><fmt:formatNumber value="${udto2.diff}" pattern="#,##0" /></td>
+            <td><fmt:formatNumber value="${udto2.vol}" pattern="#,##0" /></td>
           </tr>
         </c:forEach>
       </c:if>
