@@ -136,30 +136,31 @@ public class UserController {
 		return "/user/ip_search_ok";
 	}
 
-	@RequestMapping("/interests")
-	public String interests(HttpSession session,Model model)
+	@RequestMapping("/my_interests")
+	public String my_interests(HttpSession session,Model model)
 	{// 관심종목 가져오기
 		String userid=(String) session.getAttribute("userid");
 		
 		UserDao udao=sqlSession.getMapper(UserDao.class);
-		ArrayList<UserDto> udto=udao.interests(userid);
+		ArrayList<UserDto> udto=udao.my_interests(userid);
 
 		if(udto.isEmpty())
 		{// 관심종목이 없을때
 			model.addAttribute("chk", 1);
-			return "/user/interests";
+			return "/user/my_interests";
 		}
 		else
 		{
 			ArrayList<UserDto> udto2=new ArrayList<UserDto>();
 			for(int i=0;i<udto.size();i++)
 			{
+//				System.out.println(udto.get(i).getCode());
 				udto2.add(udao.stk_rt(udto.get(i).getCode()));
 			}
 			
 			model.addAttribute("udto",udto);
 			model.addAttribute("udto2",udto2);
-			return "/user/interests";
+			return "/user/my_interests";
 		}
 		
 		
