@@ -9,7 +9,7 @@ public interface UserDao {
 	public UserDto login_ok(UserDto udto);
 	public void member_ok(UserDto udto);
 	public UserDto ip_search_ok(UserDto udto);
-	public ArrayList<UserDto> interests(String userid);
+	public ArrayList<UserDto> my_interests(String userid);
 	public UserDto stk_rt(String code);
 	
 }
