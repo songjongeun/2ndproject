@@ -16,7 +16,7 @@
        <c:if test="${userid!=null }"><!-- 로그인을 했을 경우 -->
 	     ${username }님  
         <a href="logout">로그아웃</a> 
-        <a href="interests">내종목보기</a>
+        <a href="my_interests">내종목보기</a>
       </c:if>
   </div> 
 
