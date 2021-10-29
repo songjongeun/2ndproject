@@ -90,28 +90,4 @@ public class MockController {
 		}
 		//전체 if 문 종료
 	}
-	
-	@RequestMapping("/user/login")
-	public String login()
-	{
-		return "/user/login";
-	}
-
-	@RequestMapping("/login_ok")
-	public String login_ok(UserDto udto,HttpSession session)
-	{
-		MockDao mdao=sqlSession.getMapper(MockDao.class);
-		UserDto udto2=mdao.login_ok(udto);
-		session.setAttribute("userid", udto2.getUserid());
-		session.setAttribute("username", udto2.getUsername());
-		return "redirect:/index";
-	}
-	
-	@RequestMapping("/logout")
-	public String logout(HttpSession session)
-	{
-		session.invalidate();
-		return"redirect:/index";
-	}
-	
 }
