@@ -111,6 +111,7 @@ button{
 </style>
 
 </head>
+<body>
 <decorator:head/>
 <div class="container">
 	<div id="first">
@@ -151,5 +152,6 @@ button{
 	<div id="main">
 	
 	</div>
-	</div>
+</div>
+</body>
 </html>

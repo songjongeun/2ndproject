@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -86,7 +87,7 @@
 		<div id="regist">
 			<div class="in_date date">투자 기간</div>
 			<div class="in date month">
-				<select name="end">
+				<select name="m_close">
 				<option value="1">1개월</option>
 				<option value="2">2개월</option>
 				<option value="3">3개월</option>
@@ -101,7 +102,7 @@
 				</select>
 			</div>
 		</div>
-		
+
 		<div id="subm">
 			<input id="inv_input" type="submit" value="신청하기">
 		</div>	

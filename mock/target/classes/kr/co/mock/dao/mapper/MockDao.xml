@@ -3,12 +3,16 @@
 
 <mapper namespace="kr.co.mock.dao.MockDao">
 	<insert id="in_regi_ok" parameterType="kr.co.mock.dto.MockDto">
-		insert into invest(userid,start,end,mileage)
-		values(#{param2},now(),date_add(start,interval ${param3} month),${param4})
+		insert into mock_invest(userid,m_open,m_close,mileage,m_apply)
+		values(#{param2},now(),date_add(m_open,interval ${param3} month),${param4},1)
 	</insert>
 	
 	<select id="login_ok" parameterType="kr.co.mock.dto.UserDto" resultType="kr.co.mock.dto.UserDto">
-	select * from user where userid=#{userid} and pwd=#{pwd}
+		select * from user where userid=#{userid} and pwd=#{pwd}
+	</select>
 	
+	<select id="get_enddate" resultType="kr.co.mock.dto.MockDto">
+		select * from mock_invest order by userid=#{param1} desc limit 1;
+		<!-- 신청한 아이디 중 가장 최신에 신청한 날짜만 가져오기 -->
 	</select>
 </mapper>
