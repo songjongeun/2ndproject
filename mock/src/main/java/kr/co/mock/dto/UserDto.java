@@ -1,4 +1,4 @@
-package kr.co.user.dto;
+package kr.co.mock.dto;
 
 public class UserDto {
 	private String userid,pwd,username,email,m_apply;
