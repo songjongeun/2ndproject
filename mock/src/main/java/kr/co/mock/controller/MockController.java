@@ -36,8 +36,6 @@ public class MockController {
 
 		return "/index";
 	}
-		
-
 	
 	@RequestMapping("/invest/in_regi")
 	public String in_regi()
@@ -50,7 +48,6 @@ public class MockController {
 	{
 		MockDao mdao=sqlSession.getMapper(MockDao.class);
 		String userid=session.getAttribute("userid").toString();//로그인했을 경우 userid 세선에서 가져옴.
-
 		
 		if(userid!=null) {//로그인 한 상태라면			
 			Date todate;//현재 날짜 구하는 객체
@@ -99,7 +96,7 @@ public class MockController {
 	{
 		return "/login";
 	}
-	
+
 	@RequestMapping("/login_ok")
 	public String login_ok(UserDto udto,HttpSession session)
 	{

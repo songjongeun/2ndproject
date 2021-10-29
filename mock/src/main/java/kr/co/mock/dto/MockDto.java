@@ -1,6 +1,7 @@
 package kr.co.mock.dto;
 
 public class MockDto {
+<<<<<<< HEAD
 	private int m_id, mileage,m_apply;
 	private String userid, m_open, m_close;
 
@@ -11,12 +12,18 @@ public class MockDto {
 	public void setM_apply(int m_apply) {
 		this.m_apply = m_apply;
 	}
+=======
+	private int m_id,mileage,m_apply;
+	private String userid,m_open,m_close;
+	
+>>>>>>> invest
 	public int getM_id() {
 		return m_id;
 	}
 	public void setM_id(int m_id) {
 		this.m_id = m_id;
 	}
+<<<<<<< HEAD
 	public int getMileage() {
 		return mileage;
 	}
@@ -28,6 +35,13 @@ public class MockDto {
 	}
 	public void setUserid(String userid) {
 		this.userid = userid;
+=======
+	public int getM_apply() {
+		return m_apply;
+	}
+	public void setM_apply(int m_apply) {
+		this.m_apply = m_apply;
+>>>>>>> invest
 	}
 	public String getM_open() {
 		return m_open;
@@ -41,7 +55,24 @@ public class MockDto {
 	public void setM_close(String m_close) {
 		this.m_close = m_close;
 	}
+<<<<<<< HEAD
 
 
 }
 
+=======
+	public int getMileage() {
+		return mileage;
+	}
+	public void setMileage(int mileage) {
+		this.mileage = mileage;
+	}
+	public String getUserid() {
+		return userid;
+	}
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+}
+>>>>>>> invest

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -93,18 +94,40 @@ a:visited {
 	border-bottom: 3px solid black;
 	}
 
+button{
+	font-size:5px;
+	text-align: center;
+	text-decoration: none;
+
+	display: inline-block;
+	width: auto;
+
+	border: none;
+	border-radius: 4px;
+	background:litepink;
+	color: white;
+}
 
 </style>
 
 </head>
-<decorator:head/>
 <body>
+<decorator:head/>
 <div class="container">
 	<div id="first">
-		<div class="item w_logo"><a href="index"><img src="https://i.imgur.com/P7URtSx.png"></a></div>
+		<div class="item w_logo"><a href="/mock/index"><img src="https://i.imgur.com/P7URtSx.png"></a></div>
 		<div class="item login">
+		<c:if test="${userid==null}">
 			<a href="login">로그인</a>
-			<a href="member">회원가입</a></div>
+			<a href="member">회원가입</a>
+		</c:if>
+		
+		<c:if test="${userid!=null}">
+			${username}님
+			<a href="logout">로그아웃</a>
+			<input type="button" onclick="location.href='invest/in_regi'" value="모의투자신청">
+		</c:if>	
+		</div>
 	</div>
 
 	<div id="second">
@@ -122,10 +145,13 @@ a:visited {
 		<div class="item"></div>
 		<!-- 아이템들 사이 조정을 위해 넣은 값 -->
  	</div>
-
+	<!-- 메뉴바 밑줄 꾸미기 위해 넣은 div -->
  	<div id="third">
 	</div>
 	<decorator:body/>
+	<div id="main">
+	
+	</div>
 </div>
 </body>
 </html>

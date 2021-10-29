@@ -11,7 +11,11 @@
 		select * from user where userid=#{userid} and pwd=#{pwd}
 	</select>
 	
+<<<<<<< HEAD
 	<select id="get_enddate" resultType="String">
+=======
+	<select id="get_enddate" resultType="kr.co.mock.dto.MockDto">
+>>>>>>> invest
 		select * from mock_invest order by userid=#{param1} desc limit 1;
 		<!-- 신청한 아이디 중 가장 최신에 신청한 날짜만 가져오기 -->
 	</select>
