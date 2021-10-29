@@ -102,7 +102,11 @@
 				</select>
 			</div>
 		</div>
-
+		
+		<c:if test="${notday==1}">
+		<b style="color:red">이전에 신청하신 모의 투자의 종료 날짜가 되지 않았습니다.</b>
+		</c:if>
+		
 		<div id="subm">
 			<input id="inv_input" type="submit" value="신청하기">
 		</div>	

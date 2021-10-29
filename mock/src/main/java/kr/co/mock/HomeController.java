@@ -33,7 +33,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return "redirect:/main_view";
 	}
 	
 	@RequestMapping("/header")
@@ -41,6 +41,6 @@ public class HomeController {
 	{
 		return "/header";
 	}
-	
+
 	
 }
