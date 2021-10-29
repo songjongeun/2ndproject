@@ -28,7 +28,7 @@ public class UserController {
 		return "user/login";
 	}
 	
-	@RequestMapping("/member")
+	@RequestMapping("user/member")
 	public String member(HttpServletRequest request,Model model)
 	{
 		model.addAttribute("f",request.getParameter("f"));
@@ -36,7 +36,7 @@ public class UserController {
 		return "user/member";
 	}
 
-	@RequestMapping("/userid_check")
+	@RequestMapping("user/userid_check")
 	public void userid_check(HttpServletRequest request,PrintWriter out)
 	{
 		String userid=request.getParameter("userid");
@@ -61,7 +61,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping("/login_ok")
+	@RequestMapping("login_ok")
 	public String login_ok(UserDto udto,HttpSession session)
 	{
 		UserDao udao=sqlSession.getMapper(UserDao.class);

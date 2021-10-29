@@ -115,7 +115,7 @@ button{
 <decorator:head/>
 <div class="container">
 	<div id="first">
-		<div class="item w_logo"><a href="/mock/index"><img src="https://i.imgur.com/P7URtSx.png"></a></div>
+		<div class="item w_logo"><a href="main_view"><img src="https://i.imgur.com/P7URtSx.png"></a></div>
 		<div class="item login">
 		<c:if test="${userid==null}">
 			<a href="login">로그인</a>
@@ -124,6 +124,7 @@ button{
 		
 		<c:if test="${userid!=null}">
 			${username}님
+			<a href="my_interests">내종목보기</a>
 			<a href="logout">로그아웃</a>
 			<input type="button" onclick="location.href='invest/in_regi'" value="모의투자신청">
 		</c:if>	
