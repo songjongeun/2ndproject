@@ -71,7 +71,7 @@ public class MockController {
 					int m_close=Integer.parseInt(request.getParameter("m_close"));
 					int mileage=Integer.parseInt(request.getParameter("mileage"));
 					mdao.in_regi_ok(mdto, userid, m_close, mileage);
-					return "/index";
+					return "/home";
 				}
 				else { //diffdays=0 or 음수 일 경우 현재 날짜와 같거나 종료이전
 					return "redirect:/login?notday=1";
@@ -81,20 +81,20 @@ public class MockController {
 				int m_close=Integer.parseInt(request.getParameter("m_close"));
 				int mileage=Integer.parseInt(request.getParameter("mileage"));
 				mdao.in_regi_ok(mdto, userid, m_close, mileage);
-				return "/index";
+				return "/home";
 			}
 				
 			}
 		else { // 로그인을 하지 않았다면 로그인 페이지로
-			return "/login";
+			return "/user/login";
 		}
 		//전체 if 문 종료
 	}
 	
-	@RequestMapping("/login")
+	@RequestMapping("/user/login")
 	public String login()
 	{
-		return "/login";
+		return "/user/login";
 	}
 
 	@RequestMapping("/login_ok")

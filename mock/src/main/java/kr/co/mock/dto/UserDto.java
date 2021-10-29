@@ -1,4 +1,3 @@
-
 package kr.co.mock.dto;
 
 public class UserDto {

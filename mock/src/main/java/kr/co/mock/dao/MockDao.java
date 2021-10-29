@@ -9,5 +9,4 @@ public interface MockDao {
 	public void in_regi_ok(MockDto mdto,String userid,int m_close,int mileage);
 	public UserDto login_ok(UserDto udto);
 	public ArrayList<MockDto> get_enddate(String userid);
-
 }
