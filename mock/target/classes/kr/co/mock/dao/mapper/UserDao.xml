@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybats-3-mapper.dtd">
+
+<mapper namespace="kr.co.mock.dao.UserDao">
+
+  <select id="userid_check" resultType="Integer">
+    select count(*) from user where userid=#{param1}
+  </select>
+
+  <insert id="member_ok" parameterType="kr.co.mock.dto.UserDto">
+    insert into user(userid,pwd,username,email) 
+    values(#{userid},#{pwd},#{username},#{email})
+  </insert>
+  
+  <select id="login_ok" parameterType="kr.co.mock.dto.UserDto" resultType="kr.co.mock.dto.UserDto">
+    select * from user where userid=#{userid} and pwd=#{pwd}
+  </select>
+  
+  <select id="ip_search_ok" parameterType="kr.co.mock.dto.UserDto" resultType="kr.co.mock.dto.UserDto">
+    select * from user where username=#{username} and email=#{email} and userid like #{userid}
+  </select>
+  
+  <select id="interests" resultType="kr.co.mock.dto.UserDto">
+    select * from interests where userid=#{param1}
+  </select>
+  
+  <select id="stk_rt" resultType="kr.co.mock.dto.UserDto">
+    select s.code,s.name,r.r_id,r.cprice,r.diff,r.vol from stocks_a s,realtime r where s.code=r.code and s.code=#{param1}
+  </select>
+
+</mapper>
