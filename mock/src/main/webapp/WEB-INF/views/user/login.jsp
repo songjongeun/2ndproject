@@ -52,7 +52,7 @@
 		  <tr style="text-align:center">
 		    <td><a href="javascript:userid_search()"> 아이디 찾기</a></td>
 		    <td><a href="javascript:userpwd_search()"> 비밀번호 찾기</a></td>
-		    <td><a href="member"> 회원가입</a></td>
+		    <td><a href="user/member"> 회원가입</a></td>
 		  </tr>
 		</table>
 	</form>	

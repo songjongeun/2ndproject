@@ -32,32 +32,9 @@ public class MockController {
 	private SqlSession sqlSession;
 	
 	@RequestMapping("main_view")
-	public String index(MockDto mdto,HttpSession session,Model model,HttpServletRequest request) throws Exception {
-		MockDao mdao=sqlSession.getMapper(MockDao.class);
-		String userid=session.getAttribute("userid").toString();//로그인했을 경우 userid 세선에서 가져옴.
-		ArrayList<MockDto> endmdto=mdao.get_enddate(userid);
-		int m_apply=endmdto.get(0).getM_apply(); // 모의투자신청여부 가지고 옴
-		
-		if(userid!=null) {//로그인 한 상태라면	
-			Date todate;//현재 날짜 구하는 객체
-			Date enddate; // sql 에서 가져온 모의 신청 마지막 날
-			
-				String close=endmdto.get(0).getM_close();//모의투자 종료날짜 가지고 옴.
-
-				SimpleDateFormat format=new SimpleDateFormat("yyyy-mm-dd",Locale.KOREA); //코리아기준 현재날짜
-				todate=new Date();
-				String oTime=format.format(todate); //현재 날짜(String)
-				
-				enddate = new SimpleDateFormat("yyyy-mm-dd").parse(close);//모의 종료날짜 Date
-				todate = format.parse(oTime);//현재 날짜 Date
-				
-				int diffdays=todate.compareTo(enddate); //현날짜와 종료날짜 비교 값.
-
-			
-					model.addAttribute("diffdays",diffdays);
-				return "main_view";
-				
-			} return "main_view";
+	public String main_view()
+	{
+		return "main_view";
 	}
 	
 	@RequestMapping("/invest/in_regi")
@@ -104,5 +81,5 @@ public class MockController {
 			return "/user/login";
 		}//전체 if 문 종료
 	}
-
+	
 }

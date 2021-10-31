@@ -20,23 +20,12 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping("/")
 	public String home(Locale locale, Model model) {
+
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "redirect:/main_view";
+		return "main_view";
 	}
 	
-	@RequestMapping("/header")
-	public String header()
-	{
-		return "/header";
-	}
-
 	
 }

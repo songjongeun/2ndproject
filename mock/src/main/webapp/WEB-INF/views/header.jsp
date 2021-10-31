@@ -15,6 +15,8 @@
 .container{ /*헤더 전체 컨테이너로 설정*/
 	display:grid;
   	place-items: center;
+  	width:100%;
+  	min-width:auto;
 	height:100%;
 	grid-gap:5px;
 	grid-template-areas:
@@ -26,8 +28,8 @@
 
 #first{ /*찻반쩨 로고 및 로그인 css*/
 	grid-area:first;
+	width:70%;
 	place-items: center;
-	width:1200px;	
 	display:flex;
 	justify-content: space-between; /*양끝으로 정렬. 아이템들 사이의 거리는 같음.*/
 	height:80px;
@@ -46,20 +48,23 @@
 
 #second{ /*메뉴*/
 	grid-area:second;
-	width:1200px;
-	height:30px;
 	place-items: center;
+	width:70%;
+  	min-width:auto;
+	height:30px;
 	display:flex;
 	justify-content: space-between;/*전체 같은 여백으로 정렬*/
 }
 #third{ /*메뉴 바 밑의 밑줄*/
 	grid-area:third;
-	width:1200px;
+	width:70%;
+	min-width:auto;
 	height:5px;
 	border-bottom:2px solid;
 }
 #main{ /*모든 메인 페이지 적용*/
-	width:1200px;
+	width:70%;
+	min-width:auto;
 	grid-area:main;
 	place-items: center;
 }
@@ -115,7 +120,7 @@ button{
 <decorator:head/>
 <div class="container">
 	<div id="first">
-		<div class="item w_logo"><a href="main_view"><img src="https://i.imgur.com/P7URtSx.png"></a></div>
+		<div class="item w_logo"><a href="/mock/main_view"><img src="https://i.imgur.com/P7URtSx.png"></a></div>
 		<div class="item login">
 		<c:if test="${userid==null}">
 			<a href="login">로그인</a>
@@ -124,9 +129,8 @@ button{
 		
 		<c:if test="${userid!=null}">
 			${username}님
-			<a href="my_interests">내종목보기</a>
+			<input type="button" onclick="location.href='/mock/invest/in_regi'" value="모의투자신청">
 			<a href="logout">로그아웃</a>
-			<input type="button" onclick="location.href='invest/in_regi'" value="모의투자신청">
 		</c:if>	
 		</div>
 	</div>
@@ -140,7 +144,7 @@ button{
  		<div class="item ai"><a href="">AI추천 종목</a></div>
 		<div class="item chart"><a href="">실시간 차트</a></div>
 		<div class="item mock"><a href="">모의 투자</a></div>
-		<div class="item my_market"><a href="">내 종목 보기</a></div>
+		<div class="item my_market"><a href="/mock/user/my_interests">내 종목 보기</a></div>
 		<div class="item m_free"><a href="">자유게시판</a></div>
 		<div class="item"></div>
 		<div class="item"></div>
