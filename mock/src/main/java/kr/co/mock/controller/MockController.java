@@ -100,13 +100,19 @@ public class MockController {
 	
 	
 	@RequestMapping("/stocks/selling")
-	public String selling(HttpServletRequest request,Model model)
+	public String selling(HttpServletRequest request,Model model,HttpSession session)
 	{
 		String code=request.getParameter("code");
 		MockDao mdao=sqlSession.getMapper(MockDao.class);
 		ArrayList<Stock1Dto> sdto=mdao.st_content(code);
+		
+		//mock 테이블에서 포인트 조회를 위해 가져오는 값
+		String userid=session.getAttribute("userid").toString();
+		int mileage=mdao.get_point(userid);
+		
 		model.addAttribute("sdto",sdto);
 		model.addAttribute("code",code);
+		model.addAttribute("mileage",mileage); // 
 		
 		return "/stocks/selling";
 	}

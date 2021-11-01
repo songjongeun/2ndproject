@@ -13,5 +13,5 @@ public interface MockDao {
 	
 	public ArrayList<Stock1Dto> st_list();
 	public ArrayList<Stock1Dto> st_content(String code);
-	public ArrayList<Stock1Dto> test(int id);
+	public int get_point(String userid);
 }

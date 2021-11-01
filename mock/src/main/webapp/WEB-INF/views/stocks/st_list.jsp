@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -40,8 +41,8 @@
 	<tr>
 		<td>${sdto.code}</td>
 		<td>${sdto.name}</td>
-		<td><a href="/mock/stocks/selling?code=${sdto.code}">${sdto.bid}</a></td>
-		<td><a href="/mock/stocks/buying?code=${sdto.code}">${sdto.offer}</a></td>
+		<td><a href="/mock/stocks/selling?code=${sdto.code}"><fmt:formatNumber value="${sdto.bid}"/></a></td>
+		<td><a href="/mock/stocks/buying?code=${sdto.code}"><fmt:formatNumber value="${sdto.offer}"/></a></td>
 		<td>${sdto.diff}%</td>
 		<td>${sdto.day}</td>
 	</tr>
