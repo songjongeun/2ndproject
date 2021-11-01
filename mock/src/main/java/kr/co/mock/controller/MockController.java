@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import kr.co.mock.HomeController;
 import kr.co.mock.dao.MockDao;
 import kr.co.mock.dto.MockDto;
+import kr.co.mock.dto.Stock1Dto;
 import kr.co.mock.dto.UserDto;
 
 @Controller
@@ -31,10 +32,10 @@ public class MockController {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	@RequestMapping("main_view")
+	@RequestMapping("/main_view")
 	public String main_view()
 	{
-		return "main_view";
+		return "/main_view";
 	}
 	
 	@RequestMapping("/invest/in_regi")
@@ -66,7 +67,7 @@ public class MockController {
 			
 			int diffdays=todate.compareTo(enddate); //현날짜와 종료날짜 비교 값.
 			
-			if(m_apply==1 && diffdays<0) {//모의 투자 신청을 한 적이 있을 경우 마지막 신청 날짜와 비교한다.
+			if(m_apply!=1 && diffdays < 0) {//모의 투자 신청을 한 적이 있을 경우 마지막 신청 날짜와 비교한다.
 			//현재 날짜 > 종료날짜 //종료시점이 지나 다시 신청 가능.
 				int m_close=Integer.parseInt(request.getParameter("m_close"));
 				int mileage=Integer.parseInt(request.getParameter("mileage"));
@@ -74,12 +75,52 @@ public class MockController {
 				return "redirect:/main_view";
 			}
 			else { //diffdays=0 or 음수 일 경우 현재 날짜와 같거나 종료이전 이므로 신청 불가
-				return "redirect:/in_regi?notday=1";
+				return "redirect:/invest/in_regi?notday=1";
 			}			
 		}
 		else { // 로그인을 하지 않았다면 로그인 페이지로
 			return "/user/login";
 		}//전체 if 문 종료
+	}
+	
+	//---모의 신청 완료
+	
+	//---포인트
+	
+	@RequestMapping("/stocks/st_list")
+	public String st_list(Stock1Dto sdto,Model model)
+	{
+		MockDao mdao=sqlSession.getMapper(MockDao.class);
+
+		ArrayList<Stock1Dto> list=mdao.st_list();
+		model.addAttribute("list",list);
+		
+		return "/stocks/st_list";
+	}
+	
+	
+	@RequestMapping("/stocks/selling")
+	public String selling(HttpServletRequest request,Model model)
+	{
+		String code=request.getParameter("code");
+		MockDao mdao=sqlSession.getMapper(MockDao.class);
+		ArrayList<Stock1Dto> sdto=mdao.st_content(code);
+		model.addAttribute("sdto",sdto);
+		model.addAttribute("code",code);
+		
+		return "/stocks/selling";
+	}
+	
+	@RequestMapping("/stocks/buying")
+	public String buying(HttpServletRequest request,Model model)
+	{
+		String code=request.getParameter("code");
+		MockDao mdao=sqlSession.getMapper(MockDao.class);
+		ArrayList<Stock1Dto> sdto=mdao.st_content(code);
+		model.addAttribute("sdto",sdto);
+		model.addAttribute("code",code);
+		
+		return "/stocks/buying";
 	}
 	
 }

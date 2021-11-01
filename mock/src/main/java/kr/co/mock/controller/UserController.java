@@ -136,7 +136,7 @@ public class UserController {
 		return "/user/ip_search_ok";
 	}
 
-	@RequestMapping("/my_interests")
+	@RequestMapping("/user/my_interests")
 	public String my_interests(HttpSession session,Model model)
 	{// 관심종목 가져오기
 		String userid=(String) session.getAttribute("userid");

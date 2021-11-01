@@ -67,6 +67,7 @@
 	min-width:auto;
 	grid-area:main;
 	place-items: center;
+	padding-top:50px;
 }
 
 /* 햄버거부분 */
@@ -123,8 +124,8 @@ button{
 		<div class="item w_logo"><a href="/mock/main_view"><img src="https://i.imgur.com/P7URtSx.png"></a></div>
 		<div class="item login">
 		<c:if test="${userid==null}">
-			<a href="login">로그인</a>
-			<a href="member">회원가입</a>
+			<a href="/mock/login">로그인</a>
+			<a href="/mock/user/member">회원가입</a>
 		</c:if>
 		
 		<c:if test="${userid!=null}">
@@ -143,7 +144,7 @@ button{
  		</div>
  		<div class="item ai"><a href="">AI추천 종목</a></div>
 		<div class="item chart"><a href="">실시간 차트</a></div>
-		<div class="item mock"><a href="">모의 투자</a></div>
+		<div class="item mock"><a href="/mock/stocks/st_list">모의 투자</a></div>
 		<div class="item my_market"><a href="/mock/user/my_interests">내 종목 보기</a></div>
 		<div class="item m_free"><a href="">자유게시판</a></div>
 		<div class="item"></div>
