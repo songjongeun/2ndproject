@@ -75,7 +75,7 @@ public class UserController {
 			session.setAttribute("userid",udto2.getUserid());
 			session.setAttribute("username",udto2.getUsername());
 			
-			return "redirect:/main_view";
+			return "/main_view";
 		}
 	}
 	
@@ -83,7 +83,7 @@ public class UserController {
 	public String logout(HttpSession session)
 	{
 		session.invalidate();
-		return "redirect:/main_view";
+		return "/main_view";
 	}
 
 	@RequestMapping("/user/userid_search")
