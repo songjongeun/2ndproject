@@ -12,6 +12,7 @@ public interface MockDao {
 	public ArrayList<MockDto> get_enddate(String userid);
 	
 	public ArrayList<Stock1Dto> st_list();
-	public ArrayList<Stock1Dto> st_content(String code);
+	public ArrayList<Stock1Dto> st_content(int id);
 	public int get_point(String userid);
+	public int search_id(String userid);
 }
