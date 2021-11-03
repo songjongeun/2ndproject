@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div align="center">
-		<form name="pwd_search" method="post" action="ip_search_ok">
+		<form name="pwd_search" method="post" action="/mock/user/ip_search_ok">
 		<h3 style="text-align: center;">비밀번호 찾기</h3>
 		<div class="form-group">
 			<input type="text" placeholder="아이디" name="userid" maxlength="20">
