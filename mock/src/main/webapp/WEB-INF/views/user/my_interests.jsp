@@ -10,7 +10,7 @@
 </head>
 <body>
   <div id="main" align="center">
-    <table width="1000" >
+    <table width="700" >
       <c:if test="${chk==1}">  <!-- 가져온 정보가 없을시 -->
         <div style="padding-right:70px;padding-top:70px;text-align:center;">관심종목이 없습니다<p>
         관심종목을 등록해주세요</div>
@@ -24,10 +24,15 @@
         </tr>
         <c:forEach items="${udto2}" var="udto2">
           <tr style="text-align:center">
-            <td><a href="${udto2.code}">${udto2.name}</a></td><!-- 종목으로가기 -->
-            <td><fmt:formatNumber value="${udto2.cprice}" pattern="#,##0" /></td>
-            <td><fmt:formatNumber value="${udto2.diff}" pattern="#,##0" /></td>
-            <td><fmt:formatNumber value="${udto2.vol}" pattern="#,##0" /></td>
+		    <c:if test="${udto2.err==1}">  <!-- 관심종목은 있지만 정보가 없을시 -->
+		      <td colspan="4"><a href="/mock/stocks/st_list?name=${udto2.name}">${udto2.name}의 정보가 없습니다</a></td>
+		    </c:if>
+		    <c:if test="${udto2.err!=1}"> 
+              <td><a href="/mock/stocks/st_list?code=${udto2.code}">${udto2.name}</a></td><!-- 종목으로가기 -->
+              <td><fmt:formatNumber value="${udto2.cprice}" pattern="#,##0" /></td>
+              <td><fmt:formatNumber value="${udto2.diff}" pattern="#,##0" /></td>
+              <td><fmt:formatNumber value="${udto2.vol}" pattern="#,##0" /></td>
+            </c:if>
           </tr>
         </c:forEach>
       </c:if>
