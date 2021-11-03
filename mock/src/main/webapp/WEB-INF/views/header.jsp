@@ -124,14 +124,14 @@ button{
 		<div class="item w_logo"><a href="/mock/main_view"><img src="https://i.imgur.com/P7URtSx.png"></a></div>
 		<div class="item login">
 		<c:if test="${userid==null}">
-			<a href="/mock/login">로그인</a>
+			<a href="/mock/user/login">로그인</a>
 			<a href="/mock/user/member">회원가입</a>
 		</c:if>
 		
 		<c:if test="${userid!=null}">
 			${username}님
 			<input type="button" onclick="location.href='/mock/invest/in_regi'" value="모의투자신청">
-			<a href="logout">로그아웃</a>
+			<a href="/mock/user/logout">로그아웃</a>
 		</c:if>	
 		</div>
 	</div>
