@@ -13,4 +13,8 @@ public interface UserDao {
 	public UserDto stk_rt(String code);
 	public UserDto stocks_name(String code);
 	
+	public UserDto mypage(String userid); 
+	public UserDto mypage_update(String userid);
+	public void mypage_delete(String userid);
+	public void mypage_update_ok(UserDto udto); 
 }
