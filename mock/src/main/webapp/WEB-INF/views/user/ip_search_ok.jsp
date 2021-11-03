@@ -15,10 +15,10 @@ function win_close()
 	<c:if test="${chk!=null }">
 		<div class="jumbotron" style="padding-top: 20px;" align="center">
 			<c:if test="${chk==1}">
-			<form method="post" action="userid_search">
+			<form method="post" action="/mock/user/userid_search">
 			</c:if>
 			<c:if test="${chk==2}">
-			<form method="post" action="pwd_search">
+			<form method="post" action="/mock/user/pwd_search">
 			</c:if>
 				<div class="form-group">
 					<div>잘못된 정보입니다</div>

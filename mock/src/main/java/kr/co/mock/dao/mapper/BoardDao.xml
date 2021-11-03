@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.mock.dao.BoardDao">
+
+  <insert id="write_ok" parameterType="kr.co.mock.dto.BoardDto">
+    insert into freeboard(userid,title,content,writeday)
+    values(#{userid},#{title},#{content},now())
+  </insert>
+  
+  <select id="list" resultType="kr.co.mock.dto.BoardDto">
+    select * from freeboard order by f_id desc limit #{param1},10
+  </select>
+  
+  <update id="hit">
+     update freeboard set hit=hit+1
+     where f_id=#{param1}
+  </update>
+  
+  <select id="content" resultType="kr.co.mock.dto.BoardDto">
+     select * from freeboard where f_id=#{param1}
+  </select>
+  
+  <select id="update" resultType="kr.co.mock.dto.BoardDto">
+     select * from freeboard where f_id=#{param1}
+  </select>
+  
+  <update id="update_ok" parameterType="kr.co.mock.dto.BoardDto">
+     update freeboard set userid=#{userid},title=#{title}, content=#{content} 
+     where f_id=#{f_id}
+  </update>
+
+  <delete id="delete">
+     delete from freeboard where f_id=#{param1}
+  </delete>
+  
+  <select id="get_pagecount" resultType="Integer">
+    select ceil(count(*)/10) from freeboard;
+  </select>
+  
+</mapper>

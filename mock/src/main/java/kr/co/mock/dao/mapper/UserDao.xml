@@ -3,6 +3,22 @@
 
 <mapper namespace="kr.co.mock.dao.UserDao">
 
+  <select id="mypage" resultType="kr.co.mock.dto.UserDto">
+     select * from user where userid=#{userid}
+  </select>
+  <select id="mypage_update" resultType="kr.co.mock.dto.UserDto">
+     select * from user where userid=#{userid}
+  </select>
+  
+  <update id="mypage_update_ok" parameterType="kr.co.mock.dto.UserDto">
+     update user set userid=#{userid},username=#{username},pwd=#{pwd},email=#{email} 
+     where userid=#{userid}
+  </update>
+  
+  <delete id="mypage_delete">
+     delete from user where userid=#{userid}
+  </delete>
+  
   <select id="userid_check" resultType="Integer">
     select count(*) from user where userid=#{param1}
   </select>
@@ -20,12 +36,16 @@
     select * from user where username=#{username} and email=#{email} and userid like #{userid}
   </select>
   
-  <select id="interests" resultType="kr.co.mock.dto.UserDto">
+  <select id="my_interests" resultType="kr.co.mock.dto.UserDto">
     select * from interests where userid=#{param1}
   </select>
   
   <select id="stk_rt" resultType="kr.co.mock.dto.UserDto">
     select s.code,s.name,r.r_id,r.cprice,r.diff,r.vol from stocks_a s,realtime r where s.code=r.code and s.code=#{param1}
+  </select>
+  
+  <select id="stocks_name" resultType="kr.co.mock.dto.UserDto">
+    select * from stocks_a where code=#{param1}
   </select>
 
 </mapper>

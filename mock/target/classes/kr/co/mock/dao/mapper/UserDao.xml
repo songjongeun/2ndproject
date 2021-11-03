@@ -20,7 +20,7 @@
     select * from user where username=#{username} and email=#{email} and userid like #{userid}
   </select>
   
-  <select id="interests" resultType="kr.co.mock.dto.UserDto">
+  <select id="my_interests" resultType="kr.co.mock.dto.UserDto">
     select * from interests where userid=#{param1}
   </select>
   

@@ -86,7 +86,7 @@ function email_hide()
  {  
  	 var chk=new XMLHttpRequest();
  	 var userid=document.member.userid.value;
-     chk.open("get","userid_check?userid="+userid); 
+     chk.open("get","/mock/user/userid_check?userid="+userid); 
      chk.send();
      chk.onreadystatechange=function()
      {
@@ -126,7 +126,7 @@ function email_hide()
 </head>
 <body>
 <div id="main" align="center" style="padding-right:70px;">
-				<form name="member" method="post" action="member_ok" onsubmit="return check()">
+				<form name="member" method="post" action="/mock/user/member_ok" onsubmit="return check()">
 				<h3 style="text-align: center;">회원가입</h3>
 				<div class="form-group">
 					<input type="text" placeholder="아이디" name="userid" onkeyup="userid_hide()" maxlength="20"><p>

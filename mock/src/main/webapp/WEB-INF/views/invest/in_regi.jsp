@@ -76,13 +76,17 @@
 	&nbsp;&nbsp;● 시세<p>
 	&nbsp;&nbsp;&nbsp;▷ 모의투자의 시세는 실제 시장의 실시간 시세를 이영하며, 참가자의 주문을 실제시장의 시세에 영향을 미치지 않습니다.<br>
 	&nbsp;&nbsp;&nbsp;(단, 모의투자는 실제 시장에서의 체결과 약간 다를 수 있습니다.<br>
-	&nbsp;&nbsp;&nbsp;▷ 주문은 현금매도/매수, 현금미수에 한하며, 신용이나 공매도는 허용하지 않습니다.)<br>
+	&nbsp;&nbsp;&nbsp;▷ 주문은 현금매도/매수, 현금미수에 한하며, 신용이나 공매도는 허용하지 않습니다.)<br><br>
 
 	&nbsp;&nbsp;● 투자대상종목<p>
 	&nbsp;&nbsp;&nbsp;▷ 매매제한 종목을 제외한 거래소 및 코스닥, ELW 전종목을 대상으로 합니다.<br>
 	&nbsp;&nbsp;&nbsp;단, 실제 주식시장에서 거래가 발생하지 않았던 종목과 매매거래 정지종목은 투자 대상 종목에서 제외합니다.<br><br><br>
 	</div>
 	<div id="conline">
+		<c:if test="${notday==1}">
+		이미 신청한 적이 있고 종료날짜가 지나지 않아 재신청이 불가합니다.
+		</c:if>
+		<c:if test="${notday!=1}">
 		<form name="aa" method="post" action="../in_regi_ok">
 		<div id="regist">
 			<div class="in_date date">투자 기간</div>
@@ -103,16 +107,13 @@
 			</div>
 		</div>
 		
-		<c:if test="${notday==1}">
-		<script>
-		alert("신청불가!");
-		</script>
-		</c:if>
+		
 		
 		<div id="subm">
 			<input id="inv_input" type="submit" value="신청하기">
 		</div>	
 		</form>
+		</c:if>
 	</div>
 </div>
 </body>
