@@ -2,9 +2,9 @@
 <decorators defaultdir="/WEB-INF/views">6
  <!-- 제외할 패턴 -->
  <excludes>
-  <pattern>/userid_search</pattern>
-  <pattern>/pwd_search</pattern>
-  <pattern>/ip_search_ok</pattern>
+  <pattern>/user/userid_search</pattern>
+  <pattern>/user/pwd_search</pattern>
+  <pattern>/user/ip_search_ok</pattern>
  </excludes>
  <!-- 기본 패턴 -->
  <decorator name="default" page="header.jsp">
