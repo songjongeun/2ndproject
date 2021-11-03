@@ -62,13 +62,16 @@ public class UserController {
 	// -----
 	// 조건국
 	
+	
+	// 로그인 페이지
 	@RequestMapping("/user/login")
 	public String login(HttpServletRequest request,Model model)
 	{
 		model.addAttribute("chk",request.getParameter("chk"));
 		return "/user/login";
 	}
-	
+
+	// 회원가입 페이지
 	@RequestMapping("/user/member")
 	public String member(HttpServletRequest request,Model model)
 	{
@@ -77,6 +80,7 @@ public class UserController {
 		return "/user/member";
 	}
 
+	// 회원가입시 아이디 중복체크
 	@RequestMapping("/user/userid_check")
 	public void userid_check(HttpServletRequest request,PrintWriter out)
 	{
@@ -85,7 +89,8 @@ public class UserController {
 		int chk=udao.userid_check(userid);
 		out.print(chk);
 	}
-	
+
+	// 회원가입 완료
 	@RequestMapping("/user/member_ok")
 	public String member_ok(UserDto udto)
 	{
@@ -102,6 +107,7 @@ public class UserController {
 		}
 	}
 
+	// 로그인 완료
 	@RequestMapping("/user/login_ok")
 	public String login_ok(UserDto udto,HttpSession session)
 	{
@@ -119,7 +125,8 @@ public class UserController {
 			return "/main_view";
 		}
 	}
-	
+
+	// 로그아웃
 	@RequestMapping("/user/logout")
 	public String logout(HttpSession session)
 	{
@@ -127,18 +134,21 @@ public class UserController {
 		return "/main_view";
 	}
 
+	// 아이디찾기화면
 	@RequestMapping("/user/userid_search")
 	public String userid_search()
 	{
 		return "/user/userid_search";
 	}
 
+	// 비밀번호찾기화면
 	@RequestMapping("/user/pwd_search")
 	public String pwd_search()
 	{
 		return "/user/pwd_search";
 	}
-	
+
+	// 아이디-비밀번호 결과화면
 	@RequestMapping("/user/ip_search_ok")
 	public String ip_search_ok(UserDto udto,Model model)
 	{
@@ -177,6 +187,7 @@ public class UserController {
 		return "/user/ip_search_ok";
 	}
 
+	// 관심종목 화면
 	@RequestMapping("/user/my_interests")
 	public String my_interests(HttpSession session,Model model)
 	{// 관심종목 가져오기
