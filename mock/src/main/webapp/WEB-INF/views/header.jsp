@@ -23,7 +23,7 @@
 		"first first"
 		"second second"
 		"third third"
-		"main main";
+		"con_main con_main";
 }
 
 #first{ /*찻반쩨 로고 및 로그인 css*/
@@ -65,7 +65,7 @@
 #main{ /*모든 메인 페이지 적용*/
 	width:70%;
 	min-width:auto;
-	grid-area:main;
+	grid-area:con_main;
 	place-items: center;
 	padding-top:50px;
 }
@@ -160,9 +160,6 @@ button{
  	<div id="third">
 	</div>
 	<decorator:body/>
-	<div id="main">
-	
-	</div>
 </div>
 </body>
 </html>

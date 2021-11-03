@@ -1,10 +1,16 @@
 package kr.co.mock.dto;
 
 public class Stock1Dto {
-	private int open,high,low,diff,close,offer,bid,vol,vol_value;
+	private int id, open,high,low,diff,close,offer,bid,vol,vol_value;
 	private String code,name,exchange,day;
 	
 
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public int getOpen() {
 		return open;
 	}

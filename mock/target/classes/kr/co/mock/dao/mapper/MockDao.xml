@@ -11,4 +11,21 @@
 		select * from mock_invest order by userid=#{param1} desc limit 1;
 		<!-- 신청한 아이디 중 가장 최신에 신청한 날짜만 가져오기 -->
 	</select>
+	
+		<select id="st_list" resultType="kr.co.mock.dto.Stock1Dto">
+		select * from stocks
+	</select>
+	
+	<select id="st_content" resultType="kr.co.mock.dto.Stock1Dto">
+		select * from stocks where id=#{param1}
+	</select>
+	
+	<select id="get_point" resultType="Integer">
+		select mileage from mock_invest order by userid=#{param1} desc limit 1;
+	</select>
+	
+	<select id="search_id" resultType="Integer">
+		select count(*)from mock_invest where userid=#{param1}
+	</select>
+	<!-- 모의투자 신청시 신청한 적이 있는지 조회함 -->
 </mapper>
