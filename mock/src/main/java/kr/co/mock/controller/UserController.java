@@ -21,22 +21,67 @@ public class UserController {
 	@Autowired
 	private SqlSession sqlSession;
 
-	@RequestMapping("/login")
+	@RequestMapping("/mypage")
+	public String mypage(Model model,HttpServletRequest request)
+	{
+		String userid=request.getParameter("userid");	
+		UserDao udao=sqlSession.getMapper(UserDao.class);
+		UserDto udto=udao.mypage(userid);
+		model.addAttribute("udto",udto);
+		return "/mypage";
+	}
+	
+	@RequestMapping("/mypage_update")
+	public String mypage_update(Model model,HttpServletRequest request)
+	{
+		String userid=request.getParameter("userid");
+		UserDao udao=sqlSession.getMapper(UserDao.class); 
+		UserDto udto=udao.mypage_update(userid);
+		model.addAttribute("udto",udto);
+		return "/mypage_update";
+	}
+	
+	@RequestMapping("/mypage_update_ok")
+	public String mypage_update_ok(UserDto udto)
+	{
+		UserDao udao=sqlSession.getMapper(UserDao.class);
+		udao.mypage_update_ok(udto);
+		return "redirect:/mypage";
+	}
+	
+	@RequestMapping("/mypage_delete")
+	public String delete(HttpServletRequest request)
+	{
+		String userid=request.getParameter("userid");
+		UserDao udao=sqlSession.getMapper(UserDao.class);
+		udao.mypage_delete(userid);
+		return "redirect:/index";
+	}
+	
+	// 김재현
+	// -----
+	// 조건국
+	
+	
+	// 로그인 페이지
+	@RequestMapping("/user/login")
 	public String login(HttpServletRequest request,Model model)
 	{
 		model.addAttribute("chk",request.getParameter("chk"));
-		return "user/login";
+		return "/user/login";
 	}
-	
-	@RequestMapping("user/member")
+
+	// 회원가입 페이지
+	@RequestMapping("/user/member")
 	public String member(HttpServletRequest request,Model model)
 	{
 		model.addAttribute("f",request.getParameter("f"));
 		
-		return "user/member";
+		return "/user/member";
 	}
 
-	@RequestMapping("user/userid_check")
+	// 회원가입시 아이디 중복체크
+	@RequestMapping("/user/userid_check")
 	public void userid_check(HttpServletRequest request,PrintWriter out)
 	{
 		String userid=request.getParameter("userid");
@@ -44,61 +89,87 @@ public class UserController {
 		int chk=udao.userid_check(userid);
 		out.print(chk);
 	}
-	
-	@RequestMapping("/member_ok")
-	public String member_ok(UserDto udto)
+
+	// 회원가입 완료
+	@RequestMapping("/user/member_ok")
+	public String member_ok(HttpServletRequest request,UserDto udto,HttpSession session)
 	{
-		UserDao xdao=sqlSession.getMapper(UserDao.class);
-		int chk=xdao.userid_check(udto.getUserid());
+		String auto=request.getParameter("auto");
+		
+		UserDao udao=sqlSession.getMapper(UserDao.class);
+		int chk=udao.userid_check(udto.getUserid());
 		if(chk==0)
 		{
-			xdao.member_ok(udto); 
-			return "redirect:/main_view";
+			udao.member_ok(udto); 
+			if(auto.equals("1"))  // 회원가입 후 자동로그인
+			{
+				UserDto udto2=udao.login_ok(udto);
+				if(udto2==null)
+				{
+					return "redirect:/user/login?chk=1";
+				}
+				else
+				{
+					session.setAttribute("userid",udto2.getUserid());
+					session.setAttribute("username",udto2.getUsername());
+					
+					return "/main_view";
+				}
+			}
+			else
+			{
+				return "redirect:/main_view";
+			}
 		}
 		else
 		{
-			return "redirect:/member?f=1";
+			return "redirect:/user/member?f=1";
 		}
 	}
 
-	@RequestMapping("login_ok")
+	// 로그인 완료
+	@RequestMapping("/user/login_ok")
 	public String login_ok(UserDto udto,HttpSession session)
 	{
 		UserDao udao=sqlSession.getMapper(UserDao.class);
 		UserDto udto2=udao.login_ok(udto);
 		if(udto2==null)
 		{
-			return "redirect:login?chk=1";
+			return "redirect:/user/login?chk=1";
 		}
 		else
 		{
 			session.setAttribute("userid",udto2.getUserid());
 			session.setAttribute("username",udto2.getUsername());
 			
-			return "redirect:/main_view";
+			return "/main_view";
 		}
 	}
-	
-	@RequestMapping("/logout")
+
+	// 로그아웃
+	@RequestMapping("/user/logout")
 	public String logout(HttpSession session)
 	{
 		session.invalidate();
-		return "redirect:/main_view";
+		return "/main_view";
 	}
 
-	@RequestMapping("/userid_search")
+	// 아이디찾기화면
+	@RequestMapping("/user/userid_search")
 	public String userid_search()
 	{
 		return "/user/userid_search";
 	}
 
-	@RequestMapping("/pwd_search")
+	// 비밀번호찾기화면
+	@RequestMapping("/user/pwd_search")
 	public String pwd_search()
 	{
 		return "/user/pwd_search";
 	}
-	
-	@RequestMapping("/ip_search_ok")
+
+	// 아이디-비밀번호 결과화면
+	@RequestMapping("/user/ip_search_ok")
 	public String ip_search_ok(UserDto udto,Model model)
 	{
 //		System.out.println(udto.getUserid());
@@ -136,6 +207,7 @@ public class UserController {
 		return "/user/ip_search_ok";
 	}
 
+	// 관심종목 화면
 	@RequestMapping("/user/my_interests")
 	public String my_interests(HttpSession session,Model model)
 	{// 관심종목 가져오기
@@ -155,7 +227,16 @@ public class UserController {
 			for(int i=0;i<udto.size();i++)
 			{
 //				System.out.println(udto.get(i).getCode());
-				udto2.add(udao.stk_rt(udto.get(i).getCode()));
+				if(udao.stk_rt(udto.get(i).getCode())==null)
+				{
+					UserDto udtoe=udao.stocks_name(udto.get(i).getCode());
+					udtoe.setErr(1);
+					udto2.add(udtoe);
+				}
+				else
+				{
+					udto2.add(udao.stk_rt(udto.get(i).getCode()));
+				}
 			}
 			
 			model.addAttribute("udto",udto);
@@ -163,14 +244,6 @@ public class UserController {
 			return "/user/my_interests";
 		}
 		
-		
-		
-		
 	}
-	
-	
-	
-	
-	
 	
 }
