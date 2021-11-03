@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div align="center">
-		<form name="userid_search" method="post" action="ip_search_ok">
+		<form name="userid_search" method="post" action="/mock/user/ip_search_ok">
 		<h3 style="text-align: center;">아이디 찾기</h3>
 		<div class="form-group">
 			<input type="text" placeholder="이름" name="username" maxlength="20">
