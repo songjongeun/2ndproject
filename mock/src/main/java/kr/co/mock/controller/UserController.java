@@ -58,6 +58,10 @@ public class UserController {
 		return "redirect:/index";
 	}
 	
+	// 김재현
+	// -----
+	// 조건국
+	
 	@RequestMapping("/user/login")
 	public String login(HttpServletRequest request,Model model)
 	{
