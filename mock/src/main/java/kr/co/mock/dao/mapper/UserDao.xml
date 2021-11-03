@@ -19,8 +19,6 @@
      delete from user where userid=#{userid}
   </delete>
   
-  
-  
   <select id="userid_check" resultType="Integer">
     select count(*) from user where userid=#{param1}
   </select>
