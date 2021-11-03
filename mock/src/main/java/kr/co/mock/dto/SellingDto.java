@@ -1,6 +1,6 @@
 package kr.co.mock.dto;
 
-public class SilsiganDto {
+public class SellingDto {
 	private int r_id, cprice, diff, open, high, low, vol;
 	private String code,time;
 	public int getR_id() {
