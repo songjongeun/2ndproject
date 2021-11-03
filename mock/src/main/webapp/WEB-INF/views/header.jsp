@@ -147,7 +147,12 @@ button{
 		<div class="item mock"><a href="/mock/stocks/st_list">모의 투자</a></div>
 		<div class="item my_market"><a href="/mock/user/my_interests">내 종목 보기</a></div>
 		<div class="item m_free"><a href="list">자유게시판</a></div>
-		<div class="item mypage"><a href="mypage">마이페이지</a></div>
+		<c:if test="${userid=='admin' }">
+		  <div class="item mypage"><a href="/mock/admin/adminpage">관리자페이지</a></div>
+		</c:if>
+		<c:if test="${userid!='admin' }">
+		  <div class="item mypage"><a href="mypage">마이페이지</a></div>
+		</c:if>
 		<div class="item"></div>
 		<!-- 아이템들 사이 조정을 위해 넣은 값 -->
  	</div>
