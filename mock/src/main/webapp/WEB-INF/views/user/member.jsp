@@ -7,6 +7,11 @@
 <script>
 function check()
 { 
+	  var auto=document.member.auto_check.checked;
+      if(auto) {
+    	  document.member.auto.value="1";
+      }
+	 
 	  var userid=document.member.userid.value;
 	  var idlen=userid.trim();
 	  var idlen=idlen.length;
@@ -86,7 +91,7 @@ function email_hide()
  {  
  	 var chk=new XMLHttpRequest();
  	 var userid=document.member.userid.value;
-     chk.open("get","userid_check?userid="+userid); 
+     chk.open("get","/mock/user/userid_check?userid="+userid); 
      chk.send();
      chk.onreadystatechange=function()
      {
@@ -122,11 +127,12 @@ function email_hide()
     	 document.getElementById("pwd_chk").innerHTML="<br><b style='color:red;font-size:15px'>비밀번호가 틀립니다.</b>"; 
      }
  }
+ 
 </script>
 </head>
 <body>
 <div id="main" align="center" style="padding-right:70px;">
-				<form name="member" method="post" action="member_ok" onsubmit="return check()">
+				<form name="member" method="post" action="/mock/user/member_ok" onsubmit="return check()">
 				<h3 style="text-align: center;">회원가입</h3>
 				<div class="form-group">
 					<input type="text" placeholder="아이디" name="userid" onkeyup="userid_hide()" maxlength="20"><p>
@@ -150,6 +156,10 @@ function email_hide()
 				<div class="form-group">
 					<input type="text" placeholder="이메일" name="email" onkeyup="email_hide()" maxlength="20">
 					<span id="email_len"></span>
+				</div><p>
+				<div class="form-group">
+					회원가입 후 자동로그인<input type="checkbox" name="auto_check" >
+					<input type="hidden" name="auto" value="0" >
 				</div><p>
 				<input type="button" value="회원 가입" onclick="check()"><p>
 			    <c:if test="${f==1}">
