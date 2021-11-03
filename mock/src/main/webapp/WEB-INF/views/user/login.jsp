@@ -10,11 +10,11 @@
  function userid_search()
  {
 	 // window.open();
-	 open("userid_search","","width=400,height=250");
+	 open("/mock/user/userid_search","","width=400,height=250");
  }
  function userpwd_search()
  {
-	 open("pwd_search","","width=400,height=300");
+	 open("/mock/user/pwd_search","","width=400,height=300");
  }
 </script>
 <style>
@@ -26,7 +26,7 @@
 </head>
 <body>
   <div id="main" style="padding-right:70px;">
-	<form name="login" method="post" action="login_ok">
+	<form name="login" method="post" action="/mock/user/login_ok">
 		<h3 style="text-align:center">로그인</h3>
 		<p id="log_f" align="center">
 		
@@ -52,7 +52,7 @@
 		  <tr style="text-align:center">
 		    <td><a href="javascript:userid_search()"> 아이디 찾기</a></td>
 		    <td><a href="javascript:userpwd_search()"> 비밀번호 찾기</a></td>
-		    <td><a href="user/member"> 회원가입</a></td>
+		    <td><a href="/mock/user/member"> 회원가입</a></td>
 		  </tr>
 		</table>
 	</form>	
