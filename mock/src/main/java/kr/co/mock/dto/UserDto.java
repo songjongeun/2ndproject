@@ -10,6 +10,7 @@ public class UserDto {
 // 실시간종목 realtime  시간id 현재가         대비     총 거래량                 code로 찾기
 	private int    r_id,cprice,diff,vol;
 
+	private int err;
 
 	// 사용자
 	public String getUserid() {
@@ -100,6 +101,15 @@ public class UserDto {
 
 	public void setCprice(int cprice) {
 		this.cprice = cprice;
+	}
+		
+	
+	public int getErr() {
+		return err;
+	}
+
+	public void setErr(int err) {
+		this.err = err;
 	}
 	
 }
