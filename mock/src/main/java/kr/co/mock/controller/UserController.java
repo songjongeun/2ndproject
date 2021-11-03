@@ -21,22 +21,22 @@ public class UserController {
 	@Autowired
 	private SqlSession sqlSession;
 
-	@RequestMapping("/login")
+	@RequestMapping("/user/login")
 	public String login(HttpServletRequest request,Model model)
 	{
 		model.addAttribute("chk",request.getParameter("chk"));
-		return "user/login";
+		return "/user/login";
 	}
 	
-	@RequestMapping("user/member")
+	@RequestMapping("/user/member")
 	public String member(HttpServletRequest request,Model model)
 	{
 		model.addAttribute("f",request.getParameter("f"));
 		
-		return "user/member";
+		return "/user/member";
 	}
 
-	@RequestMapping("user/userid_check")
+	@RequestMapping("/user/userid_check")
 	public void userid_check(HttpServletRequest request,PrintWriter out)
 	{
 		String userid=request.getParameter("userid");
@@ -45,7 +45,7 @@ public class UserController {
 		out.print(chk);
 	}
 	
-	@RequestMapping("/member_ok")
+	@RequestMapping("/user/member_ok")
 	public String member_ok(UserDto udto)
 	{
 		UserDao xdao=sqlSession.getMapper(UserDao.class);
@@ -57,18 +57,18 @@ public class UserController {
 		}
 		else
 		{
-			return "redirect:/member?f=1";
+			return "redirect:/user/member?f=1";
 		}
 	}
 
-	@RequestMapping("login_ok")
+	@RequestMapping("/user/login_ok")
 	public String login_ok(UserDto udto,HttpSession session)
 	{
 		UserDao udao=sqlSession.getMapper(UserDao.class);
 		UserDto udto2=udao.login_ok(udto);
 		if(udto2==null)
 		{
-			return "redirect:login?chk=1";
+			return "redirect:/user/login?chk=1";
 		}
 		else
 		{
@@ -79,26 +79,26 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping("/logout")
+	@RequestMapping("/user/logout")
 	public String logout(HttpSession session)
 	{
 		session.invalidate();
 		return "redirect:/main_view";
 	}
 
-	@RequestMapping("/userid_search")
+	@RequestMapping("/user/userid_search")
 	public String userid_search()
 	{
 		return "/user/userid_search";
 	}
 
-	@RequestMapping("/pwd_search")
+	@RequestMapping("/user/pwd_search")
 	public String pwd_search()
 	{
 		return "/user/pwd_search";
 	}
 	
-	@RequestMapping("/ip_search_ok")
+	@RequestMapping("/user/ip_search_ok")
 	public String ip_search_ok(UserDto udto,Model model)
 	{
 //		System.out.println(udto.getUserid());
@@ -155,7 +155,16 @@ public class UserController {
 			for(int i=0;i<udto.size();i++)
 			{
 //				System.out.println(udto.get(i).getCode());
-				udto2.add(udao.stk_rt(udto.get(i).getCode()));
+				if(udao.stk_rt(udto.get(i).getCode())==null)
+				{
+					UserDto udtoe=udao.stocks_name(udto.get(i).getCode());
+					udtoe.setErr(1);
+					udto2.add(udtoe);
+				}
+				else
+				{
+					udto2.add(udao.stk_rt(udto.get(i).getCode()));
+				}
 			}
 			
 			model.addAttribute("udto",udto);
@@ -163,14 +172,6 @@ public class UserController {
 			return "/user/my_interests";
 		}
 		
-		
-		
-		
 	}
-	
-	
-	
-	
-	
 	
 }
