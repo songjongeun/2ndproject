@@ -146,8 +146,8 @@ button{
 		<div class="item chart"><a href="">실시간 차트</a></div>
 		<div class="item mock"><a href="/mock/stocks/st_list">모의 투자</a></div>
 		<div class="item my_market"><a href="/mock/user/my_interests">내 종목 보기</a></div>
-		<div class="item m_free"><a href="">자유게시판</a></div>
-		<div class="item"></div>
+		<div class="item m_free"><a href="list">자유게시판</a></div>
+		<div class="item mypage"><a href="mypage">마이페이지</a></div>
 		<div class="item"></div>
 		<!-- 아이템들 사이 조정을 위해 넣은 값 -->
  	</div>
