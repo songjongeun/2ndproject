@@ -21,6 +21,43 @@ public class UserController {
 	@Autowired
 	private SqlSession sqlSession;
 
+	@RequestMapping("/mypage")
+	public String mypage(Model model,HttpServletRequest request)
+	{
+		String userid=request.getParameter("userid");	
+		UserDao udao=sqlSession.getMapper(UserDao.class);
+		UserDto udto=udao.mypage(userid);
+		model.addAttribute("udto",udto);
+		return "/mypage";
+	}
+	
+	@RequestMapping("/mypage_update")
+	public String mypage_update(Model model,HttpServletRequest request)
+	{
+		String userid=request.getParameter("userid");
+		UserDao udao=sqlSession.getMapper(UserDao.class); 
+		UserDto udto=udao.mypage_update(userid);
+		model.addAttribute("udto",udto);
+		return "/mypage_update";
+	}
+	
+	@RequestMapping("/mypage_update_ok")
+	public String mypage_update_ok(UserDto udto)
+	{
+		UserDao udao=sqlSession.getMapper(UserDao.class);
+		udao.mypage_update_ok(udto);
+		return "redirect:/mypage";
+	}
+	
+	@RequestMapping("/mypage_delete")
+	public String delete(HttpServletRequest request)
+	{
+		String userid=request.getParameter("userid");
+		UserDao udao=sqlSession.getMapper(UserDao.class);
+		udao.mypage_delete(userid);
+		return "redirect:/index";
+	}
+	
 	@RequestMapping("/user/login")
 	public String login(HttpServletRequest request,Model model)
 	{
