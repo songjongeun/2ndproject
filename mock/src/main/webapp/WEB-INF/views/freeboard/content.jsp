@@ -33,26 +33,7 @@
     </tr>
     <tr>
       <td colspan="2"> 
-<<<<<<< HEAD
 
-	    <c:if test="${empty sessionScope.userid}">
-		<a href="list"> 목록가기 </a>
-		<a href="login">로그인 </a>
-		</c:if>
-	
-		<c:if test="${!empty sessionScope.userid}">
-		<a href="list"> 목록가기 </a>
-	    <a href="update?f_id=${bdto.f_id}"> 수정 </a>
-	    <a href="#" onclick="del()"> 삭제 </a>
-		</c:if>
-		
-		
-   	</td>
-   </tr>         
-  </table>
-  
-=======
-      
         <!-- 로그인을 안 했을 때 -->
 	    <c:if test="${empty sessionScope.userid}">
 		<a href="list"> 목록가기 </a>
@@ -104,28 +85,7 @@
     	document.getElementById("delform").style.visibility="hidden";
     }
   </script>
-<<<<<<< HEAD
-  
-  
-  <!-- 댓글 시작 -->
-  <c:forEach items="${comment}" var="cdto">
-  <div>
-	  <p> ${comment.userid} </p>
-	  <p> ${comment.content} </p>
-	  <p> ${comment.writeday} </p>
-  </div>
-  </c:forEach>
-  
-  <div>
-  <p> 작성자 <input name="userid" id="userid" value="${sessionScope.username}"> </p>
-  <p><textarea rows="5" cols="65" placeholder="댓글내용"> 댓글 내용</textarea></p>
-  <input type="submit" value="댓글 작성">
-  </div>
-  <!-- 댓글 끝 -->
 
-</body>
-</html>
-=======
   <hr>
   
   <!-- 댓글 목록 시작 -->
@@ -152,4 +112,4 @@
 
 </body>
 </html>
->>>>>>> 13ab36713b6b67da8e231839445ed70a05452588
+

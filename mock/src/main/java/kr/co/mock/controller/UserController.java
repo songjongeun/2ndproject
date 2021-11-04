@@ -22,6 +22,7 @@ public class UserController {
 	private SqlSession sqlSession;
 
 	// 마이페이지 창, 로그인 안 하면 로그인 화면으로 
+
 	@RequestMapping("/mypage/mypage")
 	public String mypage(Model model,HttpSession session)
 	{
