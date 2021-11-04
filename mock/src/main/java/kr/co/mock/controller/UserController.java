@@ -22,19 +22,25 @@ public class UserController {
 	private SqlSession sqlSession;
 
 	@RequestMapping("/mypage")
-	public String mypage(Model model,HttpServletRequest request)
+	public String mypage(Model model,HttpSession session)
 	{
-		String userid=request.getParameter("userid");	
-		UserDao udao=sqlSession.getMapper(UserDao.class);
-		UserDto udto=udao.mypage(userid);
-		model.addAttribute("udto",udto);
-		return "/mypage";
+		if(session.getAttribute("userid") != null)
+		{
+		 String userid=session.getAttribute("userid").toString();
+		 UserDao udao=sqlSession.getMapper(UserDao.class);
+		 UserDto udto=udao.mypage(userid);
+		 model.addAttribute("udto",udto);
+		 
+		 return "/mypage";
+		}
+		else
+			return "redirect:/login";
 	}
 	
 	@RequestMapping("/mypage_update")
-	public String mypage_update(Model model,HttpServletRequest request)
+	public String mypage_update(Model model,HttpSession session)
 	{
-		String userid=request.getParameter("userid");
+		String userid=session.getAttribute("userid").toString();
 		UserDao udao=sqlSession.getMapper(UserDao.class); 
 		UserDto udto=udao.mypage_update(userid);
 		model.addAttribute("udto",udto);
@@ -50,12 +56,13 @@ public class UserController {
 	}
 	
 	@RequestMapping("/mypage_delete")
-	public String delete(HttpServletRequest request)
+	public String delete(HttpSession session)
 	{
-		String userid=request.getParameter("userid");
+		String userid=session.getAttribute("userid").toString();
 		UserDao udao=sqlSession.getMapper(UserDao.class);
 		udao.mypage_delete(userid);
-		return "redirect:/index";
+		session.invalidate();
+		return "redirect:/main_view";
 	}
 	
 	// 김재현
