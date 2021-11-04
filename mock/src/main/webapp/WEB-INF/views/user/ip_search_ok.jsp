@@ -13,7 +13,7 @@ function win_close()
 </head>
 <body>
 	<c:if test="${chk!=null }">
-		<div class="jumbotron" style="padding-top: 20px;" align="center">
+		<div class="jumbotron" style="padding-top: 50px;" align="center">
 			<c:if test="${chk==1}">
 			<form method="post" action="/mock/user/userid_search">
 			</c:if>
@@ -28,7 +28,7 @@ function win_close()
 		</div>
     </c:if>
 	<c:if test="${chk==null }">
-		<div class="jumbotron" style="padding-top: 20px;">
+		<div class="jumbotron" style="padding-top: 50px;" align="center">
 			<div>${username }님의 
 			<c:if test="${user==1}">
 			아이디는 ${userid }
@@ -36,7 +36,7 @@ function win_close()
 			<c:if test="${user==2}">
 			비밀번호는 ${pwd }
 			</c:if>
-			입니다.</div>
+			입니다.</div><p>
 			<input type="button" value="닫기" onclick="win_close()">
 		</div>
     </c:if>
