@@ -146,26 +146,26 @@ button{
 		<div class="item chart"><a href="">실시간 차트</a></div>
 		<div class="item mock"><a href="/mock/stocks/st_list">모의 투자</a></div>
 		<div class="item my_market">
-		  <c:if test="${userid==null }">
-		    <a href="/mock/user/login">
+		  <c:if test="${userid==null }"> 
+		    <a href="/mock/user/login"> </a>
 		  </c:if>
 		  <c:if test="${userid!=null }">
-		    <a href="/mock/user/my_interests">
+		    <a href="/mock/user/my_interests"> </a>
 		  </c:if>
-		    내 종목 보기</a></div>
+		    내 종목 보기</div>
 		<div class="item m_free"><a href="/mock/freeboard/list">자유게시판</a></div>
 		<div class="item mypage">
 		  <c:if test="${userid==null }">  <!-- 로그인 안했을때 -->
 		    <a href="/mock/user/login">마이페이지</a></div>
-		  </c:if>						  <!-- /로그인 안했을때 -->
+		  </c:if>	 <!-- /로그인 안했을때 -->
 		  <c:if test="${userid!=null }">  <!-- 로그인 했을때 -->
-		    <c:if test="${userid=='admin' }"> 					 <!-- 관리자 -->
+		    <c:if test="${userid=='admin' }"> <!-- 관리자 -->
 		      <a href="/mock/admin/adminpage">관리자페이지</a></div>
-		    </c:if>						      					 <!-- /관리자 -->
-		    <c:if test="${userid!='admin' }"> 					 <!-- 일반 사용자 -->
+		    </c:if>                                        <!-- /관리자 -->
+		    <c:if test="${userid!='admin' }"> 	<!-- 일반 사용자 -->
 		      <a href="/mock/mypage/mypage">마이페이지</a></div>
-		    </c:if>						      					 <!-- /일반 사용자 -->
-		  </c:if>						  <!-- /로그인 했을때 -->
+		    </c:if>						      			  <!-- /일반 사용자 -->
+		   </c:if>                                   <!-- /로그인 했을때 -->
 		
 		
 		
