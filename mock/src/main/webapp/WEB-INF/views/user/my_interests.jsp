@@ -30,7 +30,7 @@
 		    <c:if test="${udto2.err!=1}"> 
               <td><a href="/mock/stocks/st_list?code=${udto2.code}">${udto2.name}</a></td><!-- 종목으로가기 -->
               <td><fmt:formatNumber value="${udto2.cprice}" pattern="#,##0" /></td>
-              <td><fmt:formatNumber value="${udto2.diff}%" pattern="#,##0" /></td>
+              <td><fmt:formatNumber value="${udto2.diff}" pattern="#,##0" />%</td>
               <td><fmt:formatNumber value="${udto2.vol}" pattern="#,##0" /></td>
             </c:if>
           </tr>
