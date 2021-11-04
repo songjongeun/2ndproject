@@ -33,19 +33,16 @@
     </tr>
     <tr>
       <td colspan="2"> 
-
 	    <c:if test="${empty sessionScope.userid}">
 		<a href="list"> 목록가기 </a>
-		<a href="login">로그인 </a>
+		<a href="/mock/user/login">로그인 </a>
 		</c:if>
 	
 		<c:if test="${!empty sessionScope.userid}">
 		<a href="list"> 목록가기 </a>
 	    <a href="update?f_id=${bdto.f_id}"> 수정 </a>
 	    <a href="#" onclick="del()"> 삭제 </a>
-		</c:if>
-		
-		
+		</c:if>		
    	</td>
    </tr>         
   </table>
