@@ -21,6 +21,7 @@ public class UserController {
 	@Autowired
 	private SqlSession sqlSession;
 
+	// 마이페이지 창, 로그인 안 하면 로그인 화면 
 	@RequestMapping("/mypage")
 	public String mypage(Model model,HttpSession session)
 	{
@@ -37,6 +38,7 @@ public class UserController {
 			return "redirect:/login";
 	}
 	
+	// 마이페이지 수정 
 	@RequestMapping("/mypage_update")
 	public String mypage_update(Model model,HttpSession session)
 	{
@@ -47,6 +49,7 @@ public class UserController {
 		return "/mypage_update";
 	}
 	
+	// 마이페이지 수정 및 수정하면 다시 마이페이지로 
 	@RequestMapping("/mypage_update_ok")
 	public String mypage_update_ok(UserDto udto)
 	{
@@ -55,6 +58,7 @@ public class UserController {
 		return "redirect:/mypage";
 	}
 	
+	// 마이페이지 회원 탈퇴 및 계정 삭제 
 	@RequestMapping("/mypage_delete")
 	public String delete(HttpSession session)
 	{
