@@ -154,18 +154,21 @@ button{
 		  </c:if>
 		    내 종목 보기</a></div>
 		<div class="item m_free"><a href="list">자유게시판</a></div>
-		<c:if test="${userid=='admin' }">
-		  <div class="item mypage"><a href="/mock/admin/adminpage">관리자페이지</a></div>
-		</c:if>
-		<c:if test="${userid!='admin' }">
-		  <div class="item mypage">
-		  <c:if test="${userid==null }">
+		<div class="item mypage">
+		  <c:if test="${userid==null }">  <!-- 로그인 안했을때 -->
 		    <a href="/mock/user/login">
-		  </c:if>
-		  <c:if test="${userid!=null }">
-		    <a href="mypage">
-		  </c:if>마이페이지</a></div>
-		</c:if>
+		  </c:if>						  <!-- /로그인 안했을때 -->
+		  <c:if test="${userid!=null }">  <!-- 로그인 했을때 -->
+		    <c:if test="${userid=='admin' }"> 					 <!-- 관리자 -->
+		      <a href="/mock/admin/adminpage">관리자페이지</a></div>
+		    </c:if>						      					 <!-- /관리자 -->
+		    <c:if test="${userid!='admin' }"> 					 <!-- 일반 사용자 -->
+		      <a href="mypage">마이페이지</a></div>
+		    </c:if>						      					 <!-- /일반 사용자 -->
+		  </c:if>						  <!-- /로그인 했을때 -->
+		
+		
+		
 		<div class="item"></div>
 		<!-- 아이템들 사이 조정을 위해 넣은 값 -->
  	</div>
