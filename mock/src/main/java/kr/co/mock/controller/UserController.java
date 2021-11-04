@@ -22,7 +22,7 @@ public class UserController {
 	private SqlSession sqlSession;
 
 	// 마이페이지 창, 로그인 안 하면 로그인 화면으로 
-	@RequestMapping("/mypage")
+	@RequestMapping("/mypage/mypage")
 	public String mypage(Model model,HttpSession session)
 	{
 		if(session.getAttribute("userid") != null)
@@ -32,34 +32,34 @@ public class UserController {
 		 UserDto udto=udao.mypage(userid);
 		 model.addAttribute("udto",udto);
 		 
-		 return "/mypage";
+		 return "/mypage/mypage";
 		}
 		else
-			return "redirect:/login";
+			return "redirect:/user/login?chk=1";
 	}
 	
 	// 마이페이지 수정 
-	@RequestMapping("/mypage_update")
+	@RequestMapping("/mypage/mypage_update")
 	public String mypage_update(Model model,HttpSession session)
 	{
 		String userid=session.getAttribute("userid").toString();
 		UserDao udao=sqlSession.getMapper(UserDao.class); 
 		UserDto udto=udao.mypage_update(userid);
 		model.addAttribute("udto",udto);
-		return "/mypage_update";
+		return "/mypage/mypage_update";
 	}
 	
 	// 마이페이지 수정 및 수정하면 다시 마이페이지로 
-	@RequestMapping("/mypage_update_ok")
+	@RequestMapping("/mypage/mypage_update_ok")
 	public String mypage_update_ok(UserDto udto)
 	{
 		UserDao udao=sqlSession.getMapper(UserDao.class);
 		udao.mypage_update_ok(udto);
-		return "redirect:/mypage";
+		return "redirect:/mypage/mypage";
 	}
 	
 	// 마이페이지 회원 탈퇴 및 계정 삭제 
-	@RequestMapping("/mypage_delete")
+	@RequestMapping("/mypage/mypage_delete")
 	public String delete(HttpSession session)
 	{
 		String userid=session.getAttribute("userid").toString();

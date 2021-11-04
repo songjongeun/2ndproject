@@ -76,8 +76,13 @@
 	  <!-- 로그인 및 회원가입 / 로그인을 했을 경우 글쓰기 탭-->
 	  <c:if test="${userid == null}">
 	  <!-- 로그인을 안했을 경우 -->
+<<<<<<< HEAD
 	  <a href="login"> 로그인 </a>  
 	  <a href="member"> 회원가입 </a>
+=======
+	  <a href="/mock/user/login"> 로그인 </a>  
+	  <a href="/mock/user/member"> 회원가입 </a>
+>>>>>>> 13ab36713b6b67da8e231839445ed70a05452588
 	  </c:if>
 
       <c:if test="${userid != null}">
@@ -90,4 +95,8 @@
    </table>
    </div>
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 13ab36713b6b67da8e231839445ed70a05452588

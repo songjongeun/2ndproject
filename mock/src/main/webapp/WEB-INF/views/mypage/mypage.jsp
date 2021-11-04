@@ -28,7 +28,7 @@
     </tr>
     <tr>
       <td align="center"> 
-       <a href="mypage_update?userid=${udto.userid}"> 수정 </a>
+       <a href="/mock/mypage/mypage_update?userid=${udto.userid}"> 수정 </a>
        <a href="#" onclick="del()"> 삭제 </a>
       </td>
     </tr>
@@ -56,3 +56,4 @@
   
 </body>
 </html>
+
