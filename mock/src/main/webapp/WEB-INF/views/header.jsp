@@ -171,7 +171,7 @@ button{
 		      <a href="/mock/mypage/mypage">마이페이지</a>
 		    </c:if>						      			  <!-- /일반 사용자 -->
 		   </c:if>                                   <!-- /로그인 했을때 -->
-		
+		</div>  <!--div item mypage 끝-->
 		
 		<div class="item"></div>
 		<!-- 아이템들 사이 조정을 위해 넣은 값 -->
