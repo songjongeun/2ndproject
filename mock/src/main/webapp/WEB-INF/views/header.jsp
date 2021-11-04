@@ -156,7 +156,7 @@ button{
 		<div class="item m_free"><a href="list">자유게시판</a></div>
 		<div class="item mypage">
 		  <c:if test="${userid==null }">  <!-- 로그인 안했을때 -->
-		    <a href="/mock/user/login">
+		    <a href="/mock/user/login">마이페이지</a></div>
 		  </c:if>						  <!-- /로그인 안했을때 -->
 		  <c:if test="${userid!=null }">  <!-- 로그인 했을때 -->
 		    <c:if test="${userid=='admin' }"> 					 <!-- 관리자 -->
