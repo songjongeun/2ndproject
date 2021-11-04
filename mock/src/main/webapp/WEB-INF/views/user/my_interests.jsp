@@ -22,6 +22,7 @@
           <td>등락(대비)</td>
           <td>거래량</td>
         </tr>
+        <tr><td colspan="4"><hr></td></tr>
         <c:forEach items="${udto2}" var="udto2">
           <tr style="text-align:center">
 		    <c:if test="${udto2.err==1}">  <!-- 관심종목은 있지만 정보가 없을시 -->
