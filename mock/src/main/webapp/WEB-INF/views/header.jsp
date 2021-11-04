@@ -153,7 +153,7 @@ button{
 		    <a href="/mock/user/my_interests">
 		  </c:if>
 		    내 종목 보기</a></div>
-		<div class="item m_free"><a href="list">자유게시판</a></div>
+		<div class="item m_free"><a href="/mock/freeboard/list">자유게시판</a></div>
 		<div class="item mypage">
 		  <c:if test="${userid==null }">  <!-- 로그인 안했을때 -->
 		    <a href="/mock/user/login">마이페이지</a></div>
@@ -163,7 +163,7 @@ button{
 		      <a href="/mock/admin/adminpage">관리자페이지</a></div>
 		    </c:if>						      					 <!-- /관리자 -->
 		    <c:if test="${userid!='admin' }"> 					 <!-- 일반 사용자 -->
-		      <a href="mypage">마이페이지</a></div>
+		      <a href="/mock/mypage/mypage">마이페이지</a></div>
 		    </c:if>						      					 <!-- /일반 사용자 -->
 		  </c:if>						  <!-- /로그인 했을때 -->
 		
