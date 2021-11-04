@@ -1,6 +1,6 @@
 package kr.co.mock.dto;
 
-public class Stock1Dto {
+public class StockDto {
 	private int id, open,high,low,diff,close,offer,bid,vol,vol_value;
 	private String code,name,exchange,day;
 	

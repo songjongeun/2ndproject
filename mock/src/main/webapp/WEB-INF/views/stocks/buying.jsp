@@ -11,8 +11,94 @@
 <style type="text/css">
 .main{
 	display:grid;
-	place-items: center;
 }
+.sub_main{
+	display:grid;
+	place-items: center;
+	width:70%;
+	height:100%;
+	grid-template-columns:4fr 1fr 2fr;
+	grid-template-rows:repeat(7, 1fr)
+  	grid-gap: 10px;
+
+}
+.s_name{
+	grid-column:1;
+  	grid-row:1;
+}
+.graph{
+	grid-column:1;
+  	grid-row:2/8;
+  	justify-items:center;
+  	align-self:center;
+	background:pink;
+}
+
+.mil_name{
+	grid-column:2;
+  	grid-row:1;
+}
+
+.mil_num{
+	grid-column:3;
+  	grid-row:1;
+}
+
+.price{
+	grid-column:2;
+  	grid-row:2;
+}
+
+.price_num{
+	grid-column:3;
+  	grid-row:2;
+}
+
+.week{
+	grid-column:2;
+  	grid-row:3;
+}
+
+.week_num{
+	grid-column:3;
+  	grid-row:3;
+}
+
+.sum{
+	grid-column:2;
+  	grid-row:4;
+}
+
+.sum_num{
+	grid-column:3;
+  	grid-row:4;
+}
+
+.cuur_mil{
+	grid-column:2;
+  	grid-row:5;
+}
+
+.cuur_mil_num{
+	grid-column:3;
+  	grid-row:5;
+}
+
+.ai{
+	grid-column:2/4;
+  	grid-row:6;
+}
+
+.mock_list{
+	grid-column:2;
+  	grid-row:7;
+}
+
+.submit_ok{
+	grid-column:3;
+  	grid-row:7;
+}
+
 </style>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script>
@@ -23,7 +109,7 @@ var sum_mil; //매수가*주
 var curr_mil; // 매수가-sum_mil
 $(function(){/*숫자 증감 버튼*/
 	$("#minus").click(function(){
-		num = Number($(".n_selling").val());
+		num = Number($(".n_buying").val());
 		mil = Number($("#mileage").val()); //받은 포인트
 		curr = Number($("#curr").val()); //매수가
 		num--;
@@ -35,13 +121,13 @@ $(function(){/*숫자 증감 버튼*/
 		sum_mil = curr*num;
 		curr_mil = mil-sum_mil;
 		
-		$(".n_selling").val(num);
+		$(".n_buying").val(num);
 		$(".sum_mil").val(sum_mil);
 		$(".curr_mil").val(curr_mil);
 		
 	});
 	$("#plus").click(function(){
-		num = Number($(".n_selling").val());
+		num = Number($(".n_buying").val());
 		mil = Number($("#mileage").val());
 		curr = Number($("#curr").val());
 		num++;
@@ -49,82 +135,77 @@ $(function(){/*숫자 증감 버튼*/
 		sum_mil = curr*num;
 		curr_mil = mil-sum_mil;
 		
-		$(".n_selling").val(num);
+		$(".n_buying").val(num);
 		$(".sum_mil").val(sum_mil);
 		$(".curr_mil").val(curr_mil);
 	});
 }); 
  
 </script>
+<style>
+
+</style>
 </head>
 <body>
 <div id="main" class="main">
-<form method="post" action="/mock/selling_ok">
-	<table>
-	  <tr>
-	  	<td rowspan="7">여긴 차트가 올 거에요</td>
-	  	<td>포인트</td>
-	  	<td>
-	  	<c:if test="${mileage==0}">
-	  	<a href="/mock/stocks/st_list">모의 투자 신청하러 가기</a>
-	  	</c:if>
-	  	
-	  	<c:if test="${mileage!=0}">
-	  	<fmt:formatNumber value="${mileage}"/>
-	  	<input id="mileage" type="hidden" value="${mileage}">
-	  	 <!--포인트 숫자서식으로 3자리씩 나눔 -->
-	  	</c:if>
-	  	</td>
-	  </tr>
-	  
-	  <tr>
-	   <td>매수가</td>
-	  	<td><fmt:formatNumber value="${sdto.get(0).close}"/>
-	  	<input id="curr" type="hidden" value="${sdto.get(0).close}">
-	  	</td><!--매수호가 -->
-	  </tr>
-	  
-	  <tr>
-	  	<td>거래주</td>
-	  	<td>
-	  	<input type="button" id="minus" value= "-">
-	  	<input type="text" class="n_selling" name="n_selling" value="1" size="4">주<!-- 거래개수 -->
+	<form class="sub_main" method="post" action="/mock/buying_ok">
+
+		<div class="s_name">${sdto.name} ${sdto.code}
+		<input type="hidden" name="code" value="${sdto.code}">
+		</div>
+		<div class="graph">차트 그래프</div>
+		<div class="mil_name">포인트</div>
+		<div class="mil_num">
+			<c:if test="${mileage==0}">
+		  	<a href="/mock/invest/in_regi">모의 투자 신청</a>
+		  	</c:if>
+		  	
+		  	<c:if test="${mileage!=0}">
+		  	<fmt:formatNumber value="${mileage}"/>
+		  	<input id="mileage" type="hidden" value="${mileage}">
+		  	 <!--포인트 숫자서식으로 3자리씩 나눔 -->
+		  	</c:if>
+		</div>
+		<div class="price">주당 매수가</div>
+		<div class="price_num">
+			<fmt:formatNumber value="${sdto.open}"/>
+		  	<input id="curr" type="hidden" name="ask_spread" value="${sdto.open}">
+		  	<!--매수호가 -->
+	  	</div>
+		<div class="week">거래주</div>
+		<div class="week_num">
+		<input type="button" id="minus" value= "-">
+	  	<input type="text" class="n_buying" name="n_buying" value="0" size="4">주<!-- 거래개수 -->
 	  	<input type="button" id="plus" value="+" >
-	  	</td>
-	  </tr>
-	  
-	  <tr>
-	  	<td>거래 합계</td>
-	  	<td>
-	 	<input type="text" class="sum_mil" size="2" value="${sdto.get(0).close}">
-	  	</td>
-	  </tr>
-	  
-	  <tr>
-	  
-	  	<c:if test="${mileage==0}">
-	  	<td colspan="2">마일리지 없음</td>
-	  	</c:if>
-	  	<c:if test="${mileage!=0}">
-	  		<td>남은 포인트</td>
-	  		<td>
-	  	<input type="text" class ="curr_mil" name="curr_mil" size="4">
-	  		</td>
-	  		</c:if>
-	  	
-	  </tr>
-	  		  
-	  <tr>
-	  	<td colspan="2">ai 한마디?</td>
-	  </tr>
-	  
-	  <tr>
-	  	<td colspan="2">
-	  		<input type="submit" value="구매">
-	  	</td>
-	  </tr>
-	</table>
-</form>
+		</div>
+		<div class="sum">거래 합계</div>
+		<input type="text" class="sum_mil" size="4">
+		
+		<div class="cuur_mil">
+			남은 마일리지
+		</div>
+		<div class="cuur_mil_num">
+		<c:if test="${mileage==0}">
+		  	마일리지 없음
+		</c:if>
+		 <c:if test="${mileage!=0}">
+		  	<input type="text" class ="curr_mil" name="curr_mil" size="4">	
+		  </c:if>
+		</div>
+		
+		<div class="ai">ai 한마디?</div>
+		
+		<div class="mock_list">
+			<a href="/mock/stocks/st_list">주식 목록</a>
+		</div>
+		
+		<div class="submit_ok">
+		<c:if test="${mileage!=0}">
+			<input type="submit" value="구매">
+		</c:if>
+		
+		</div>
+	</form>
 </div>
 </body>
 </html>

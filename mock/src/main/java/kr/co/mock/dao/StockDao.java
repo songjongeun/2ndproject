@@ -1,10 +1,10 @@
 package kr.co.mock.dao;
 
-import kr.co.mock.dto.StockDTO;
+import kr.co.mock.dto.StockDto;
 
 public interface StockDao {
 
 	
-	public void testLombok(StockDTO sdto);
+	public void testLombok(StockDto sdto);
 	
 }
