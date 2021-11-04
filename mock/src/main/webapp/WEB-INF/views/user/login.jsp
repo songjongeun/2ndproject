@@ -10,11 +10,11 @@
  function userid_search()
  {
 	 // window.open();
-	 open("/mock/user/userid_search","","width=400,height=250");
+	 open("/mock/user/userid_search","","width=300,height=150");
  }
  function userpwd_search()
  {
-	 open("/mock/user/pwd_search","","width=400,height=300");
+	 open("/mock/user/pwd_search","","width=300,height=180");
  }
 </script>
 <style>
