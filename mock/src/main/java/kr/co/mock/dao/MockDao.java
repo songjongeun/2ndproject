@@ -12,9 +12,9 @@ public interface MockDao {
 	public UserDto login_ok(UserDto udto);
 	public MockDto get_enddate(String userid);
 	
-
+	//모의투자 리스트
 	public ArrayList<StockDto> st_list();
-	public ArrayList<StockDto> st_content(int id);
+	public StockDto st_content(int id);
 
 	public int get_point(String userid);
 	public int search_id(String userid);

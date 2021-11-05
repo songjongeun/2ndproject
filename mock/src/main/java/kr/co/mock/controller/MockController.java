@@ -112,9 +112,7 @@ public class MockController {
 	{
 		int id=Integer.parseInt(request.getParameter("id"));
 		MockDao mdao=sqlSession.getMapper(MockDao.class);
-		ArrayList<StockDto> sdto=mdao.st_content(id);
-
-		// StockDto sdto=mdao.st_content(id);
+		StockDto sdto=mdao.st_content(id);
 
 		//mock 테이블에서 포인트 조회를 위해 가져오는 값
 		if(session.getAttribute("userid")!=null) { //로그인 
@@ -168,7 +166,7 @@ public class MockController {
 	{
 		int id=Integer.parseInt(request.getParameter("id"));
 		MockDao mdao=sqlSession.getMapper(MockDao.class);
-		//StockDto sdto=mdao.st_content(id);
+		StockDto sdto=mdao.st_content(id);
 		//mock 테이블에서 포인트 조회를 위해 가져오는 값
 		if(session.getAttribute("userid")!=null) { //로그인 
 			String userid=session.getAttribute("userid").toString();
@@ -176,18 +174,18 @@ public class MockController {
 			if(id_check==0) { //만약 아이디가 조회되지 않으면
 				int mileage=0; //마일리지 값을 0으로 조정.
 				model.addAttribute("mileage",mileage);
-			//	model.addAttribute("sdto",sdto);
+				model.addAttribute("sdto",sdto);
 			}
 			else { //모의신청 신청한 아이디가 있을 시
 				int mileage=mdao.get_point(userid); //조회된 마일리지를 가져옴.			
-			//	model.addAttribute("sdto",sdto);
+				model.addAttribute("sdto",sdto);
 				model.addAttribute("mileage",mileage);
 			}
 		}else //로그인 X
 		{
 			int mileage=0; //마일리지 값을 0으로 조정.
 			model.addAttribute("mileage",mileage);
-		//	model.addAttribute("sdto",sdto);
+			model.addAttribute("sdto",sdto);
  		}
 	
 		return "/stocks/selling";
@@ -198,18 +196,6 @@ public class MockController {
 	{
 		
 		return "redirect:/stocks/st_list";
-	}
-	
-	@RequestMapping("/stocks/buying")
-	public String buying(HttpServletRequest request,Model model)
-	{
-		int id=Integer.parseInt(request.getParameter("id"));
-		MockDao mdao=sqlSession.getMapper(MockDao.class);
-		ArrayList<StockDto> sdto=mdao.st_content(id);
-		model.addAttribute("sdto",sdto);
-		model.addAttribute("id",id);
-		
-		return "/stocks/buying";
 	}
 	
 

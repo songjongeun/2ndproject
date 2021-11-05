@@ -1,7 +1,7 @@
 package kr.co.mock.dto;
 
 public class StockDto {
-	private int id, open,high,low,dff,close,vol,offer,bid,vol_value;
+	private int id, open,high,low,diff,close,vol,offer,bid,vol_value;
 	private String code,name,exchange,date;
 	public int getId() {
 		return id;
@@ -27,11 +27,11 @@ public class StockDto {
 	public void setLow(int low) {
 		this.low = low;
 	}
-	public int getDff() {
-		return dff;
+	public int getDiff() {
+		return diff;
 	}
-	public void setDff(int dff) {
-		this.dff = dff;
+	public void setDiff(int diff) {
+		this.diff = diff;
 	}
 	public int getClose() {
 		return close;
