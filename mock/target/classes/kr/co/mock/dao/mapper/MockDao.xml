@@ -39,4 +39,9 @@
 	<update id="mileage_update" parameterType="kr.co.mock.dto.MockDto">
 		update mock_invest set mileage=${param1} where userid=#{param2}
 	</update>
+	
+	<insert id="selling_ok" parameterType="kr.co.mock.dto.SellingDto">
+		insert into selling(userid,code,n_selling,bid_spread,s_day)
+		values(#{param1},#{param2},${param3},${param4},now());
+	</insert>
 </mapper>

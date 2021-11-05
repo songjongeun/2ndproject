@@ -196,10 +196,24 @@ public class MockController {
 	}
 	
 	@RequestMapping("/selling_ok")
-	public String selling_ok()
+	public String selling_ok(HttpServletRequest request,Model model,HttpSession session)
 	{
 		
-		return "redirect:/stocks/st_list";
+		if(session.getAttribute("userid")!=null) //로그인 지속 시간이 지나 로그아웃 되었을 때를 대비 
+		{
+			String userid=session.getAttribute("userid").toString();
+			String mileage=request.getParameter("curr_mil");
+			String code=request.getParameter("code");
+			int n_selling=Integer.parseInt(request.getParameter("n_selling"));
+			int bid_spread=Integer.parseInt(request.getParameter("bid_spread"));
+			MockDao mdao=sqlSession.getMapper(MockDao.class);
+			mdao.buying_ok(userid, code, n_selling, bid_spread);
+			mdao.mileage_update(mileage,userid);
+			return "redirect:/stocks/st_list";
+		}
+		else {
+			return "/user/login";
+		}
 	}
 	//----매도
 }
