@@ -243,7 +243,7 @@ public class UserController {
 //				System.out.println(udto.get(i).getCode());
 				if(udao.stk_rt(udto.get(i).getCode())==null)
 				{
-					UserDto udtoe=udao.stocks_names(udto.get(i).getCode());
+					UserDto udtoe=udao.stocks_name(udto.get(i).getCode());
 					udtoe.setErr(1);
 					udto2.add(udtoe);
 				}
