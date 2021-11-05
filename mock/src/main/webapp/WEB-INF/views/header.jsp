@@ -186,6 +186,5 @@ button{
 	Copyright © 경영기술개발원교육센터 All Rights Reserved. 
 	</div>
 	</div>
-</div> 
 </body>
 </html>
