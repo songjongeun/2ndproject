@@ -1,11 +1,7 @@
 package kr.co.mock.controller;
 
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -13,17 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.co.mock.HomeController;
 import kr.co.mock.dao.MockDao;
 import kr.co.mock.dto.MockDto;
-import kr.co.mock.dto.Stock1Dto;
+import kr.co.mock.dto.StockDto;
 import kr.co.mock.dto.UserDto;
 
 @Controller
@@ -100,11 +93,11 @@ public class MockController {
 	//---포인트
 	
 	@RequestMapping("/stocks/st_list")
-	public String st_list(Stock1Dto sdto,Model model)
-	{
+	public String st_list(StockDto sdto,Model model) {
+	
 		MockDao mdao=sqlSession.getMapper(MockDao.class);
 
-		ArrayList<Stock1Dto> list=mdao.st_list();
+		ArrayList<StockDto> list=mdao.st_list();
 		model.addAttribute("list",list);
 		
 		return "/stocks/st_list";
@@ -116,7 +109,7 @@ public class MockController {
 	{
 		int id=Integer.parseInt(request.getParameter("id"));
 		MockDao mdao=sqlSession.getMapper(MockDao.class);
-		ArrayList<Stock1Dto> sdto=mdao.st_content(id);
+		ArrayList<StockDto> sdto=mdao.st_content(id);
 		
 		//mock 테이블에서 포인트 조회를 위해 가져오는 값
 		String userid=session.getAttribute("userid").toString();
@@ -149,7 +142,7 @@ public class MockController {
 	{
 		int id=Integer.parseInt(request.getParameter("id"));
 		MockDao mdao=sqlSession.getMapper(MockDao.class);
-		ArrayList<Stock1Dto> sdto=mdao.st_content(id);
+		ArrayList<StockDto> sdto=mdao.st_content(id);
 		model.addAttribute("sdto",sdto);
 		model.addAttribute("id",id);
 		

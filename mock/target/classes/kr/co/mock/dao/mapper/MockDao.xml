@@ -12,11 +12,11 @@
 		<!-- 신청한 아이디 중 가장 최신에 신청한 날짜만 가져오기 -->
 	</select>
 	
-		<select id="st_list" resultType="kr.co.mock.dto.Stock1Dto">
+		<select id="st_list" resultType="kr.co.mock.dto.StockDto">
 		select * from stocks
 	</select>
 	
-	<select id="st_content" resultType="kr.co.mock.dto.Stock1Dto">
+	<select id="st_content" resultType="kr.co.mock.dto.StockDto">
 		select * from stocks where id=#{param1}
 	</select>
 	
