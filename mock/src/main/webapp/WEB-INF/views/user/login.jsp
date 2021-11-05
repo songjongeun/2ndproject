@@ -10,19 +10,11 @@
  function userid_search()
  {
 	 // window.open();
-<<<<<<< HEAD
-	 open("/mock/user/userid_search","","width=400,height=250");
- }
- function userpwd_search()
- {
-	 open("/mock/user/pwd_search","","width=400,height=300");
-=======
 	 open("/mock/user/userid_search","","width=300,height=150");
  }
  function userpwd_search()
  {
 	 open("/mock/user/pwd_search","","width=300,height=180");
->>>>>>> 0cf8fd16438c0a877719b83a0c5a997f8b2a86b3
  }
 </script>
 <style>
