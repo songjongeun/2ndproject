@@ -8,7 +8,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 <body>
-<div>	
+<div id="main">	
 	  <form name="write" method="post" action="write_ok">
 	  <h3> 글쓰기</h3>
 	  작성자 <input name="userid" id="userid" value="${sessionScope.username}"> <p>
