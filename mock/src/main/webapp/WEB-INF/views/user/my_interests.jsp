@@ -26,20 +26,12 @@
         <c:forEach items="${udto2}" var="udto2">
           <tr style="text-align:center">
 		    <c:if test="${udto2.err==1}">  <!-- 관심종목은 있지만 정보가 없을시 -->
-<<<<<<< HEAD
-		      <td colspan="4"><a href="/mock/stocks/st_list?name=${udto2.name}">${udto2.name}의 정보가 없습니다</a></td>
-=======
 		      <td colspan="4"><a href="/mock/stocks/st_list?name=${udto2.name}">${udto2.name}의 정보를 찾을 수 없습니다</a></td>
->>>>>>> 0cf8fd16438c0a877719b83a0c5a997f8b2a86b3
 		    </c:if>
 		    <c:if test="${udto2.err!=1}"> 
               <td><a href="/mock/stocks/st_list?code=${udto2.code}">${udto2.name}</a></td><!-- 종목으로가기 -->
               <td><fmt:formatNumber value="${udto2.cprice}" pattern="#,##0" /></td>
-<<<<<<< HEAD
-              <td><fmt:formatNumber value="${udto2.diff}" pattern="#,##0" /></td>
-=======
               <td><fmt:formatNumber value="${udto2.diff}" pattern="#,##0" />%</td>
->>>>>>> 0cf8fd16438c0a877719b83a0c5a997f8b2a86b3
               <td><fmt:formatNumber value="${udto2.vol}" pattern="#,##0" /></td>
             </c:if>
           </tr>
