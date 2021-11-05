@@ -117,6 +117,7 @@ button{
 #bottom{
 	grid-area:bottom;
 	width:70%;
+	margin-top:150px;
 }
 
 </style>
