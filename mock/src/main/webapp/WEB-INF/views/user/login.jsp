@@ -44,8 +44,8 @@
 		<div class="form-group" style="text-align:center">
 			<input type="password" placeholder="비밀번호" name="pwd" maxlength="20" style="margin-top:5px">
 		</div>
-		<div class="form-group" style="text-align:center" >
-			<input type="submit" value="로그인"><p style="line-height:0.8;">&nbsp;</p>
+		<div class="form-group" style="text-align:center;padding-top:5px" >
+			<input type="submit" value="로그인" style="width:170px;"><p style="line-height:0.8;">&nbsp;</p>
 		</div>
 		
 		<table width="500" align="center"  style="padding-right:35px;">
