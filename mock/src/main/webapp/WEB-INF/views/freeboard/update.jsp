@@ -7,7 +7,7 @@
 <title> 글수정 </title>
 </head>
 <body>
-<div>
+<div id="main">
 	  <form name="update" method="post" action="update_ok">
 	  <input type="hidden" name="f_id" value="${bdto.f_id}">
 	  <h3> 글수정 </h3>
