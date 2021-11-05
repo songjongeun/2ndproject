@@ -56,6 +56,7 @@ public class UserController {
 	{
 		UserDao udao=sqlSession.getMapper(UserDao.class);
 		udao.mypage_update_ok(udto);
+
 		return "redirect:/mypage/mypage";
 	}
 	
@@ -68,6 +69,7 @@ public class UserController {
 		udao.mypage_delete(userid);
 		session.invalidate();
 		return "redirect:/main_view";
+
 	}
 	
 	// 김재현
@@ -241,7 +243,7 @@ public class UserController {
 //				System.out.println(udto.get(i).getCode());
 				if(udao.stk_rt(udto.get(i).getCode())==null)
 				{
-					UserDto udtoe=udao.stocks_name(udto.get(i).getCode());
+					UserDto udtoe=udao.stocks_names(udto.get(i).getCode());
 					udtoe.setErr(1);
 					udto2.add(udtoe);
 				}

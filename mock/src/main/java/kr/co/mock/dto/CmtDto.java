@@ -3,7 +3,9 @@ package kr.co.mock.dto;
 public class CmtDto {
 	
 		private int c_id,f_id;
+
 		private String userid,content,writeday;
+
 		
 		public int getC_id() {
 			return c_id;
@@ -28,6 +30,7 @@ public class CmtDto {
 		}
 		public void setContent(String content) {
 			this.content = content;
+
 		}
 		public String getWriteday() {
 			return writeday;

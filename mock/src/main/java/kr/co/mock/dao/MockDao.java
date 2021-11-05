@@ -15,6 +15,7 @@ public interface MockDao {
 	//모의투자 리스트
 	public ArrayList<StockDto> st_list();
 	public StockDto st_content(int id);
+
 	public int get_point(String userid);
 	public int search_id(String userid);
 	

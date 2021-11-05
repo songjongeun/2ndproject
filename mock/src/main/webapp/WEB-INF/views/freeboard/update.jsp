@@ -7,11 +7,11 @@
 <title> 글수정 </title>
 </head>
 <body>
-<div>
+<div id="main">
 	  <form name="update" method="post" action="update_ok">
 	  <input type="hidden" name="f_id" value="${bdto.f_id}">
 	  <h3> 글수정 </h3>
-	  작성자 <input type="text" name="userid" value="${bdto.userid}"><p>
+	  작성자 ${sessionScope.username}<p>
 	  제목 <input type="text" name="title" value="${bdto.title}"> <p>
 	  내용 <textarea cols="100" rows="20" name="content">${bdto.content}</textarea> <p>
 	  <input type="submit" value="수정">
@@ -19,3 +19,4 @@
 	  </div>
 </body>
 </html>
+

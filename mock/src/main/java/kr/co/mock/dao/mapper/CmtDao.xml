@@ -3,14 +3,13 @@
 
 <mapper namespace="kr.co.mock.dao.CmtDao">
 
-   <select id="cmt_list" parameterType="int" resultType="kr.co.mock.dto.CmtDto">
-	select f_id, c_id, userid, content, writeday 
-	from comment where f_id=#{f_id}
+   <select id="cmt_list" resultType="kr.co.mock.dto.CmtDto">
+	 select * from comment order by c_id desc limit #{param1},10
   </select>
 
-  <insert id="cmt_write" parameterType="kr.co.mock.dto.CmtDto">
-    insert into comment(f_id,userid,content,writeday)
-    values(#{f_id},#{userid},#{content},now())
+  <insert id="cmt_write_ok" parameterType="kr.co.mock.dto.CmtDto">
+    insert into comment(userid,content,writeday)
+    values(#{userid},#{content},now())
   </insert>
   
   <update id="cmt_update" parameterType="kr.co.mock.dto.CmtDto">

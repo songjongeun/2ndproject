@@ -1,11 +1,7 @@
 package kr.co.mock.controller;
 
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -13,14 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.co.mock.HomeController;
 import kr.co.mock.dao.MockDao;
 import kr.co.mock.dto.BuyingDto;
 import kr.co.mock.dto.MockDto;
@@ -101,8 +94,10 @@ public class MockController {
 	//---사고 팔기
 	
 	@RequestMapping("/stocks/st_list")
+
 	public String st_list(StockDto sdto,Model model)
 	{
+
 		MockDao mdao=sqlSession.getMapper(MockDao.class);
 
 		ArrayList<StockDto> list=mdao.st_list();
@@ -118,6 +113,7 @@ public class MockController {
 		int id=Integer.parseInt(request.getParameter("id"));
 		MockDao mdao=sqlSession.getMapper(MockDao.class);
 		StockDto sdto=mdao.st_content(id);
+
 		//mock 테이블에서 포인트 조회를 위해 가져오는 값
 		if(session.getAttribute("userid")!=null) { //로그인 
 			String userid=session.getAttribute("userid").toString();
@@ -215,5 +211,8 @@ public class MockController {
 			return "/user/login";
 		}
 	}
+	
+
 	//----매도
+
 }

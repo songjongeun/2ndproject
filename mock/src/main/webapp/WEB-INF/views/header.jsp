@@ -117,6 +117,7 @@ button{
 #bottom{
 	grid-area:bottom;
 	width:70%;
+	margin-top:150px;
 }
 
 </style>
@@ -152,12 +153,12 @@ button{
 		<div class="item mock"><a href="/mock/stocks/st_list">모의 투자</a></div>
 		<div class="item my_market">
 		  <c:if test="${userid==null }"> 
-		    <a href="/mock/user/login"> </a>
+		    <a href="/mock/user/login">내 종목 보기 </a>
 		  </c:if>
 		  <c:if test="${userid!=null }">
-		    <a href="/mock/user/my_interests"> </a>
+		    <a href="/mock/user/my_interests">내 종목 보기 </a>
 		  </c:if>
-		    내 종목 보기</div>
+		</div>
 		<div class="item m_free"><a href="/mock/freeboard/list">자유게시판</a></div>
 		<div class="item mypage">
 		  <c:if test="${userid==null }">  <!-- 로그인 안했을때 -->
@@ -171,8 +172,7 @@ button{
 		      <a href="/mock/mypage/mypage">마이페이지</a>
 		    </c:if>						      			  <!-- /일반 사용자 -->
 		   </c:if>                                   <!-- /로그인 했을때 -->
-		
-		
+		</div>  <!--div item mypage 끝-->
 		<div class="item"></div>
 		<!-- 아이템들 사이 조정을 위해 넣은 값 -->
  	</div>
@@ -186,6 +186,5 @@ button{
 	Copyright © 경영기술개발원교육센터 All Rights Reserved. 
 	</div>
 	</div>
-</div> 
 </body>
 </html>
