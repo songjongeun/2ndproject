@@ -52,12 +52,6 @@ public class BoardController {
 			BoardDao bdao=sqlSession.getMapper(BoardDao.class);
 			ArrayList<BoardDto> list=bdao.list(index);
 
-			
-			
-			
-			
-			
-			
 			// page출력을 위해 필요한 값
 			// 현재페이지:page, pstart,pend, page_cnt
 			// pstart,pend
