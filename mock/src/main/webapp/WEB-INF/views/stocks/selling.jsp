@@ -103,23 +103,23 @@
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script>
 var num;
-var curr; // 매수가
+var curr; // 매도가
 var mil; // 남아있는 마일리지
 var sum_mil; //매수가*주
-var curr_mil; // 매수가-sum_mil
+var curr_mil; // 매도가+sum_mil
 $(function(){/*숫자 증감 버튼*/
 	$("#minus").click(function(){
 		num = Number($(".n_selling").val());
 		mil = Number($("#mileage").val()); //받은 포인트
-		curr = Number($("#curr").val()); //매수가
+		curr = Number($("#curr").val()); //매도가
 		num--;
 		
 		if(num<=0){
-			alert('최저 매수 갯수는 1주입니다.');
+			alert('최저 매도 갯수는 1주입니다.');
 			num =1;
 		}
 		sum_mil = curr*num;
-		curr_mil = mil-sum_mil;
+		curr_mil = mil+sum_mil;
 		
 		$(".n_selling").val(num);
 		$(".sum_mil").val(sum_mil);
@@ -133,7 +133,7 @@ $(function(){/*숫자 증감 버튼*/
 		num++;
  
 		sum_mil = curr*num;
-		curr_mil = mil-sum_mil;
+		curr_mil = mil+sum_mil;
 		
 		$(".n_selling").val(num);
 		$(".sum_mil").val(sum_mil);
@@ -148,10 +148,10 @@ $(function(){/*숫자 증감 버튼*/
 </head>
 <body>
 <div id="main" class="main">
-	<form class="sub_main" method="post" action="/mock/buying_ok">
+	<form class="sub_main" method="post" action="/mock/selling_ok">
 
-		<div class="s_name">${sdto.get(0).name} ${sdto.get(0).code}
-		<input type="hidden" name="code" value="${sdto.get(0).code}">
+		<div class="s_name">${sdto.name} ${sdto.code}
+		<input type="hidden" name="code" value="${sdto.code}">
 		</div>
 		<div class="graph">차트 그래프</div>
 		<div class="mil_name">포인트</div>
@@ -166,10 +166,10 @@ $(function(){/*숫자 증감 버튼*/
 		  	 <!--포인트 숫자서식으로 3자리씩 나눔 -->
 		  	</c:if>
 		</div>
-		<div class="price">매수가</div>
+		<div class="price">주당매도가</div>
 		<div class="price_num">
-			<fmt:formatNumber value="${sdto.get(0).open}"/>
-		  	<input id="curr" type="hidden" value="${sdto.get(0).open}">
+			<fmt:formatNumber value="${sdto.open}"/>
+		  	<input id="curr" type="hidden" name="bid_spread" value="${sdto.open}">
 		  	<!--매수호가 -->
 	  	</div>
 		<div class="week">거래주</div>
@@ -179,7 +179,7 @@ $(function(){/*숫자 증감 버튼*/
 	  	<input type="button" id="plus" value="+" >
 		</div>
 		<div class="sum">거래 합계</div>
-		<input type="text" class="sum_mil" size="4" value="${sdto.get(0).open}">
+		<input type="text" class="sum_mil" size="4" value="${sdto.open}">
 		
 		<div class="cuur_mil">
 			남은 마일리지
@@ -201,7 +201,7 @@ $(function(){/*숫자 증감 버튼*/
 		
 		<div class="submit_ok">
 		<c:if test="${mileage!=0}">
-			<input type="submit" value="구매">
+			<input type="submit" value="판매">
 		</c:if>
 		
 		</div>
