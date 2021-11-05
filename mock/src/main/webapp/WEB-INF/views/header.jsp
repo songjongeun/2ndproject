@@ -85,9 +85,6 @@
   border-radius:3px;
 }
 
-.item .ai{
-	margin-left:0px;
-}
 a:link {
 	color:black;
 	text-decoration: none;
@@ -173,7 +170,9 @@ button{
 		    </c:if>						      			  <!-- /일반 사용자 -->
 		   </c:if>                                   <!-- /로그인 했을때 -->
 		</div>  <!--div item mypage 끝-->
-		<div class="item"></div>
+		
+		<div class="item Q&A"><a href="">Q&A</a></div>
+		
 		<!-- 아이템들 사이 조정을 위해 넣은 값 -->
  	</div>
 	<!-- 메뉴바 밑줄 꾸미기 위해 넣은 div -->
