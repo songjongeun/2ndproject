@@ -140,7 +140,34 @@ $(function(){/*숫자 증감 버튼*/
 		$(".curr_mil").val(curr_mil);
 	});
 }); 
- 
+var buyval;
+$(function(){//숫자를 직접 입력했을 경우 실시간 계산
+	$(".n_buying").on("propertychange change keyup paste input",function(){
+		var inputval = $(this).val();
+		if(inputval == buyval){
+			return;
+		}
+	buyval = inputval;
+	mil = Number($("#mileage").val()); //받은 포인트
+	curr = Number($("#curr").val()); //매수가
+	
+	sum_mil = curr*buyval;
+	curr_mil = mil-sum_mil;
+	
+	$(".sum_mil").val(sum_mil);
+	$(".curr_mil").val(curr_mil);
+	});
+});
+
+function diff_mil(){
+	curr_mil= Number($(".curr_mil").val());
+	if(curr_mil<0){
+		alert("매도 금액이 마일리지를 초과했습니다.");
+		return false;
+	}else{
+		return true;
+	}
+}
 </script>
 <style>
 
@@ -148,7 +175,7 @@ $(function(){/*숫자 증감 버튼*/
 </head>
 <body>
 <div id="main" class="main">
-	<form class="sub_main" method="post" action="/mock/buying_ok">
+	<form class="sub_main" method="post" action="/mock/buying_ok" onsubmit="return diff_mil()">
 
 		<div class="s_name">${sdto.name} ${sdto.code}
 		<input type="hidden" name="code" value="${sdto.code}">
