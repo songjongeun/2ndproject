@@ -171,7 +171,7 @@ button{
 		   </c:if>                                   <!-- /로그인 했을때 -->
 		</div>  <!--div item mypage 끝-->
 		
-		<div class="item Q&A"><a href="">Q&A</a></div>
+		<div class="item Q&A"><a href="/mock/qa/list">Q&A</a></div>
 		
 		<!-- 아이템들 사이 조정을 위해 넣은 값 -->
  	</div>

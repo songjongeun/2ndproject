@@ -52,9 +52,10 @@ public class UserController {
 	
 	// 마이페이지 수정 및 수정하면 다시 마이페이지로 
 	@RequestMapping("/mypage/mypage_update_ok")
-	public String mypage_update_ok(UserDto udto)
+	public String mypage_update_ok(UserDto udto,HttpSession session)
 	{
 		UserDao udao=sqlSession.getMapper(UserDao.class);
+		udto.setUserid(session.getAttribute("userid").toString());
 		udao.mypage_update_ok(udto);
 
 		return "redirect:/mypage/mypage";

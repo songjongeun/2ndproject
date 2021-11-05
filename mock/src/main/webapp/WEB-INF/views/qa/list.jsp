@@ -13,16 +13,16 @@
 <hr>
  	<table width="500" align="center">
      <tr>
-      <td> 아이디 </td>
-      <td> 제목 </td>
+      <td> 제 목 </td>
+      <td> 내 용 </td>
       <td> 작성일 </td> 
      </tr>
      
-    <c:forEach items="${list}" var="bdto">
+    <c:forEach items="${list}" var="qdto">
      <tr>
-      <td> ${bdto.userid} </td>
-      <td> <a href="hit?f_id=${bdto.f_id}"> ${bdto.title} </a></td>
-      <td> ${bdto.writeday} </td>
+      <td> <a href="content?q_id=${qdto.q_id}"> ${qdto.title} </a></td>
+      <td> ${qdto.content} </td>
+      <td> ${qdto.day} </td>
      </tr>
     </c:forEach> 
      

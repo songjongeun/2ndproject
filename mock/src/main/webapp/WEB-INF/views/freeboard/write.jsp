@@ -11,7 +11,6 @@
 <div id="main">	
 	  <form name="write" method="post" action="write_ok">
 	  <h3> 글쓰기</h3>
-	  작성자 ${sessionScope.username} <p>
 	  제목 <input type="text" name="title"> <p>
 	  내용 <textarea cols="100" rows="20" name="content"></textarea> <p>
 	  <input type="submit" value="저장">

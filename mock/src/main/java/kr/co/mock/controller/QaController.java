@@ -3,6 +3,7 @@ package kr.co.mock.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.co.mock.dao.AdminDao;
 import kr.co.mock.dao.QaDao;
 import kr.co.mock.dto.QaDto;
-import kr.co.mock.dto.UserDto;
 
 @Controller
 public class QaController {
@@ -28,10 +27,11 @@ public class QaController {
 	}
 	
 	@RequestMapping("/qa/write_ok")
-	public String write_ok(QaDto qdto)
+	
+	public String write_ok(QaDto qdto,HttpSession session)
 	{
-		QaDao bdao=sqlSession.getMapper(QaDao.class); 
-		bdao.write_ok(qdto);
+		QaDao qdao=sqlSession.getMapper(QaDao.class); 
+		qdao.write_ok(qdto);
 		return "redirect:/qa/list";
 	}
 	
@@ -112,13 +112,4 @@ public class QaController {
 		return "redirect:/qa/list";
 	}
 	
-	@RequestMapping("/qa/adminpage")
-	public String adminpage(Model model,HttpServletRequest request)
-	{
-		AdminDao adao=sqlSession.getMapper(AdminDao.class);
-		ArrayList<UserDto> adto=adao.adminpage();
-		model.addAttribute("adto",adto);  
-		return "/qa/adminpage";
-		
-	}
 }
