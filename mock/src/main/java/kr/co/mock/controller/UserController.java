@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.co.mock.dao.MockDao;
 import kr.co.mock.dao.UserDao;
+import kr.co.mock.dto.StockDto;
 import kr.co.mock.dto.UserDto;
 
 @Controller
@@ -230,6 +232,7 @@ public class UserController {
 		
 		UserDao udao=sqlSession.getMapper(UserDao.class);
 		ArrayList<UserDto> udto=udao.my_interests(userid);
+		MockDao mdao=sqlSession.getMapper(MockDao.class);
 
 		if(udto.isEmpty())
 		{// 관심종목이 없을때
@@ -239,8 +242,11 @@ public class UserController {
 		else
 		{
 			ArrayList<UserDto> udto2=new ArrayList<UserDto>();
+			ArrayList<StockDto> sdto=new ArrayList<StockDto>();
 			for(int i=0;i<udto.size();i++)
 			{
+				StockDto sdto0=udao.my_mocks(udto.get(i).getCode());
+				sdto.add(sdto0);
 //				System.out.println(udto.get(i).getCode());
 				if(udao.stk_rt(udto.get(i).getCode())==null)
 				{
@@ -254,6 +260,8 @@ public class UserController {
 				}
 			}
 			
+
+			model.addAttribute("sdto",sdto);
 			model.addAttribute("udto",udto);
 			model.addAttribute("udto2",udto2);
 			return "/user/my_interests";

@@ -48,8 +48,8 @@
     select * from stocks_a where code=#{param1}
   </select>
   
-  <select id="stocks_name" resultType="kr.co.mock.dto.UserDto">
-    select * from stocks_a where code=#{param1}
+  <select id="my_mocks" resultType="kr.co.mock.dto.StockDto">
+	select * from stocks where code=#{param1} order by id desc limit 1
   </select>
 
 </mapper>
