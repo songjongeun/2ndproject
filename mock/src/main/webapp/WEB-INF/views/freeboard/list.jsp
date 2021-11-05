@@ -13,11 +13,7 @@
 <hr>
  	<table width="500" align="center">
      <tr>
-<<<<<<< HEAD
-      <td> 이름 </td>
-=======
-      <td> 작성자 </td>
->>>>>>> 0cf8fd16438c0a877719b83a0c5a997f8b2a86b3
+      <td> 아이디 </td>
       <td> 제목 </td>
       <td> 작성일 </td> 
      </tr>
@@ -25,7 +21,7 @@
     <c:forEach items="${list}" var="bdto">
      <tr>
       <td> ${bdto.userid} </td>
-      <td> <a href="hit?f_id=${bdto.f_id}"> ${bdto.title} </a> </td>
+      <td> <a href="hit?f_id=${bdto.f_id}"> ${bdto.title} </a></td>
       <td> ${bdto.writeday} </td>
      </tr>
     </c:forEach> 
@@ -73,22 +69,14 @@
       </td>     
       </tr>
   	  <!--  페이지 끝 -->
-  
-  
+   
       <tr>
 	  <td colspan="3" align="right"> 
 	  <!-- 로그인 및 회원가입 / 로그인을 했을 경우 글쓰기 탭-->
 	  <c:if test="${userid == null}">
 	  <!-- 로그인을 안했을 경우 -->
-<<<<<<< HEAD
-	  <a href="login"> 로그인 </a>  
-	  <a href="member"> 회원가입 </a>
-=======
-
 	  <a href="/mock/user/login"> 로그인 </a>  
 	  <a href="/mock/user/member"> 회원가입 </a>
-
->>>>>>> 0cf8fd16438c0a877719b83a0c5a997f8b2a86b3
 	  </c:if>
 
       <c:if test="${userid != null}">
@@ -101,10 +89,5 @@
    </table>
    </div>
 </body>
-<<<<<<< HEAD
-</html>
-=======
-
 </html>
 
->>>>>>> 0cf8fd16438c0a877719b83a0c5a997f8b2a86b3
