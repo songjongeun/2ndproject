@@ -2,7 +2,7 @@ package kr.co.mock.dto;
 
 public class QaDto {
 	private int q_id;
-	private String title, content, pwd;
+	private String title, content, pwd, day;
 	public int getQ_id() {
 		return q_id;
 	}
@@ -27,6 +27,11 @@ public class QaDto {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
+	public String getDay() {
+		return day;
+	}
+	public void setDay(String day) {
+		this.day = day;
+	}
 
 }
-
