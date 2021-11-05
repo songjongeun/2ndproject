@@ -20,10 +20,11 @@
 	height:100%;
 	grid-gap:5px;
 	grid-template-areas:
-		"first first"
-		"second second"
-		"third third"
-		"con_main con_main";
+		"first"
+		"second"
+		"third"
+		"main"
+		"bottom";
 }
 
 #first{ /*찻반쩨 로고 및 로그인 css*/
@@ -65,9 +66,9 @@
 #main{ /*모든 메인 페이지 적용*/
 	width:70%;
 	min-width:auto;
-	grid-area:con_main;
+	grid-area:main;
 	place-items: center;
-	padding-top:50px;
+	margin:50px 0px;
 }
 
 /* 햄버거부분 */
@@ -113,6 +114,11 @@ button{
 	background:litepink;
 	color: white;
 }
+#bottom{
+	grid-area:bottom;
+	width:70%;
+	margin-top:150px;
+}
 
 </style>
 
@@ -145,6 +151,7 @@ button{
  		<div class="item ai"><a href="">AI추천 종목</a></div>
 		<div class="item chart"><a href="">실시간 차트</a></div>
 		<div class="item mock"><a href="/mock/stocks/st_list">모의 투자</a></div>
+<<<<<<< HEAD
 		<div class="item my_market"><a href="/mock/user/my_interests">내 종목 보기</a></div>
 		<div class="item m_free"><a href="list">자유게시판</a></div>
 		<c:if test="${userid=='admin' }">
@@ -153,6 +160,31 @@ button{
 		<c:if test="${userid!='admin' }">
 		  <div class="item mypage"><a href="mypage">마이페이지</a></div>
 		</c:if>
+=======
+		<div class="item my_market">
+		  <c:if test="${userid==null }"> 
+		    <a href="/mock/user/login">내 종목 보기 </a>
+		  </c:if>
+		  <c:if test="${userid!=null }">
+		    <a href="/mock/user/my_interests">내 종목 보기 </a>
+		  </c:if>
+		</div>
+		<div class="item m_free"><a href="/mock/freeboard/list">자유게시판</a></div>
+		<div class="item mypage">
+		  <c:if test="${userid==null }">  <!-- 로그인 안했을때 -->
+		    <a href="/mock/user/login">마이페이지</a>
+		  </c:if>	 <!-- /로그인 안했을때 -->
+		  <c:if test="${userid!=null }">  <!-- 로그인 했을때 -->
+		    <c:if test="${userid=='admin' }"> <!-- 관리자 -->
+		      <a href="/mock/admin/adminpage">관리자페이지</a>
+		    </c:if>                                        <!-- /관리자 -->
+		    <c:if test="${userid!='admin' }"> 	<!-- 일반 사용자 -->
+		      <a href="/mock/mypage/mypage">마이페이지</a>
+		    </c:if>						      			  <!-- /일반 사용자 -->
+		   </c:if>                                   <!-- /로그인 했을때 -->
+		</div>  <!--div item mypage 끝-->
+		
+>>>>>>> 0cf8fd16438c0a877719b83a0c5a997f8b2a86b3
 		<div class="item"></div>
 		<!-- 아이템들 사이 조정을 위해 넣은 값 -->
  	</div>
@@ -160,6 +192,11 @@ button{
  	<div id="third">
 	</div>
 	<decorator:body/>
-</div>
+	<div id="bottom"> 
+	상호명 : 경영기술개발원교육센터     대표자 : 한광두     사업자등록번호 : 334-81-00348     전화번호 : 1661-1429     팩스번호 : 02-856-1094
+	직업정보 제공사업 : 서울관악 제2011-37호     주소 : (우)08292 서울특별시 구로구 구로중앙로34길 33-4(구로동, 경영기술개발원빌딩)
+	Copyright © 경영기술개발원교육센터 All Rights Reserved. 
+	</div>
+	</div>
 </body>
 </html>

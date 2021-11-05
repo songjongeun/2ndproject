@@ -28,4 +28,15 @@
 		select count(*)from mock_invest where userid=#{param1}
 	</select>
 	<!-- 모의투자 신청시 신청한 적이 있는지 조회함 -->
+	
+	
+	<!-- 매수매도 -->
+	<insert id="buying_ok" parameterType="kr.co.mock.dto.BuyingDto">
+		insert into buying(userid,code,n_buying,ask_spread,b_day)
+		values(#{param1},#{param2},${param3},${param4},now());
+	</insert>
+	
+	<update id="mileage_update" parameterType="kr.co.mock.dto.MockDto">
+		update mock_invest set mileage=${param1} where userid=#{param2}
+	</update>
 </mapper>

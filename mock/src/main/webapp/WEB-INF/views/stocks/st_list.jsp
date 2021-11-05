@@ -41,8 +41,8 @@
 	<tr>
 		<td>${sdto.code}</td>
 		<td>${sdto.name}</td>
-		<td><a href="/mock/stocks/selling?id=${sdto.id}"><fmt:formatNumber value="${sdto.bid}"/></a></td>
 		<td><a href="/mock/stocks/buying?id=${sdto.id}"><fmt:formatNumber value="${sdto.offer}"/></a></td>
+		<td><a href="/mock/stocks/selling?id=${sdto.id}"><fmt:formatNumber value="${sdto.bid}"/></a></td>
 		<td>${sdto.diff}%</td>
 		<td>${sdto.day}</td>
 	</tr>

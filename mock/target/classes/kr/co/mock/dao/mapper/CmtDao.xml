@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.mock.dao.CmtDao">
+
+   <select id="cmt_list" parameterType="int" resultType="kr.co.mock.dto.CmtDto">
+	select f_id, c_id, userid, content, writeday 
+	from comment where f_id=#{f_id}
+  </select>
+
+  <insert id="cmt_write" parameterType="kr.co.mock.dto.CmtDto">
+    insert into comment(f_id,userid,content,writeday)
+    values(#{f_id},#{userid},#{content},now())
+  </insert>
+  
+  <update id="cmt_update" parameterType="kr.co.mock.dto.CmtDto">
+    update comment set userid=#{userid}, content=#{content} 
+    where c_id=#{c_id} and f_id=#{f_id}
+  </update>
+
+  <delete id="cmt_delete">
+     delete from comment where c_id=#{c_id} and f_id=#{f_id}
+  </delete>
+  
+  <select id="get_pagecount" resultType="Integer">
+    select ceil(count(*)/10) from comment;
+  </select>
+
+</mapper>

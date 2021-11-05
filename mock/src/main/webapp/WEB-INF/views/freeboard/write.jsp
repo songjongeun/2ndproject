@@ -8,10 +8,17 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 <body>
+<<<<<<< HEAD
 <div>	
 	  <form name="write" method="post" action="write_ok">
 	  <h3> 글쓰기</h3>
 	  이름 <input name="userid" id="userid" value="${sessionScope.username}"> <p>
+=======
+<div id="main">	
+	  <form name="write" method="post" action="write_ok">
+	  <h3> 글쓰기</h3>
+	  작성자 <input name="userid" id="userid" value="${sessionScope.username}"> <p>
+>>>>>>> 0cf8fd16438c0a877719b83a0c5a997f8b2a86b3
 	  제목 <input type="text" name="title"> <p>
 	  내용 <textarea cols="100" rows="20" name="content"></textarea> <p>
 	  <input type="submit" value="저장">
@@ -19,3 +26,7 @@
 	  </div>
 </body>
 </html>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0cf8fd16438c0a877719b83a0c5a997f8b2a86b3

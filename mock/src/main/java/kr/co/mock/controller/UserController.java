@@ -21,6 +21,7 @@ public class UserController {
 	@Autowired
 	private SqlSession sqlSession;
 
+<<<<<<< HEAD
 	@RequestMapping("/mypage")
 	public String mypage(Model model,HttpServletRequest request)
 	{
@@ -42,10 +43,44 @@ public class UserController {
 	}
 	
 	@RequestMapping("/mypage_update_ok")
+=======
+	// 마이페이지 창, 로그인 안 하면 로그인 화면으로 
+
+	@RequestMapping("/mypage/mypage")
+	public String mypage(Model model,HttpSession session)
+	{
+		if(session.getAttribute("userid") != null)
+		{
+		 String userid=session.getAttribute("userid").toString();
+		 UserDao udao=sqlSession.getMapper(UserDao.class);
+		 UserDto udto=udao.mypage(userid);
+		 model.addAttribute("udto",udto);
+		 
+		 return "/mypage/mypage";
+		}
+		else
+			return "redirect:/user/login?chk=1";
+	}
+	
+	// 마이페이지 수정 
+	@RequestMapping("/mypage/mypage_update")
+	public String mypage_update(Model model,HttpSession session)
+	{
+		String userid=session.getAttribute("userid").toString();
+		UserDao udao=sqlSession.getMapper(UserDao.class); 
+		UserDto udto=udao.mypage_update(userid);
+		model.addAttribute("udto",udto);
+		return "/mypage/mypage_update";
+	}
+	
+	// 마이페이지 수정 및 수정하면 다시 마이페이지로 
+	@RequestMapping("/mypage/mypage_update_ok")
+>>>>>>> 0cf8fd16438c0a877719b83a0c5a997f8b2a86b3
 	public String mypage_update_ok(UserDto udto)
 	{
 		UserDao udao=sqlSession.getMapper(UserDao.class);
 		udao.mypage_update_ok(udto);
+<<<<<<< HEAD
 		return "redirect:/mypage";
 	}
 	
@@ -56,6 +91,20 @@ public class UserController {
 		UserDao udao=sqlSession.getMapper(UserDao.class);
 		udao.mypage_delete(userid);
 		return "redirect:/index";
+=======
+		return "redirect:/mypage/mypage";
+	}
+	
+	// 마이페이지 회원 탈퇴 및 계정 삭제 
+	@RequestMapping("/mypage/mypage_delete")
+	public String delete(HttpSession session)
+	{
+		String userid=session.getAttribute("userid").toString();
+		UserDao udao=sqlSession.getMapper(UserDao.class);
+		udao.mypage_delete(userid);
+		session.invalidate();
+		return "redirect:/main_view";
+>>>>>>> 0cf8fd16438c0a877719b83a0c5a997f8b2a86b3
 	}
 	
 	// 김재현
@@ -92,14 +141,38 @@ public class UserController {
 
 	// 회원가입 완료
 	@RequestMapping("/user/member_ok")
+<<<<<<< HEAD
 	public String member_ok(UserDto udto)
+=======
+	public String member_ok(HttpServletRequest request,UserDto udto,HttpSession session)
+>>>>>>> 0cf8fd16438c0a877719b83a0c5a997f8b2a86b3
 	{
-		UserDao xdao=sqlSession.getMapper(UserDao.class);
-		int chk=xdao.userid_check(udto.getUserid());
+		String auto=request.getParameter("auto");
+		
+		UserDao udao=sqlSession.getMapper(UserDao.class);
+		int chk=udao.userid_check(udto.getUserid());
 		if(chk==0)
 		{
-			xdao.member_ok(udto); 
-			return "redirect:/main_view";
+			udao.member_ok(udto); 
+			if(auto.equals("1"))  // 회원가입 후 자동로그인
+			{
+				UserDto udto2=udao.login_ok(udto);
+				if(udto2==null)
+				{
+					return "redirect:/user/login?chk=1";
+				}
+				else
+				{
+					session.setAttribute("userid",udto2.getUserid());
+					session.setAttribute("username",udto2.getUsername());
+					
+					return "/main_view";
+				}
+			}
+			else
+			{
+				return "redirect:/main_view";
+			}
 		}
 		else
 		{
