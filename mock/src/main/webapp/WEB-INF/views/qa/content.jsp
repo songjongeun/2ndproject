@@ -21,10 +21,6 @@
       <td> ${qdto.content} </td>
     </tr>
     <tr>
-      <td> 비밀번호 </td>
-      <td> ${qdto.pwd} </td>
-    </tr>
-    <tr>
       <td> 작성일 </td>
       <td> ${qdto.day} </td>
     </tr>
@@ -82,7 +78,6 @@
      <tr>
       <td> 관리자 </td>
       <td> 내 용 </td>
-      <td> 비밀번호 </td> 
      </tr>
      
     <c:forEach items="${dat_list}" var="qdto">
