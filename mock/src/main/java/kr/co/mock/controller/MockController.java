@@ -94,13 +94,10 @@ public class MockController {
 	//---사고 팔기
 	
 	@RequestMapping("/stocks/st_list")
-<<<<<<< HEAD
-	public String st_list(StockDto sdto,Model model) {
-	
-=======
+
 	public String st_list(StockDto sdto,Model model)
 	{
->>>>>>> 0cf8fd16438c0a877719b83a0c5a997f8b2a86b3
+
 		MockDao mdao=sqlSession.getMapper(MockDao.class);
 
 		ArrayList<StockDto> list=mdao.st_list();
@@ -115,12 +112,10 @@ public class MockController {
 	{
 		int id=Integer.parseInt(request.getParameter("id"));
 		MockDao mdao=sqlSession.getMapper(MockDao.class);
-<<<<<<< HEAD
 		ArrayList<StockDto> sdto=mdao.st_content(id);
-		
-=======
+
 		StockDto sdto=mdao.st_content(id);
->>>>>>> 0cf8fd16438c0a877719b83a0c5a997f8b2a86b3
+
 		//mock 테이블에서 포인트 조회를 위해 가져오는 값
 		if(session.getAttribute("userid")!=null) { //로그인 
 			String userid=session.getAttribute("userid").toString();
@@ -204,7 +199,6 @@ public class MockController {
 		
 		return "redirect:/stocks/st_list";
 	}
-<<<<<<< HEAD
 	
 	@RequestMapping("/stocks/buying")
 	public String buying(HttpServletRequest request,Model model)
@@ -218,7 +212,7 @@ public class MockController {
 		return "/stocks/buying";
 	}
 	
-=======
+
 	//----매도
->>>>>>> 0cf8fd16438c0a877719b83a0c5a997f8b2a86b3
+
 }

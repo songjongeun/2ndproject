@@ -5,10 +5,8 @@
   <pattern>/user/userid_search</pattern>
   <pattern>/user/pwd_search</pattern>
   <pattern>/user/ip_search_ok</pattern>
-<<<<<<< HEAD
   <pattern>/stocks/*</pattern>
-=======
->>>>>>> 0cf8fd16438c0a877719b83a0c5a997f8b2a86b3
+
  </excludes>
  <!-- 기본 패턴 -->
  <decorator name="default" page="header.jsp">

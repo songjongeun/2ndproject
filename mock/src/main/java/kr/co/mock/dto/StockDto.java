@@ -1,10 +1,8 @@
 package kr.co.mock.dto;
 
 public class StockDto {
-	private int id, open,high,low,diff,close,offer,bid,vol,vol_value;
-	private String code,name,exchange,day;
-	
-
+	private int id, open,high,low,dff,close,vol,offer,bid,vol_value;
+	private String code,name,exchange,date;
 	public int getId() {
 		return id;
 	}
@@ -29,11 +27,11 @@ public class StockDto {
 	public void setLow(int low) {
 		this.low = low;
 	}
-	public int getDiff() {
-		return diff;
+	public int getDff() {
+		return dff;
 	}
-	public void setDiff(int diff) {
-		this.diff = diff;
+	public void setDff(int dff) {
+		this.dff = dff;
 	}
 	public int getClose() {
 		return close;
@@ -41,29 +39,11 @@ public class StockDto {
 	public void setClose(int close) {
 		this.close = close;
 	}
-	public int getOffer() {
-		return offer;
-	}
-	public void setOffer(int offer) {
-		this.offer = offer;
-	}
-	public int getBid() {
-		return bid;
-	}
-	public void setBid(int bid) {
-		this.bid = bid;
-	}
 	public int getVol() {
 		return vol;
 	}
 	public void setVol(int vol) {
 		this.vol = vol;
-	}
-	public int getVol_value() {
-		return vol_value;
-	}
-	public void setVol_value(int vol_value) {
-		this.vol_value = vol_value;
 	}
 	public String getCode() {
 		return code;
@@ -83,11 +63,30 @@ public class StockDto {
 	public void setExchange(String exchange) {
 		this.exchange = exchange;
 	}
-	public String getDay() {
-		return day;
+	public String getDate() {
+		return date;
 	}
-	public void setDay(String day) {
-		this.day = day;
+	public void setDate(String date) {
+		this.date = date;
+	}
+	public int getOffer() {
+		return offer;
+	}
+	public void setOffer(int offer) {
+		this.offer = offer;
+	}
+	public int getBid() {
+		return bid;
+	}
+	public void setBid(int bid) {
+		this.bid = bid;
+	}
+	public int getVol_value() {
+		return vol_value;
+	}
+	public void setVol_value(int vol_value) {
+		this.vol_value = vol_value;
 	}
 
+	
 }

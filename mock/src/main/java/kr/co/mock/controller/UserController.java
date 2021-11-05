@@ -21,29 +21,6 @@ public class UserController {
 	@Autowired
 	private SqlSession sqlSession;
 
-<<<<<<< HEAD
-	@RequestMapping("/mypage")
-	public String mypage(Model model,HttpServletRequest request)
-	{
-		String userid=request.getParameter("userid");	
-		UserDao udao=sqlSession.getMapper(UserDao.class);
-		UserDto udto=udao.mypage(userid);
-		model.addAttribute("udto",udto);
-		return "/mypage";
-	}
-	
-	@RequestMapping("/mypage_update")
-	public String mypage_update(Model model,HttpServletRequest request)
-	{
-		String userid=request.getParameter("userid");
-		UserDao udao=sqlSession.getMapper(UserDao.class); 
-		UserDto udto=udao.mypage_update(userid);
-		model.addAttribute("udto",udto);
-		return "/mypage_update";
-	}
-	
-	@RequestMapping("/mypage_update_ok")
-=======
 	// 마이페이지 창, 로그인 안 하면 로그인 화면으로 
 
 	@RequestMapping("/mypage/mypage")
@@ -75,23 +52,11 @@ public class UserController {
 	
 	// 마이페이지 수정 및 수정하면 다시 마이페이지로 
 	@RequestMapping("/mypage/mypage_update_ok")
->>>>>>> 0cf8fd16438c0a877719b83a0c5a997f8b2a86b3
 	public String mypage_update_ok(UserDto udto)
 	{
 		UserDao udao=sqlSession.getMapper(UserDao.class);
 		udao.mypage_update_ok(udto);
-<<<<<<< HEAD
-		return "redirect:/mypage";
-	}
-	
-	@RequestMapping("/mypage_delete")
-	public String delete(HttpServletRequest request)
-	{
-		String userid=request.getParameter("userid");
-		UserDao udao=sqlSession.getMapper(UserDao.class);
-		udao.mypage_delete(userid);
-		return "redirect:/index";
-=======
+
 		return "redirect:/mypage/mypage";
 	}
 	
@@ -104,7 +69,7 @@ public class UserController {
 		udao.mypage_delete(userid);
 		session.invalidate();
 		return "redirect:/main_view";
->>>>>>> 0cf8fd16438c0a877719b83a0c5a997f8b2a86b3
+
 	}
 	
 	// 김재현
@@ -141,11 +106,7 @@ public class UserController {
 
 	// 회원가입 완료
 	@RequestMapping("/user/member_ok")
-<<<<<<< HEAD
-	public String member_ok(UserDto udto)
-=======
-	public String member_ok(HttpServletRequest request,UserDto udto,HttpSession session)
->>>>>>> 0cf8fd16438c0a877719b83a0c5a997f8b2a86b3
+
 	{
 		String auto=request.getParameter("auto");
 		
