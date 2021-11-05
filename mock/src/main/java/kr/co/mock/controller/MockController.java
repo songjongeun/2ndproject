@@ -207,7 +207,7 @@ public class MockController {
 			int n_selling=Integer.parseInt(request.getParameter("n_selling"));
 			int bid_spread=Integer.parseInt(request.getParameter("bid_spread"));
 			MockDao mdao=sqlSession.getMapper(MockDao.class);
-			mdao.buying_ok(userid, code, n_selling, bid_spread);
+			mdao.selling_ok(userid, code, n_selling, bid_spread);
 			mdao.mileage_update(mileage,userid);
 			return "redirect:/stocks/st_list";
 		}

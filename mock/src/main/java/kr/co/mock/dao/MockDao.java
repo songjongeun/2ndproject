@@ -20,5 +20,7 @@ public interface MockDao {
 	
 	//매수매도
 	public void buying_ok(String userid,String code,int n_buying,int ask_spread);
+	public void selling_ok(String userid,String code,int n_selling,int bid_spread);
+
 	public void mileage_update(String mileage,String userid);
 }
