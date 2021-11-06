@@ -3,6 +3,7 @@ package kr.co.mock.dto;
 public class StockDto {
 	private int id, open,high,low,diff,close,vol,offer,bid,vol_value;
 	private String code,name,exchange,date;
+	private int err;
 	public int getId() {
 		return id;
 	}
@@ -88,5 +89,14 @@ public class StockDto {
 		this.vol_value = vol_value;
 	}
 
+	
+	public int getErr() {
+		return err;
+	}
+
+	public void setErr(int err) {
+		this.err = err;
+	}
+	
 	
 }

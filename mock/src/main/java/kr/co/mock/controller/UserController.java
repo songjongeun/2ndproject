@@ -245,18 +245,31 @@ public class UserController {
 			ArrayList<StockDto> sdto=new ArrayList<StockDto>();
 			for(int i=0;i<udto.size();i++)
 			{
-				StockDto sdto0=udao.my_mocks(udto.get(i).getCode());
-				sdto.add(sdto0);
 //				System.out.println(udto.get(i).getCode());
 				if(udao.stk_rt(udto.get(i).getCode())==null)
 				{
-					UserDto udtoe=udao.stocks_names(udto.get(i).getCode());
+					UserDto udtoe=new UserDto();
+					String name=udao.stocks_names(udto.get(i).getCode());
 					udtoe.setErr(1);
+					udtoe.setName(name);
 					udto2.add(udtoe);
 				}
 				else
 				{
 					udto2.add(udao.stk_rt(udto.get(i).getCode()));
+				}
+				
+				if(udao.my_mocks(udto.get(i).getCode())==null)
+				{
+					StockDto sdtoe=new StockDto();
+					String name=udao.stocks_names(udto.get(i).getCode());
+					sdtoe.setErr(1);
+					sdtoe.setName(name);
+					sdto.add(sdtoe);
+				}
+				else
+				{
+					sdto.add(udao.my_mocks(udto.get(i).getCode()));
 				}
 			}
 			

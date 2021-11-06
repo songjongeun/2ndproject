@@ -12,7 +12,7 @@ public interface UserDao {
 	public UserDto ip_search_ok(UserDto udto);
 	public ArrayList<UserDto> my_interests(String userid);
 	public UserDto stk_rt(String code);
-	public UserDto stocks_names(String code);
+	public String stocks_names(String code);
 	public StockDto my_mocks(String code);
 	
 	public UserDto mypage(String userid); 

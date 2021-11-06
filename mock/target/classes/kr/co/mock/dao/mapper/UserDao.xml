@@ -44,12 +44,12 @@
     select s.code,s.name,r.r_id,r.cprice,r.diff,r.vol from stocks_a s,realtime r where s.code=r.code and s.code=#{param1} order by r.r_id desc limit 1
   </select>
   
-  <select id="stocks_names" resultType="kr.co.mock.dto.UserDto">
-    select * from stocks_a where code=#{param1}
+  <select id="stocks_names" resultType="string">
+    select name from stocks_a where code=#{param1}
   </select>
   
   <select id="my_mocks" resultType="kr.co.mock.dto.StockDto">
-	select * from stocks where code=#{param1} order by id desc limit 1
+	select * from stocks where code=#{param1} order by id asc limit 1
   </select>
 
 </mapper>
