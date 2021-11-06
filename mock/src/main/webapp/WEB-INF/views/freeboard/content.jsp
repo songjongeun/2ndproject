@@ -155,8 +155,9 @@
 	 
 	<!-- 로그인을 한 상태 -->
 	<c:if test="${userid!=null}"> 
-  	<p> 작성자 ${sessionScope.username} </p> 
-  	<p><textarea rows="5" cols="65" placeholder="댓글 내용"> 댓글내용</textarea></p>
+	<form name="inform" method="post" action="cmt_write_ok.jsp">
+  	<p> 아이디 <input type="text" name="userid" placeholder="작성자" size="6" value="${bdto.userid}"> </p> 
+  	<textarea cols="70" rows="8" name="content" placeholder="댓 글" > 댓글 </textarea>
   	<input type="hidden" name="f_id" value="${content.f_id}">
   	<input type="submit" value="댓글 작성">
   	</c:if>
