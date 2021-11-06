@@ -107,6 +107,7 @@ var curr; // 매도가
 var mil; // 남아있는 마일리지
 var sum_mil; //매수가*주
 var curr_mil; // 매도가+sum_mil
+var diff = Number($(".diff").val());; //매수의 총합
 $(function(){/*숫자 증감 버튼*/
 	$("#minus").click(function(){
 		num = Number($(".n_selling").val());
@@ -126,21 +127,47 @@ $(function(){/*숫자 증감 버튼*/
 		$(".curr_mil").val(curr_mil);
 		
 	});
-	$("#plus").click(function(){
-		num = Number($(".n_selling").val());
-		mil = Number($("#mileage").val());
-		curr = Number($("#curr").val());
-		num++;
- 
-		sum_mil = curr*num;
-		curr_mil = mil+sum_mil;
-		
-		$(".n_selling").val(num);
-		$(".sum_mil").val(sum_mil);
-		$(".curr_mil").val(curr_mil);
+	 $("#plus").click(function(){
+	      num = Number($(".n_selling").val());
+	      mil = Number($("#mileage").val());
+	      curr = Number($("#curr").val());
+	      diff = Number($(".diff").val());
+	      num++;
+	      if(num>diff){
+	         alert("가지고 있는 주 이상을 매도할 수 없습니다.");
+	         num=diff;
+	      }
+
+	      else{
+	         sum_mil = curr*num;
+	         curr_mil = mil+sum_mil;
+	         
+	         $(".n_selling").val(num);
+	         $(".sum_mil").val(sum_mil);
+	         $(".curr_mil").val(curr_mil);
+	      }
+	   });
+	}); 
+
+
+var sellval;
+$(function(){//숫자를 직접 입력했을 경우 실시간 계산
+	$(".n_selling").on("propertychange change keyup paste input",function(){
+		var inputval = $(this).val();
+		if(inputval == sellval){
+			return;
+		}
+	sellval = inputval;
+	mil = Number($("#mileage").val()); //받은 포인트
+	curr = Number($("#curr").val()); //매도가
+	
+	sum_mil = curr*sellval;
+	curr_mil = mil+sum_mil;
+	
+	$(".sum_mil").val(sum_mil);
+	$(".curr_mil").val(curr_mil);
 	});
-}); 
- 
+});
 </script>
 <style>
 
@@ -172,14 +199,16 @@ $(function(){/*숫자 증감 버튼*/
 		  	<input id="curr" type="hidden" name="bid_spread" value="${sdto.open}">
 		  	<!--매수호가 -->
 	  	</div>
-		<div class="week">거래주</div>
+		<div class="week">거래주
+		<input type="hidden" class="diff" value="${diff}">
+		</div>
 		<div class="week_num">
 		<input type="button" id="minus" value= "-">
-	  	<input type="text" class="n_selling" name="n_selling" value="1" size="4">주<!-- 거래개수 -->
+	  	<input type="text" class="n_selling" name="n_selling" value="${diff}" size="4">주<!-- 거래개수 -->
 	  	<input type="button" id="plus" value="+" >
 		</div>
 		<div class="sum">거래 합계</div>
-		<input type="text" class="sum_mil" size="4" value="${sdto.open}">
+		<input type="text" class="sum_mil" size="4" value="${sdto.open*diff}">
 		
 		<div class="cuur_mil">
 			남은 마일리지
@@ -189,7 +218,7 @@ $(function(){/*숫자 증감 버튼*/
 		  	마일리지 없음
 		</c:if>
 		 <c:if test="${mileage!=0}">
-		  	<input type="text" class ="curr_mil" name="curr_mil" size="4">	
+		  	<input type="text" class ="curr_mil" name="curr_mil" value="${mileage-(sdto.open*diff)}" size="4">	
 		  </c:if>
 		</div>
 		

@@ -56,6 +56,5 @@ $(document).ready(function(){
 </div>
 
 <div id="container" class="chart"></div>
-</div>
 </body>
 </html>

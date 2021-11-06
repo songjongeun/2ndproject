@@ -13,7 +13,12 @@
 <hr>
  	<table width="500" align="center">
      <tr>
+<<<<<<< HEAD
       <td> 아이디 </td>
+=======
+
+      <td> 작성자 </td>
+>>>>>>> invest
       <td> 제목 </td>
       <td> 작성일 </td> 
      </tr>
@@ -77,6 +82,10 @@
 	  <!-- 로그인을 안했을 경우 -->
 	  <a href="/mock/user/login"> 로그인 </a>  
 	  <a href="/mock/user/member"> 회원가입 </a>
+<<<<<<< HEAD
+=======
+
+>>>>>>> invest
 	  </c:if>
 
       <c:if test="${userid != null}">
@@ -89,5 +98,9 @@
    </table>
    </div>
 </body>
+<<<<<<< HEAD
+=======
+
+>>>>>>> invest
 </html>
 
