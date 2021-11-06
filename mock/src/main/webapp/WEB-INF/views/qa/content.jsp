@@ -137,7 +137,7 @@
   
   <!-- 댓글 작성 시작 -->
   <div>
-  <form name="cmt_write" method="post" action="cmt_write_ok">
+  <form name="dat_write" method="post" action="dat_write_ok">
   <!-- 로그인을 안 했을 때 -->
 	<c:if test="${empty sessionScope.userid}">
 	<a href="list"> 목록가기 </a>
@@ -146,8 +146,8 @@
 	 
 	<!-- 로그인을 한 상태 -->
 	<c:if test="${userid!=null}"> 
-  	<p> 작성자 ${sessionScope.pwd} </p> 
-  	<p><textarea rows="5" cols="65" placeholder="댓글 내용"> 댓글내용</textarea></p>
+  	<p> 작성자 ${sessionScope.userid} </p> 
+  	<p><textarea rows="5" cols="65" placeholder="댓글 내용"></textarea></p>
   	<input type="hidden" name="q_id" value="${dat.q_id}">
   	<input type="submit" value="댓글 작성">
   	</c:if>
