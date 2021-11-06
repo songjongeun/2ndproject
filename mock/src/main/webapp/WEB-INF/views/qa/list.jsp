@@ -14,6 +14,7 @@
  	<table width="500" align="center">
      <tr>
       <td> 제 목 </td>
+      <td> 이 름 </td>
       <td> 내 용 </td>
       <td> 작성일 </td> 
      </tr>
@@ -21,8 +22,9 @@
     <c:forEach items="${list}" var="qdto">
      <tr>
       <td> <a href="content?q_id=${qdto.q_id}"> ${qdto.title} </a></td>
+      <td> ${qdto.userid } </td>
       <td> ${qdto.content} </td>
-      <td> ${qdto.day} </td>
+      <td> ${qdto.writeday} </td>
      </tr>
     </c:forEach> 
      
