@@ -12,6 +12,7 @@
 	  <form name="write" method="post" action="write_ok">
 	  <h3> 글쓰기 </h3>
 	  제목 <input type="text" name="title"> <p>
+	  이름{qdto.userid} <p>
 	  내용 <textarea cols="100" rows="20" name="content"></textarea> <p>
 	  비밀번호<input type="password" name="pwd"> <p>
 	  <input type="submit" value="저장">
