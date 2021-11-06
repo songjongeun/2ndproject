@@ -96,7 +96,7 @@ public class StockController {
 			map.put("volume", volume);
 			datalist.add(map);
 			
-		}
+		} 
 
 		
 		 
