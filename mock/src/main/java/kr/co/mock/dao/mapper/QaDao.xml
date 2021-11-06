@@ -4,8 +4,8 @@
 <mapper namespace="kr.co.mock.dao.QaDao">
 
   <insert id="write_ok" parameterType="kr.co.mock.dto.QaDto">
-    insert into qa(q_id,title,content,pwd,day)
-    values(#{q_id},#{title},#{content},#{pwd},now())
+    insert into qa(q_id,title,content,pwd,userid,writeday)
+    values(#{q_id},#{title},#{content},#{pwd},#{userid},now())
   </insert>
   
   <select id="list" resultType="kr.co.mock.dto.QaDto">
