@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="kr.co.mock.dao.CmtDao">
+
+   <select id="dat_list" resultType="kr.co.mock.dto.Qa_datDto">
+	 select * from qa_dat order by q_id desc limit #{param1},10
+  </select>
+
+  <insert id="dat_write_ok" parameterType="kr.co.mock.dto.Qa_datDto">
+    insert into qa_dat(q_id,dat,qd_id,pwd)
+    values({#q_id},#{dat},#{qd_id},#{pwd})
+  </insert>
+  
+  <select id="dat_update" resultType="kr.co.mock.dto.Qa_datDto">
+    select * from qa_dat where q_id=#{param1}
+  </select>
+
+  <update id="update_dat_ok" parameterType="kr.co.mock.dto.Qa_datDto">
+  	update qa_dat set qd_id=#{qd_id},dat=#{dat},q_id=#{q_id},pwd=#{pwd}
+  	where qd_id=#{qd_id}
+  </update>
+  
+  <delete id="dat_delete">
+     delete from qa_dat where q_id=#{param1}
+  </delete>
+  
+  <select id="get_pagecount" resultType="Integer">
+    select ceil(count(*)/10) from qa_dat;
+  </select>
+
+</mapper>
+
