@@ -6,23 +6,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title> Q&A 게시판 </title>
+<style>
+  table {
+    width: 80%;
+    align: center;
+  }
+   td,tr {
+    padding: 0px;
+  }
+</style>
 </head>
 <body>
-<div id="main">
+<div id="main" align="left">
 	<h3> Q&A </h3>
 	<hr>
   <table width="500" align="center">
     <tr>
-      <td> 제목 </td>
-      <td> ${qdto.title} </td>
+      <td><h2> ${qdto.title}</h2> </td>
     </tr>
     <tr height="255">
-      <td> 내용 </td>
-      <td> ${qdto.content} </td>
+      <td> ${qdto.writeday} </td>
     </tr>
     <tr>
-      <td> 작성일 </td>
-      <td> ${qdto.writeday} </td>
+      <td> ${qdto.content} </td>
     </tr>
     <tr>
       <td colspan="2"> 
@@ -71,20 +77,20 @@
     	document.getElementById("delform").style.visibility="hidden";
     }
   </script>
-  <hr>
   
   <!-- 댓글 목록 시작 -->
 	<table width="500" align="center">
      <tr>
       <td> 관리자 </td>
       <td> 내 용 </td>
+      <td> 작성일 </td>
      </tr>
-     
+     <hr>
     <c:forEach items="${dat_list}" var="qdto">
      <tr>
-      <td> ${qdto.q_id } </td>
-      <td> ${qdto.qd_id} </td>
-      <td> ${qdto.pwd } </td>
+      <td> ${qdto.userid} </td>
+      <td> ${qdto.dat} </td>
+      <td> ${qdto.writeday}</td>
      </tr>
     </c:forEach> 
     
@@ -145,7 +151,8 @@
 	</c:if>
 	 
 	<!-- 로그인을 한 상태 -->
-	<c:if test="${userid!=null}"> 
+	<c:if test="${userid!=null}">
+	
   	<p> 작성자 ${sessionScope.userid} </p> 
   	<p><textarea rows="5" cols="65" placeholder="댓글 내용"></textarea></p>
   	<input type="hidden" name="q_id" value="${dat.q_id}">
