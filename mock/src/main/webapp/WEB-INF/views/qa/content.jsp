@@ -22,7 +22,7 @@
     </tr>
     <tr>
       <td> 작성일 </td>
-      <td> ${qdto.day} </td>
+      <td> ${qdto.writeday} </td>
     </tr>
     <tr>
       <td colspan="2"> 
