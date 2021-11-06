@@ -12,8 +12,12 @@
 		<!-- 신청한 아이디 중 가장 최신에 신청한 날짜만 가져오기 -->
 	</select>
 	
-		<select id="st_list" resultType="kr.co.mock.dto.StockDto">
+	<select id="st_list" resultType="kr.co.mock.dto.StockDto">
 		select * from stocks
+	</select>
+	
+	<select id="get_pagecount" resultType="kr.co.mock.dto.StockDto">
+		select ceil(count(*)/${param1}) from stocks
 	</select>
 	
 	<select id="st_content" resultType="kr.co.mock.dto.StockDto">
@@ -44,4 +48,12 @@
 		insert into selling(userid,code,n_selling,bid_spread,s_day)
 		values(#{param1},#{param2},${param3},${param4},now());
 	</insert>
+	
+	<select id="buy_count" resultType="Integer">
+		select sum(n_buying) from buying where userid=#{param1} and code=#{param2}
+	</select>
+	
+	<select id="sell_count" resultType="Integer">
+		select sum(n_selling) from selling where userid=#{param1} and code=#{param2}
+	</select>
 </mapper>

@@ -146,7 +146,7 @@ button{
   			<div class="line"></div>
  		</div>
  		<div class="item ai"><a href="">AI추천 종목</a></div>
-		<div class="item chart"><a href="">실시간 차트</a></div>
+		<div class="item chart_menu"><a href="">실시간 차트</a></div>
 		<div class="item mock"><a href="/mock/stocks/st_list">모의 투자</a></div>
 		<div class="item my_market">
 		  <c:if test="${userid==null }"> 

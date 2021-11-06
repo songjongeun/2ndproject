@@ -13,17 +13,23 @@
 	place-items: center;
 }
 </style>
+<script>
+	window.onload=function()
+	{
+		document.search_st.field.value="${field}";
+	}
+</script>
 </head>
 <body>
 <div id="main" class="main">
   <table width="500">
     <caption>
-    	<form method="post" action="st_list">
-    	  <select>
+    	<form name="search_st" method="post" action="st_list">
+    	  <select name="field">
     	  	<option value="code">종목코드</option>
     	  	<option value="name">종목명</option>
     	  </select>
-    	  <input type="text" name="">
+    	  <input type="text" name="word" value="${word}">
     	  <input type="submit" value="검색">
     	</form>
     </caption>
