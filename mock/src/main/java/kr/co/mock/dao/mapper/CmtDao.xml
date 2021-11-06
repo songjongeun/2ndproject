@@ -9,16 +9,20 @@
 
   <insert id="cmt_write_ok" parameterType="kr.co.mock.dto.CmtDto">
     insert into comment(userid,content,writeday)
-    values(#{userid},#{content},now())
+    values({#userid},#{content},now())
   </insert>
   
-  <update id="cmt_update" parameterType="kr.co.mock.dto.CmtDto">
-    update comment set userid=#{userid}, content=#{content} 
-    where c_id=#{c_id} and f_id=#{f_id}
-  </update>
+  <select id="cmt_update" resultType="kr.co.mock.dto.CmtDto">
+    select * from comment where c_id=#{param1}
+  </select>
 
+   <update id="cmt_update_ok" parameterType="kr.co.mock.dto.BoardDto">
+     update comment set userid=#{userid},content=#{content} 
+     where c_id=#{c_id}
+  </update>
+  
   <delete id="cmt_delete">
-     delete from comment where c_id=#{c_id} and f_id=#{f_id}
+     delete from comment where f_id=#{param1}
   </delete>
   
   <select id="get_pagecount" resultType="Integer">

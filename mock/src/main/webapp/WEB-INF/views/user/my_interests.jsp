@@ -32,7 +32,7 @@
 		      <td colspan="4"><a href="/mock/stocks/st_list?name=${udto2.name}">${udto2.name}의 정보를 찾을 수 없습니다</a></td>
 		    </c:if> --%>
 		    <c:if test="${udto2.err!=1}"> 
-              <td><a href="/mock/stocks/st_list?code=${udto2.code}">${udto2.name}</a></td><!-- 종목으로가기 -->
+              <td><a href="/mock/stocks/realtime">${udto2.name}</a></td><!-- 종목으로가기 -->
               <td><fmt:formatNumber value="${udto2.cprice}" pattern="#,##0" /></td>
               <td><fmt:formatNumber value="${udto2.diff}" pattern="#,##0" />%</td>
               <td><fmt:formatNumber value="${udto2.vol}" pattern="#,##0" /></td>
