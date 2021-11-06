@@ -13,8 +13,9 @@
 	</select>
 	
 	<select id="st_list" resultType="kr.co.mock.dto.StockDto">
-		select * from stocks
+		select * from stocks_a where ${param1} like concat('%',#{param2},'%')
 	</select>
+	
 	
 	<select id="get_pagecount" resultType="kr.co.mock.dto.StockDto">
 		select ceil(count(*)/${param1}) from stocks

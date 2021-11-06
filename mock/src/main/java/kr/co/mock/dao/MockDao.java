@@ -14,10 +14,9 @@ public interface MockDao {
 	public MockDto get_enddate(String userid);
 	
 	//모의투자 리스트=============
-	public ArrayList<StockDto> st_list();
+	public ArrayList<StockDto> st_list(String field,String word);
 	public StockDto st_content(int id);
-	public ArrayList<Stock_aDto> search_list(String field,String word);
-
+	
 	//pageing============
 	public Integer get_pagecount(int getpage);
 

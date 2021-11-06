@@ -18,6 +18,7 @@ import kr.co.mock.dao.MockDao;
 import kr.co.mock.dto.BuyingDto;
 import kr.co.mock.dto.MockDto;
 import kr.co.mock.dto.StockDto;
+import kr.co.mock.dto.Stock_aDto;
 import kr.co.mock.dto.UserDto;
 
 @Controller
@@ -95,15 +96,34 @@ public class MockController {
 	
 	@RequestMapping("/stocks/st_list")
 
-	public String st_list(StockDto sdto,Model model)
+	public String st_list(StockDto sdto,Model model,HttpServletRequest request)
 	{
+		String field,word;
+		if(request.getParameter("field")==null)
+		{
+			field="code";
+			word="";
+		}
+		else {
+			field=request.getParameter("field");
+			word=request.getParameter("word");
+		}
 
 		MockDao mdao=sqlSession.getMapper(MockDao.class);
 
-		ArrayList<StockDto> list=mdao.st_list();
+		ArrayList<StockDto> list=mdao.st_list(field,word);
 		model.addAttribute("list",list);
+		model.addAttribute("field", field);
+		model.addAttribute("word", word);
 		
 		return "/stocks/st_list";
+	}
+	
+	@RequestMapping("/stocks/s_content")
+	public String s_content(HttpServletRequest request,Model model) {
+		String code=request.getParameter("code");
+		model.addAttribute("code",code);
+		return "/stocks/s_content";
 	}
 	
 	//----매도

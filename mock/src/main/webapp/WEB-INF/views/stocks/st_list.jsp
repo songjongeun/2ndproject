@@ -22,35 +22,24 @@
 </head>
 <body>
 <div id="main" class="main">
-  <table width="500">
-    <caption>
-    	<form name="search_st" method="post" action="st_list">
-    	  <select name="field">
+   <form name="search_st" method="post" action="st_list">
+    	<select name="field">
     	  	<option value="code">종목코드</option>
     	  	<option value="name">종목명</option>
-    	  </select>
+    	 </select>
     	  <input type="text" name="word" value="${word}">
     	  <input type="submit" value="검색">
     	</form>
-    </caption>
-    
+  <table width="500">
 	<tr>
 		<td>종목코드</td>
 		<td>종목명</td>
-		<td>매수</td>
-		<td>매도</td>
-		<td>대비</td>
-		<td>날짜</td>
 	</tr>
 	
 	<c:forEach items="${list}" var="sdto">
 	<tr>
-		<td>${sdto.code}</td>
-		<td>${sdto.name}</td>
-		<td><a href="/mock/stocks/buying?id=${sdto.id}"><fmt:formatNumber value="${sdto.offer}"/></a></td>
-		<td><a href="/mock/stocks/selling?id=${sdto.id}"><fmt:formatNumber value="${sdto.bid}"/></a></td>
-		<td>${sdto.diff}%</td>
-		<td>${sdto.date}</td>
+		<td><a href="/mock/stocks/s_content?id=${sdto.id}">${sdto.code}</a></td>
+		<td><a href="/mock/stocks/s_content?id=${sdto.id}">${sdto.name}</a></td>
 	</tr>
 	</c:forEach>
   </table>
