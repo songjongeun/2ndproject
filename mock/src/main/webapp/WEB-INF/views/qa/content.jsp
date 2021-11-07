@@ -24,13 +24,13 @@
     <tr>
       <td><h2> ${qdto.title}</h2> </td>
     </tr>
-    <tr height="255">
+    <tr>
       <td> ${qdto.writeday} </td>
     </tr>
     <tr>
     	<td> ${qdto.userid }</td>
     </tr>
-    <tr>
+    <tr height="255">
       <td> ${qdto.content} </td>
     </tr>
     <tr>
@@ -155,10 +155,10 @@
 	 
 	<!-- 로그인을 한 상태 -->
 	<c:if test="${userid!=null}">
-	
+	<form name="inform" method="post" action="dat_write_ok.jsp">
   	<p> 작성자 ${sessionScope.userid} </p> 
   	<p><textarea rows="5" cols="65" placeholder="댓글 내용"></textarea></p>
-  	<input type="hidden" name="q_id" value="${dat.q_id}">
+  	<input type="hidden" name="q_id" value="${content.q_id}">
   	<input type="submit" value="댓글 작성">
   	</c:if>
   </form>
