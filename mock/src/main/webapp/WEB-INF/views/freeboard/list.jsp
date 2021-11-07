@@ -11,29 +11,29 @@
 <div id="main">
 <h3> 글목록 </h3>
 <hr>
- 	<table width="500" align="center">
+	<div id="table">
+ 	<table width="900" border="1" align="center">
      <tr>
-<<<<<<< HEAD
+      <td> 글번호 </td> 
       <td> 아이디 </td>
-=======
-
-      <td> 작성자 </td>
->>>>>>> invest
       <td> 제목 </td>
+      <td> 조회수 </td>
       <td> 작성일 </td> 
      </tr>
      
     <c:forEach items="${list}" var="bdto">
      <tr>
+      <td> ${bdto.f_id} </td>
       <td> ${bdto.userid} </td>
       <td> <a href="hit?f_id=${bdto.f_id}"> ${bdto.title} </a></td>
+      <td> ${bdto.hit} </td>
       <td> ${bdto.writeday} </td>
      </tr>
     </c:forEach> 
      
      <!-- 페이지 시작 -->
      <tr>
-     <td colspan="3" align="center"> 
+     <td colspan="5" border="1" align="center"> 
       <!-- 현재 페이지 기준 이전 10페이지 이동 -->
       <c:if test="${pstart != 1}">
        <a href="list?page=${pstart-1}"> 
@@ -76,16 +76,12 @@
   	  <!--  페이지 끝 -->
    
       <tr>
-	  <td colspan="3" align="right"> 
+	  <td colspan="5" border="1" align="right"> 
 	  <!-- 로그인 및 회원가입 / 로그인을 했을 경우 글쓰기 탭-->
 	  <c:if test="${userid == null}">
 	  <!-- 로그인을 안했을 경우 -->
 	  <a href="/mock/user/login"> 로그인 </a>  
 	  <a href="/mock/user/member"> 회원가입 </a>
-<<<<<<< HEAD
-=======
-
->>>>>>> invest
 	  </c:if>
 
       <c:if test="${userid != null}">
@@ -94,13 +90,8 @@
       </c:if> 
       </td>
       </tr>
-    
+      </div>
    </table>
    </div>
 </body>
-<<<<<<< HEAD
-=======
-
->>>>>>> invest
 </html>
-
