@@ -13,6 +13,7 @@
   }
    td,tr {
     padding: 0px;
+    text-align:center;
   }
 </style>
 </head>
@@ -22,13 +23,10 @@
 	<hr>
   <table width="500" align="center">
     <tr>
-      <td><h2> ${qdto.title}</h2> </td>
+      <td><h1> ${qdto.title}</h1> </td>
     </tr>
     <tr>
-      <td> ${qdto.writeday} </td>
-    </tr>
-    <tr>
-    	<td> ${qdto.userid }</td>
+      <td>${qdto.userid } ⌛ ${qdto.writeday} </td>
     </tr>
     <tr height="255">
       <td> ${qdto.content} </td>
