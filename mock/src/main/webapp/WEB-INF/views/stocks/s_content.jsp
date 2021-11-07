@@ -1,16 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<!-- 숫자서식을 위해 fmt 사용 -->'
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="https://code.highcharts.com/css/stocktools/gui.css">
 <link rel="stylesheet" type="text/css" href="https://code.highcharts.com/css/annotations/popup.css">
-<style>
-#container {
-    max-height: 800px;
-    min-height: 75vh;
+
+<title>Insert title here</title>
+<style type="text/css">
+.main{
+	display:grid;
+	display:grid;
+	place-items: center;
+ 	grid-template-columns: 5fr 1fr 1fr;	/*가로방향 비율*/
+  	grid-template-rows: 5fr 1fr 1fr 5fr; /*세로방향 비율*/
+	width:70%;
+	height:100%;
+  	grid-gap: 10px;
+}
+.sc_graph{
+	grid-column:1;
+  	grid-row:1/5;
+}
+.buy_con{
+	grid-column:2;
+  	grid-row:2;
+}
+.sell_con{
+	grid-column:3;
+  	grid-row:2;
+}
+.ai_con{
+	grid-column:2/4;
+  	grid-row:3;
 }
 
 </style>
@@ -26,17 +52,34 @@
 <script src="https://code.highcharts.com/stock/modules/heikinashi.js"></script>
 <script src="https://code.highcharts.com/stock/modules/hollowcandlestick.js"></script>
 
-
 </head>
 <body>
-
-
-
-
-<div id="stock-graph"></div>
-
-<h1>stockchart</h1>
-
+<div id="main" class="main">
+	<div class="sc_graph">
+	<div id="stock-graph"></div>
+	
+	</div>
+	<div class="like">
+	<button id="like" value="1">♡</button>
+	</div>
+	
+	<div class="buy_con">
+	<input type="button" onclick="location.href='/mock/stocks/buying?code=${code}'" value="매수하기">
+	</div>
+	  
+	<div class="sell_con">
+	<input type="button" onclick="location.href='/mock/stocks/selling?code=${code}'" value="매도하기">
+	</div>
+	
+	<div class="ai_con">
+	<input type="button" value="Ai 분석">
+	</div>
+	
+		<div class="realtime">
+	<input type="button" onclick="location.href='/mock/stocks/realtime?code=${code}'"  value="실시간 데이터보기">
+	</div>
+	
+</div>
 
 <script>
 
@@ -74,6 +117,9 @@ $(document).ready(function(){
 		    }
 
 		    Highcharts.stockChart('stock-graph', {
+		        title: {
+		            text: "<c:out value='${name}'/>"
+		        },
 		        yAxis: [{
 		            labels: {
 		                align: 'left'
@@ -125,12 +171,12 @@ $(document).ready(function(){
 		        series: [{
 		            type: 'ohlc',
 		            id: 'aapl-ohlc',
-		            name: 'AAPL Stock Price',
+		            name: "<c:out value='${name}'/> 주식가격" ,
 		            data: ohlc
 		        }, {
 		            type: 'column',
 		            id: 'aapl-volume',
-		            name: 'AAPL Volume',
+		            name: '거래량',
 		            data: volume,
 		            yAxis: 1
 		        }],
@@ -157,8 +203,6 @@ $(document).ready(function(){
 	});
 
 
-
 </script>
-
 </body>
 </html>

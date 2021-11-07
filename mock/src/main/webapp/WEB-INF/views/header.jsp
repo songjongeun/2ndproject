@@ -115,6 +115,8 @@ button{
 	grid-area:bottom;
 	width:70%;
 	margin-top:150px;
+	text-align:center;
+	background-color:#BDBDBD;
 }
 
 </style>

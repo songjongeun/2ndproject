@@ -3,11 +3,42 @@
 
 <mapper namespace="kr.co.mock.dao.StockDao">
 
+
 <select id="selectCode" resultType="kr.co.mock.dto.StockDto">
-	SELECT * FROM STOCKS_A;
+	SELECT * FROM STOCKS_A
 
 </select>
+
+<!--  이름 가져오기 -->
+<select id="selectName" parameterType="String" resultType="String">
+	SELECT name FROM STOCKS_A WHERE code=#{param1}
+</select>
+
 <select id="selectData" resultType="kr.co.mock.dto.StockDto" parameterType="String">
 	SELECT open,high,low,close,vol,date FROM STOCKS WHERE code=#{param1} order by date
 </select>
+
+<!-- 모의투자 sql -->
+
+<select id="selectCountMock" resultType="Integer" parameterType="String">
+select count(*) from mock_invest where userid=#{userid} and m_apply=1
+
+</select>
+
+<select id="selectMileage" resultType="Integer" parameterType="String">
+select mileage from mock_invest where userid=#{userid}
+</select>
+
+<select id="selectPrice" resultType="Integer" parameterType="String">
+select close from stocks where code=#{code} order by date desc limit 1
+
+</select>
+
+<insert id="insertBuying" parameterType="kr.co.mock.dto.BuyingDto">
+insert into buying(userid,code,n_buying,ask_spread,b_day)
+ values(#{userid},#{code},#{n_buying},#{ask_spread},now())
+
+</insert>
+
+
 </mapper>

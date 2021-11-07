@@ -5,6 +5,7 @@
   <pattern>/user/userid_search</pattern>
   <pattern>/user/pwd_search</pattern>
   <pattern>/user/ip_search_ok</pattern>
+
  </excludes>
  <!-- 기본 패턴 -->
  <decorator name="default" page="header.jsp">

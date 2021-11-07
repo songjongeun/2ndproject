@@ -12,12 +12,13 @@
 		<!-- 신청한 아이디 중 가장 최신에 신청한 날짜만 가져오기 -->
 	</select>
 	
-	<select id="st_list" resultType="kr.co.mock.dto.StockDto">
-		select * from stocks
+	<select id="st_list" resultType="kr.co.mock.dto.Stock_aDto">
+		select * from stocks_a where ${param1} like concat('%',#{param2},'%') limit ${param3},${param4}
 	</select>
 	
-	<select id="get_pagecount" resultType="kr.co.mock.dto.StockDto">
-		select ceil(count(*)/${param1}) from stocks
+	<!-- 페이징==================== -->
+	<select id="get_pagecount" resultType="Integer">
+		select ceil(count(*)/${param1}) from stocks_a where #{param2} like concat('%',#{param3},'%')
 	</select>
 	
 	<select id="st_content" resultType="kr.co.mock.dto.StockDto">
@@ -44,10 +45,18 @@
 		update mock_invest set mileage=${param1} where userid=#{param2}
 	</update>
 	
+	<select id="st_buysell" resultType="kr.co.mock.dto.StockDto">
+		select * from stocks where code=#{param1}
+	</select>
+	
 	<insert id="selling_ok" parameterType="kr.co.mock.dto.SellingDto">
 		insert into selling(userid,code,n_selling,bid_spread,s_day)
 		values(#{param1},#{param2},${param3},${param4},now());
 	</insert>
+	
+	<select id="buy_get" resultType="Integer">
+		select count(*) from buying where code=#{param1}
+	</select>
 	
 	<select id="buy_count" resultType="Integer">
 		select sum(n_buying) from buying where userid=#{param1} and code=#{param2}

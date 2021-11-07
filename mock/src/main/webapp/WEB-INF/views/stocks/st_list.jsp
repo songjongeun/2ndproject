@@ -12,6 +12,11 @@
 	display:grid;
 	place-items: center;
 }
+td{
+	place-items: center;
+	text-align: center;
+	padding-top:10px;
+}
 </style>
 <script>
 	window.onload=function()
@@ -22,37 +27,52 @@
 </head>
 <body>
 <div id="main" class="main">
-  <table width="500">
-    <caption>
-    	<form name="search_st" method="post" action="st_list">
-    	  <select name="field">
+   <form name="search_st" method="post" action="st_list">
+    	<select name="field">
     	  	<option value="code">종목코드</option>
     	  	<option value="name">종목명</option>
-    	  </select>
+    	 </select>
     	  <input type="text" name="word" value="${word}">
     	  <input type="submit" value="검색">
-    	</form>
-    </caption>
-    
+    </form>
+  <table>
 	<tr>
 		<td>종목코드</td>
 		<td>종목명</td>
-		<td>매수</td>
-		<td>매도</td>
-		<td>대비</td>
-		<td>날짜</td>
 	</tr>
 	
 	<c:forEach items="${list}" var="sdto">
 	<tr>
-		<td>${sdto.code}</td>
-		<td>${sdto.name}</td>
-		<td><a href="/mock/stocks/buying?id=${sdto.id}"><fmt:formatNumber value="${sdto.offer}"/></a></td>
-		<td><a href="/mock/stocks/selling?id=${sdto.id}"><fmt:formatNumber value="${sdto.bid}"/></a></td>
-		<td>${sdto.diff}%</td>
-		<td>${sdto.date}</td>
+		<td><a href="/mock/stocks/s_content?code=${sdto.code}">${sdto.code}</a></td>
+		<td><a href="/mock/stocks/s_content?code=${sdto.code}">${sdto.name}</a></td>
 	</tr>
 	</c:forEach>
+	
+	<!-- 페이징 -->
+	<tr>
+		<td colspan="2">
+		<c:if test="${page!=1}">
+			<a href="/mock/stocks/st_list?page=${page-1}">[PREV]</a>
+		</c:if>
+		<c:if test="${page==1}">
+		</c:if>
+		
+		<c:forEach begin="${startpage}" end="${lastpage}" var="i">
+			<c:if test ="${page != i}">
+				<a href="/mock/stocks/st_list?page=${i}">${i}</a>
+			</c:if>
+			<c:if test ="${page == i}">
+				<a href="/mock/stocks/st_list?page=${i}" style="color:red">${i}</a>
+			</c:if>
+		</c:forEach>
+				
+		<c:if test="${page<totalpage}">
+			<a href="/mock/stocks/st_list?page=${page+1}">[NEXT]</a>
+		</c:if>
+		<c:if test="${page==totalpage}">
+		</c:if>
+		</td>
+	</tr>
   </table>
 </div>
 
