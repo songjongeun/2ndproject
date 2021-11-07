@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.mock.dao.CmtDao">
 
    <select id="dat_list" resultType="kr.co.mock.dto.Qa_datDto">
@@ -23,7 +24,7 @@
      delete from qa_dat where q_id=#{param1}
   </delete>
   
-  <select id="get_pagecount" resultType="Integer">
+  <select id="get_dat_pagecount" resultType="Integer">
     select ceil(count(*)/10) from qa_dat;
   </select>
 
