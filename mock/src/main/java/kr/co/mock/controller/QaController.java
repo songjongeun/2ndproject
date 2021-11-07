@@ -30,7 +30,8 @@ public class QaController {
 	
 	public String write_ok(QaDto qdto,HttpSession session)
 	{
-		QaDao qdao=sqlSession.getMapper(QaDao.class); 
+		QaDao qdao=sqlSession.getMapper(QaDao.class);
+		qdto.setUserid(session.getAttribute("userid").toString());
 		qdao.write_ok(qdto);
 		return "redirect:/qa/list";
 	}

@@ -13,6 +13,7 @@
   }
    td,tr {
     padding: 0px;
+    text-align:center;
   }
 </style>
 </head>
@@ -22,12 +23,12 @@
 	<hr>
   <table width="500" align="center">
     <tr>
-      <td><h2> ${qdto.title}</h2> </td>
-    </tr>
-    <tr height="255">
-      <td> ${qdto.writeday} </td>
+      <td><h1> ${qdto.title}</h1> </td>
     </tr>
     <tr>
+      <td>${qdto.userid } ⌛ ${qdto.writeday} </td>
+    </tr>
+    <tr height="255">
       <td> ${qdto.content} </td>
     </tr>
     <tr>
@@ -43,7 +44,7 @@
 	    <c:if test="${userid!=null}"> 
 		<a href="list"> 목 록 </a>
 		<a href="write"> 글쓰기 </a> 
-		  <c:if test="${userid==bdto.userid || userid=='admin'}">
+		  <c:if test="${userid==qdto.userid || userid=='admin'}">
 		    <a href="update?q_id=${qdto.q_id}"> 수정 </a>
 	        <a href="#" onclick="del()"> 삭제 </a>
 	      </c:if>  
@@ -152,10 +153,10 @@
 	 
 	<!-- 로그인을 한 상태 -->
 	<c:if test="${userid!=null}">
-	
+	<form name="inform" method="post" action="dat_write_ok.jsp">
   	<p> 작성자 ${sessionScope.userid} </p> 
   	<p><textarea rows="5" cols="65" placeholder="댓글 내용"></textarea></p>
-  	<input type="hidden" name="q_id" value="${dat.q_id}">
+  	<input type="hidden" name="q_id" value="${content.q_id}">
   	<input type="submit" value="댓글 작성">
   	</c:if>
   </form>
