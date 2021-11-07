@@ -14,12 +14,12 @@ public interface MockDao {
 	public MockDto get_enddate(String userid);
 	
 	//모의투자 리스트=============
-	public ArrayList<StockDto> st_list(String field,String word);
+	public ArrayList<StockDto> st_list(String field,String word,int index,int curpage);
 	public StockDto st_content(int id);
 	public StockDto st_buysell(String code);
 	
 	//pageing============
-	public Integer get_pagecount(int getpage);
+	public Integer get_pagecount(int curpage,String field,String word);
 
 	public int get_point(String userid);
 	public int search_id(String userid);

@@ -15,6 +15,7 @@
 td{
 	place-items: center;
 	text-align: center;
+	padding-top:10px;
 }
 </style>
 <script>
@@ -46,6 +47,32 @@ td{
 		<td><a href="/mock/stocks/s_content?code=${sdto.code}">${sdto.name}</a></td>
 	</tr>
 	</c:forEach>
+	
+	<!-- 페이징 -->
+	<tr>
+		<td colspan="2">
+		<c:if test="${page!=1}">
+			<a href="/mock/stocks/st_list?page=${page-1}">[PREV]</a>
+		</c:if>
+		<c:if test="${page==1}">
+		</c:if>
+		
+		<c:forEach begin="${startpage}" end="${lastpage}" var="i">
+			<c:if test ="${page != i}">
+				<a href="/mock/stocks/st_list?page=${i}">${i}</a>
+			</c:if>
+			<c:if test ="${page == i}">
+				<a href="/mock/stocks/st_list?page=${i}" style="color:red">${i}</a>
+			</c:if>
+		</c:forEach>
+				
+		<c:if test="${page<totalpage}">
+			<a href="/mock/stocks/st_list?page=${page+1}">[NEXT]</a>
+		</c:if>
+		<c:if test="${page==totalpage}">
+		</c:if>
+		</td>
+	</tr>
   </table>
 </div>
 

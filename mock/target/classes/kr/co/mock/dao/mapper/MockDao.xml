@@ -12,13 +12,13 @@
 		<!-- 신청한 아이디 중 가장 최신에 신청한 날짜만 가져오기 -->
 	</select>
 	
-	<select id="st_list" resultType="kr.co.mock.dto.StockDto">
-		select * from stocks_a where ${param1} like concat('%',#{param2},'%')
+	<select id="st_list" resultType="kr.co.mock.dto.Stock_aDto">
+		select * from stocks_a where ${param1} like concat('%',#{param2},'%') limit ${param3},${param4}
 	</select>
 	
-	
-	<select id="get_pagecount" resultType="kr.co.mock.dto.StockDto">
-		select ceil(count(*)/${param1}) from stocks
+	<!-- 페이징==================== -->
+	<select id="get_pagecount" resultType="Integer">
+		select ceil(count(*)/${param1}) from stocks_a where #{param2} like concat('%',#{param3},'%')
 	</select>
 	
 	<select id="st_content" resultType="kr.co.mock.dto.StockDto">
