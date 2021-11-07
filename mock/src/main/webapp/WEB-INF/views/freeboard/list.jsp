@@ -76,7 +76,7 @@
   	  <!--  페이지 끝 -->
    
       <tr>
-	  <td colspan="5" border="1" align="right"> 
+	  <td colspan="5" border="1" align="left"> 
 	  <!-- 로그인 및 회원가입 / 로그인을 했을 경우 글쓰기 탭-->
 	  <c:if test="${userid == null}">
 	  <!-- 로그인을 안했을 경우 -->
