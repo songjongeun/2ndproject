@@ -11,7 +11,7 @@
 <div id="main">
 	<h3> 글내용 </h3>
 	<hr>
-  <table width="500" align="center">
+  <table width="900" border="1" align="center">
     <tr>
       <td> 제목 </td>
       <td> ${bdto.title} </td>
@@ -82,7 +82,7 @@
   <hr>
   
   <!-- 댓글 목록 시작 -->
-	<table width="500" align="center">
+	<table width="900" align="center">
      <tr>
       <td> 작성자 </td>
       <td> 내용 </td>
@@ -146,7 +146,6 @@
   
   <!-- 댓글 작성 시작 -->
   <div>
-  <form name="cmt_write" method="post" action="cmt_write_ok">
   <!-- 로그인을 안 했을 때 -->
 	<c:if test="${empty sessionScope.userid}">
 	<a href="list"> 목록가기 </a>
@@ -155,7 +154,7 @@
 	 
 	<!-- 로그인을 한 상태 -->
 	<c:if test="${userid!=null}"> 
-	<form name="inform" method="post" action="cmt_write_ok.jsp">
+	<form name="inform" method="post" action="/mock/freeboard/content/cmt_write_ok">
   	<p> 아이디 <input type="text" name="userid" placeholder="작성자" size="6" value="${bdto.userid}"> </p> 
   	<textarea cols="70" rows="8" name="content" placeholder="댓 글" > 댓글 </textarea>
   	<input type="hidden" name="f_id" value="${content.f_id}">
