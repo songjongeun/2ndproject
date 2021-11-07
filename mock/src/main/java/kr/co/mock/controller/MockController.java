@@ -60,7 +60,6 @@ public class MockController {
 				Date todate;//현재 날짜 구하는 객체
 				Date enddate; // sql 에서 가져온 모의 신청 마지막 날
 				MockDto endmdto=mdao.get_enddate(userid);
-				int m_apply=endmdto.getM_apply(); // 모의투자신청여부 가지고 옴
 				String close=endmdto.getM_close();//모의투자 종료날짜 가지고 옴.
 
 				SimpleDateFormat format=new SimpleDateFormat("yyyy-mm-dd",Locale.KOREA); //코리아기준 현재날짜
@@ -73,7 +72,7 @@ public class MockController {
 				int diffdays=todate.compareTo(enddate); //현날짜와 종료날짜 비교 값.
 				
 
-				if(m_apply!=1 && diffdays < 0) {//모의 투자 신청을 한 적이 있을 경우 마지막 신청 날짜와 비교한다.
+				if(diffdays < 0) {//모의 투자 신청을 한 적이 있을 경우 마지막 신청 날짜와 비교한다.
 					//현재 날짜 > 종료날짜 //종료시점이 지나 다시 신청 가능.
 					int m_close=Integer.parseInt(request.getParameter("m_close"));
 					int mileage=Integer.parseInt(request.getParameter("mileage"));
@@ -81,7 +80,7 @@ public class MockController {
 					return "redirect:/main_view";
 					}
 				else { //diffdays=0 or 음수 일 경우 현재 날짜와 같거나 종료이전 이므로 신청 불가
-					return "redirect:/invest/in_regi?notday=1";
+					return "redirect:/invest/in_regi?diffdays=1";
 				}			
 			} //로그인&모의 신청 if문 종료
 		}//로그인 했을 시의 if문 종료
@@ -91,8 +90,6 @@ public class MockController {
 		}//전체 if 문 종료
 	}
 	//---모의 신청 완료
-	
-	//---사고 팔기
 	
 	@RequestMapping("/stocks/st_list")
 
@@ -130,9 +127,9 @@ public class MockController {
 	@RequestMapping("/stocks/buying")
 	public String buying(HttpServletRequest request,Model model,HttpSession session)
 	{
-		int id=Integer.parseInt(request.getParameter("id"));
+		String code=request.getParameter("code");
 		MockDao mdao=sqlSession.getMapper(MockDao.class);
-		StockDto sdto=mdao.st_content(id);
+		StockDto sdto=mdao.st_buysell(code);
 
 		//mock 테이블에서 포인트 조회를 위해 가져오는 값
 		if(session.getAttribute("userid")!=null) { //로그인 
@@ -184,11 +181,10 @@ public class MockController {
 	@RequestMapping("/stocks/selling")
 	public String selling(HttpServletRequest request,Model model,HttpSession session)
 	{
-		int id=Integer.parseInt(request.getParameter("id"));
+		String code=request.getParameter("code");
 		MockDao mdao=sqlSession.getMapper(MockDao.class);
-		StockDto sdto=mdao.st_content(id);
+		StockDto sdto=mdao.st_buysell(code);
 		//mock 테이블에서 포인트 조회를 위해 가져오는 값
-		String code=sdto.getCode();
 		if(session.getAttribute("userid")!=null) { //로그인 
 			String userid=session.getAttribute("userid").toString();
 			int id_check=mdao.search_id(userid); //포인트 조회를 위해 먼저 신청했던 적이 있는지 확인
@@ -199,9 +195,10 @@ public class MockController {
 			}
 			else { //모의신청 신청한 아이디가 있을 시
 				int mileage=mdao.get_point(userid); //조회된 마일리지를 가져옴.	
-				int n_buying=mdao.buy_count(userid,code); //해당 아이디가 구매한 총 매수 갯수를 가져옴
-				
-				if(n_buying>0) {
+				 //해당 아이디가 구매한 총 매수 갯수를 가져옴
+				int buy=mdao.buy_get(code); //산 갯수가 있을 시
+				if(buy>0) {
+					int n_buying=mdao.buy_count(userid,code);
 					int n_selling=mdao.sell_count(userid,code); //해당 아이디가 판매한 총 매도 갯수를 가져옴
 					int diff=(n_buying-n_selling)-1;
 					model.addAttribute("sdto",sdto);

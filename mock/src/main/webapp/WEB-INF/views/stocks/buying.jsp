@@ -206,7 +206,7 @@ function diff_mil(){
 	  	<input type="button" id="plus" value="+" >
 		</div>
 		<div class="sum">거래 합계</div>
-		<input type="text" class="sum_mil" size="4" value="${sdto.open*diff}">
+		<input type="text" class="sum_mil" size="4" value="${sdto.open*diff}" readonly>
 		
 		<div class="cuur_mil">
 			남은 마일리지
@@ -216,7 +216,7 @@ function diff_mil(){
 		  	마일리지 없음
 		</c:if>
 		 <c:if test="${mileage!=0}">
-		  	<input type="text" class ="curr_mil" name="curr_mil" value="${mileage+(sdto.open*diff)}"size="4">	
+		  	<input type="text" class ="curr_mil" name="curr_mil" value="${mileage+(sdto.open*diff)}"size="4" readonly>	
 		  </c:if>
 		</div>
 		

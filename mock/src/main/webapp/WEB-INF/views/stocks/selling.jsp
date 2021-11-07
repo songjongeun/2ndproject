@@ -168,6 +168,36 @@ $(function(){//숫자를 직접 입력했을 경우 실시간 계산
 	$(".curr_mil").val(curr_mil);
 	});
 });
+
+var sellval;
+$(function(){//숫자를 직접 입력했을 경우 실시간 계산
+	$(".n_selling").on("propertychange change keyup paste input",function(){
+		var inputval = $(this).val();
+		if(inputval == buyval){
+			return;
+		}
+	buyval = inputval;
+	mil = Number($("#mileage").val()); //받은 포인트
+	curr = Number($("#curr").val()); //매수가
+	
+	sum_mil = curr*buyval;
+	curr_mil = mil-sum_mil;
+	
+	$(".sum_mil").val(sum_mil);
+	$(".curr_mil").val(curr_mil);
+	});
+});
+
+function diff_mil(){
+	num = Number($(".n_selling").val());
+    diff = Number($(".diff").val());
+	if(num>diff){
+		alert("매수 주를 초과하여 매도할 수 없습니다.");
+		return false;
+	}else{
+		return true;
+	}
+}
 </script>
 <style>
 
@@ -175,7 +205,7 @@ $(function(){//숫자를 직접 입력했을 경우 실시간 계산
 </head>
 <body>
 <div id="main" class="main">
-	<form class="sub_main" method="post" action="/mock/selling_ok">
+	<form class="sub_main" method="post" action="/mock/selling_ok" onsubmit="return diff_mil()">
 
 		<div class="s_name">${sdto.name} ${sdto.code}
 		<input type="hidden" name="code" value="${sdto.code}">
@@ -208,7 +238,7 @@ $(function(){//숫자를 직접 입력했을 경우 실시간 계산
 	  	<input type="button" id="plus" value="+" >
 		</div>
 		<div class="sum">거래 합계</div>
-		<input type="text" class="sum_mil" size="4" value="${sdto.open*diff}">
+		<input type="text" class="sum_mil" size="4" value="${sdto.open*diff}" readonly>
 		
 		<div class="cuur_mil">
 			남은 마일리지
@@ -218,7 +248,7 @@ $(function(){//숫자를 직접 입력했을 경우 실시간 계산
 		  	마일리지 없음
 		</c:if>
 		 <c:if test="${mileage!=0}">
-		  	<input type="text" class ="curr_mil" name="curr_mil" value="${mileage-(sdto.open*diff)}" size="4">	
+		  	<input type="text" class ="curr_mil" name="curr_mil" value="${mileage-(sdto.open*diff)}" size="4" readonly>	
 		  </c:if>
 		</div>
 		

@@ -16,6 +16,7 @@ public interface MockDao {
 	//모의투자 리스트=============
 	public ArrayList<StockDto> st_list(String field,String word);
 	public StockDto st_content(int id);
+	public StockDto st_buysell(String code);
 	
 	//pageing============
 	public Integer get_pagecount(int getpage);
@@ -26,6 +27,7 @@ public interface MockDao {
 	//매수매도
 	public void buying_ok(String userid,String code,int n_buying,int ask_spread);
 	public void selling_ok(String userid,String code,int n_selling,int bid_spread);
+	public int buy_get(String code);
 	public int buy_count(String userid,String code);
 	public int sell_count(String userid,String code);
 	

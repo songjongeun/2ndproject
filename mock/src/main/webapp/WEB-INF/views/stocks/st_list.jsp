@@ -12,6 +12,10 @@
 	display:grid;
 	place-items: center;
 }
+td{
+	place-items: center;
+	text-align: center;
+}
 </style>
 <script>
 	window.onload=function()
@@ -29,8 +33,8 @@
     	 </select>
     	  <input type="text" name="word" value="${word}">
     	  <input type="submit" value="검색">
-    	</form>
-  <table width="500">
+    </form>
+  <table>
 	<tr>
 		<td>종목코드</td>
 		<td>종목명</td>
@@ -38,8 +42,8 @@
 	
 	<c:forEach items="${list}" var="sdto">
 	<tr>
-		<td><a href="/mock/stocks/s_content?id=${sdto.id}">${sdto.code}</a></td>
-		<td><a href="/mock/stocks/s_content?id=${sdto.id}">${sdto.name}</a></td>
+		<td><a href="/mock/stocks/s_content?code=${sdto.code}">${sdto.code}</a></td>
+		<td><a href="/mock/stocks/s_content?code=${sdto.code}">${sdto.name}</a></td>
 	</tr>
 	</c:forEach>
   </table>
