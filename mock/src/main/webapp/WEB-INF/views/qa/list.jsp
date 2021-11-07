@@ -8,7 +8,6 @@
 <title> 게시글 목록 </title>
 <style>
   table {
-    width: 80%;
     border: 1px solid #444444;
     border-collapse: collapse;
   }
@@ -16,18 +15,20 @@
     border: 1px solid #444444;
     border-left: 1px solid #444444;
     padding: 10px;
+   	text-align:center;
   }
 </style>
 </head>
 <body>
 <div id="main">
 <h3> 글목록 </h3>
+<hr>
  	<table width="400" align="center">
      <tr>
-      <td> 번 호 </td> 
-      <td> 제 목 </td>
-      <td> 이 름 </td>
-      <td> 작성일 </td> 
+      <td width="70"> 번 호 </td> 
+      <td width="180"> 제 목 </td>
+      <td width="70"> 이 름 </td>
+      <td width="80"> 작성일 </td> 
      </tr>
      
     <c:forEach items="${list}" var="qdto">
