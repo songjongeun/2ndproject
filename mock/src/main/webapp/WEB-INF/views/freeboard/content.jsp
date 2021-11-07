@@ -142,8 +142,6 @@
       </table>
   <!-- 댓글 목록 끝 -->
   
-  <hr>
-  
   <!-- 댓글 작성 시작 -->
   <div>
   <!-- 로그인을 안 했을 때 -->
@@ -154,13 +152,13 @@
 	 
 	<!-- 로그인을 한 상태 -->
 	<c:if test="${userid!=null}"> 
-	<form name="inform" method="post" action="/mock/freeboard/content/cmt_write_ok">
-  	<p> 아이디 <input type="text" name="userid" placeholder="작성자" size="6" value="${bdto.userid}"> </p> 
-  	<textarea cols="70" rows="8" name="content" placeholder="댓 글" > 댓글 </textarea>
+	<form name="cmt_write" method="post" action="cmt_write_ok"">
+  	<p> 아이디 <input type="text" name="userid" size="6" value="${bdto.userid}"> </p> 
+  	<p> 댓글 <textarea cols="70" rows="8" name="content"> </textarea> </p>
   	<input type="hidden" name="f_id" value="${content.f_id}">
   	<input type="submit" value="댓글 작성">
   	</c:if>
-  </form>
+   </form>
   </div>
   <!-- 댓글 작성 끝 -->
 
