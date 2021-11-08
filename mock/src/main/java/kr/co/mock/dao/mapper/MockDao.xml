@@ -46,7 +46,7 @@
 	</update>
 	
 	<select id="st_buysell" resultType="kr.co.mock.dto.StockDto">
-		select * from stocks where code=#{param1}
+		select * from stocks where code=#{param1} order by date desc limit 1
 	</select>
 	
 	<insert id="selling_ok" parameterType="kr.co.mock.dto.SellingDto">
