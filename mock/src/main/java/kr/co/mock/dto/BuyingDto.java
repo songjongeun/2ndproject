@@ -3,6 +3,7 @@ package kr.co.mock.dto;
 public class BuyingDto {
 	private int b_id,n_buying,ask_spread;
 	private String userid,code,b_day;
+	private String name,total;
 	
 	public int getB_id() {
 		return b_id;
@@ -39,6 +40,20 @@ public class BuyingDto {
 	}
 	public void setB_day(String b_day) {
 		this.b_day = b_day;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getTotal() {
+		return total;
+	}
+	public void setTotal(String total) {
+		this.total = total;
 	}
 
 }
