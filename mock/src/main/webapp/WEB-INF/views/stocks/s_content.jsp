@@ -40,10 +40,7 @@
 }
 
 </style>
-<<<<<<< HEAD
 <!-- 차트 그래프 스크립트 ===================== -->
-=======
->>>>>>> 030d63cee0195aa931bb04d979027ff44f990e26
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://code.highcharts.com/stock/highstock.js"></script>
 <script src="https://code.highcharts.com/stock/modules/data.js"></script>
@@ -55,48 +52,27 @@
 <script src="https://code.highcharts.com/modules/stock-tools.js"></script>
 <script src="https://code.highcharts.com/stock/modules/heikinashi.js"></script>
 <script src="https://code.highcharts.com/stock/modules/hollowcandlestick.js"></script>
-<<<<<<< HEAD
 <!-- 차트 그래프 스크랩트 ==================== -->
 </head>
 <body>
 <div id="main" class="main">
 	<div id="stock-graph" class="sc_graph">차트 그래프
 	${code}
-=======
-
-</head>
-<body>
-<div id="main" class="main">
-	<div class="sc_graph">
-	<div id="stock-graph"></div>
-	
-	</div>
-	<div class="like">
-	<button id="like" value="1">♡</button>
->>>>>>> 030d63cee0195aa931bb04d979027ff44f990e26
 	</div>
 	
 	<div class="buy_con">
-	<input type="button" onclick="location.href='/mock/stocks/buying?code=${code}'" value="매수하기">
+	<input type="button" onclick="location.href='/mock/stocks/buying?code=${code}'" value="매수">
 	</div>
-	  
+	
 	<div class="sell_con">
-	<input type="button" onclick="location.href='/mock/stocks/selling?code=${code}'" value="매도하기">
+	<input type="button" onclick="location.href='/mock/stocks/selling?code=${code}'" value="매도">
 	</div>
 	
 	<div class="ai_con">
 	<input type="button" value="Ai 분석">
 	</div>
-	
-		<div class="realtime">
-	<input type="button" onclick="location.href='/mock/stocks/realtime?code=${code}'"  value="실시간 데이터보기">
-	</div>
-	
-</div>
-<<<<<<< HEAD
-=======
 
->>>>>>> 030d63cee0195aa931bb04d979027ff44f990e26
+</div>
 <script>
 
 $(document).ready(function(){

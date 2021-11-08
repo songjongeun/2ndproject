@@ -148,8 +148,7 @@ button{
   			<div class="line"></div>
  		</div>
  		<div class="item ai"><a href="">AI추천 종목</a></div>
-		<div class="item chart_menu"><a href="">실시간 차트</a></div>
-		<div class="item mock"><a href="/mock/stocks/st_list">모의 투자</a></div>
+		<div class="item chart_menu"><a href="/mock/stocks/st_list">실시간 차트</a></div>
 		<div class="item my_market">
 		  <c:if test="${userid==null }"> 
 		    <a href="/mock/user/login">내 종목 보기 </a>
@@ -175,6 +174,9 @@ button{
 		
 		<div class="item Q&A"><a href="/mock/qa/list">Q&A</a></div>
 		
+		<!-- 아이템들 사이 조정을 위해 넣은 값 -->
+		<div class="item"></div>
+		<div class="item"></div>
 		<!-- 아이템들 사이 조정을 위해 넣은 값 -->
  	</div>
 	<!-- 메뉴바 밑줄 꾸미기 위해 넣은 div -->
