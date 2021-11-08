@@ -84,72 +84,41 @@ public class UserController {
 			
 			int mileage=mdao.get_point(userid);
 			model.addAttribute("mileage",mileage);
-//
-//			ArrayList<BuyingDto> total=udao.total(userid);
-//			ArrayList<BuyingDto> b_total=udao.b_total(userid);
-//
-//			if(!total.isEmpty())
-//			{// 매수,매도내역이 있을때
-//				BuyingDto total2=new BuyingDto();
-//				ArrayList<BuyingDto> total3=new ArrayList<BuyingDto>();
-//
-//				for(int i=0;i<total.size();i++)
-//				{
-//					String name=udao.stocks_names(total.get(i).getCode());
-//					total2.setName(name);
-//					total2.setN_buying(total.get(i).getN_buying());
-//					total2.setTotal(total.get(i).getTotal());
-//					total2.setCode(total.get(i).getCode());
-//					total3.add(total2);
-//				}
-//				
-//				model.addAttribute("total",total);
-//				model.addAttribute("total3",total3);
-//			}if(!b_total.isEmpty())
-//			{				
-//				BuyingDto b_total2=new BuyingDto();
-//				ArrayList<BuyingDto> b_total3=new ArrayList<BuyingDto>();
-//				
-//				for(int i=0;i<b_total.size();i++)
-//				{
-//					String name=udao.stocks_names(b_total.get(i).getCode());
-//					b_total2.setName(name);
-//					b_total2.setN_buying(b_total.get(i).getN_buying());
-//					b_total2.setTotal(b_total.get(i).getTotal());
-//					b_total2.setCode(b_total.get(i).getCode());
-//					b_total3.add(b_total2);
-//				} 
-//				
-//				
-////				for(int i=0;i<b_total.size();i++)
-////				{
-////					String b_t_c=b_total.get(i).getCode();
-////					String b_t_t=b_total.get(i).getTotal();
-////					for(int j=0;j<total.size();j++)
-////					{
-////						String t_c=total.get(j).getCode();
-////						String t_t=total.get(j).getTotal();
-////						if(b_t_c.equals(t_c))
-////						{
-////							total2.setCode(b_t_c);
-////							total2.setTotal(t_t);
-////							total3.add(total2);
-////						}
-////						else
-////						{
-////							total2.setCode(b_t_c);
-////							total2.setTotal(b_t_t);
-////							total3.add(total2);
-////						}
-////						
-////					}
-////				}
-//				model.addAttribute("b_total",b_total);
-//				model.addAttribute("b_total3",b_total3);
-//			}
-//			
+
+			ArrayList<BuyingDto> b_total=udao.b_total(userid);
+
+			if(!b_total.isEmpty())  // 보유 주 정보
+			{
+				ArrayList<BuyingDto> total3=new ArrayList<BuyingDto>();
+
+				for(int i=0;i<b_total.size();i++)
+				{
+					String name=udao.stocks_names(b_total.get(i).getCode());
+					SellingDto s_total=udao.s_total(b_total.get(i).getCode(),userid);
+					if(s_total==null)
+					{
+						BuyingDto total2=new BuyingDto();
+						total2.setName(name);
+						total2.setN_buying(b_total.get(i).getN_buying());
+						total2.setTotal(b_total.get(i).getTotal());
+						total2.setAvg(b_total.get(i).getTotal()/b_total.get(i).getN_buying());
+						total2.setCode(b_total.get(i).getCode());
+						total3.add(total2);
+					}
+					else 
+					{
+						BuyingDto total2=new BuyingDto();
+						total2.setName(name);
+						total2.setN_buying(b_total.get(i).getN_buying()-s_total.getN_selling());
+						total2.setTotal(b_total.get(i).getTotal()-s_total.getTotal());
+						total2.setCode(b_total.get(i).getCode());
+						total3.add(total2);
+					}
+				}
+				
+				model.addAttribute("total3",total3);
 			
-			
+			}
 			return "/mypage/mypage";
 		}
 		else //("userid") == null

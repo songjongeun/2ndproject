@@ -24,8 +24,8 @@ public interface UserDao {
 	
 	public ArrayList<BuyingDto> his_b(String userid);
 	public ArrayList<SellingDto> his_s(String userid);
-	public ArrayList<BuyingDto> total(String userid);
 	public ArrayList<BuyingDto> b_total(String userid);
+	public SellingDto s_total(String code,String userid);
 	
 	
 	

@@ -4,6 +4,8 @@ public class SellingDto {
 	private int s_id,n_selling,bid_spread;
 	private String userid,code,s_day;
 	private String name;
+	private int total,avg;
+	
 	public int getS_id() {
 		return s_id;
 	}
@@ -46,7 +48,20 @@ public class SellingDto {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
+	public int getAvg() {
+		return avg;
+	}
+	public void setAvg(int avg) {
+		this.avg = avg;
+	}
+
 	
 	
 }

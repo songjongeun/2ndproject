@@ -55,7 +55,7 @@
 	<form method="post" action="mypage_delete" id="delform">
 	<input type="submit" value="삭제">
   </form>
-  <%-- 
+  
   <p style="margin-top:70px;">
   <table width="900" align="center">
       <c:if test="${buy!=1}">
@@ -71,7 +71,7 @@
         <tr align="center">
           <td>종목코드</td>
           <td>종목명</td>
-          <td>총 주 개수</td>
+          <td>보유 주 개수</td>
           <td>주당 평균 매수금</td>
           <td>총 매수금</td>
         </tr>
@@ -85,18 +85,8 @@
             <td><fmt:formatNumber value="${total3.total}" pattern="#,##0" /></td>
           </tr>
         </c:forEach>
-        <tr><td>dd</td></tr>
-        <c:forEach items="${b_total3}" var="b_total3">
-          <tr align="center">
-            <td>${b_total3.code}</td>
-            <td>${b_total3.name}</td>
-            <td><fmt:formatNumber value="${b_total3.n_buying}" pattern="#,##0" /></td>
-            <td><fmt:formatNumber value="${b_total3.total / b_total3.n_buying}" pattern="#,##0" /></td>
-            <td><fmt:formatNumber value="${b_total3.total}" pattern="#,##0" /></td>
-          </tr>
-        </c:forEach>
       </c:if>      
-    </table> --%>
+    </table> 
   <p style="margin-top:70px;">
   <div align="center">보유포인트 : <fmt:formatNumber value="${mileage}" pattern="#,##0" /></div>
   <p style="margin-top:70px;">

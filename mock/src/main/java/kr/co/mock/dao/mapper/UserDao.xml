@@ -60,15 +60,15 @@
     select * from selling where userid=#{param1} order by s_id desc
   </select>
   
-  <!-- <select id="total" resultType="kr.co.mock.dto.BuyingDto">
-	select b.code,sum(b.ask_spread)-sum(s.bid_spread)  total,sum(b.n_buying)-sum(s.n_selling) n_buying
-	from buying b,selling s where b.code=s.code and b.userid=#{param1} group by b.code
-  </select> 
-  
   <select id="b_total" resultType="kr.co.mock.dto.BuyingDto">
 	select code,sum(ask_spread) total,sum(n_buying) n_buying
 	from buying where userid=#{param1} group by code
-  </select> -->
+  </select>
+  
+  <select id="s_total" resultType="kr.co.mock.dto.SellingDto">
+	select code,sum(bid_spread) total,sum(n_selling) n_selling
+	from selling where code=#{param1} and userid=#{param2}
+  </select>
   
   
 
