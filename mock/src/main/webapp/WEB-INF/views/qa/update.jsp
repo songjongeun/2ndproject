@@ -11,6 +11,7 @@
 	  <form name="update" method="post" action="update_ok">
 	  <input type="hidden" name="q_id" value="${qdto.q_id}">
 	  <h3> 글수정 </h3>
+	  이름${qdto.userid} <p>
 	  제목 <input type="text" name="title" value="${qdto.title}"> <p>
 	  내용 <textarea cols="80" rows="20" name="content">${qdto.content}</textarea> <p>
 	  비밀번호<input type="password" name="pwd"> <p>

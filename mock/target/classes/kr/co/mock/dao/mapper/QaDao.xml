@@ -7,17 +7,16 @@
     insert into qa(q_id,title,content,pwd,userid,writeday)
     values(#{q_id},#{title},#{content},#{pwd},#{userid},now())
   </insert>
-
+  
   <insert id="dat_write_ok" parameterType="kr.co.mock.dto.Qa_datDto">
-	 insert into qa_dat(q_id,dat,qd_id,pwd)
-	 values({#q_id},#{dat},#{qd_id},#{pwd})
+  	insert into qa_dat(qd_id,q_id,dat,pwd)
+  	values(#{qd_id},#{q_id},#{dat},#{pwd})
   </insert>
   
   <select id="list" resultType="kr.co.mock.dto.QaDto">
     select * from qa order by q_id desc limit #{param1},10
   </select>
   
-
   <select id="content" resultType="kr.co.mock.dto.QaDto">
      select * from qa where q_id=#{param1}
   </select>

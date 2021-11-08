@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: admin
+=======
+Built-By: sangjin
+>>>>>>> 030d63cee0195aa931bb04d979027ff44f990e26
 Build-Jdk: 1.8.0_181
 Created-By: Maven Integration for Eclipse
 

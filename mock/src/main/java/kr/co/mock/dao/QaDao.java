@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import kr.co.mock.dto.QaDto;
 
 public interface QaDao {
+	   public QaDto write(int q_id);
 	   public void write_ok(QaDto qdto);
 	   public ArrayList<QaDto> list(int index);
 	   public QaDto content(int q_id);

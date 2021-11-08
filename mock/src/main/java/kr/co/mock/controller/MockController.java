@@ -1,5 +1,6 @@
 package kr.co.mock.controller;
 
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,12 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.mock.dao.MockDao;
-import kr.co.mock.dto.BuyingDto;
+import kr.co.mock.dao.StockDao;
 import kr.co.mock.dto.MockDto;
 import kr.co.mock.dto.StockDto;
-import kr.co.mock.dto.Stock_aDto;
 import kr.co.mock.dto.UserDto;
 
 @Controller
@@ -90,68 +91,10 @@ public class MockController {
 		}//전체 if 문 종료
 	}
 	//---모의 신청 완료
-	
-	@RequestMapping("/stocks/st_list")
 
-	public String st_list(StockDto sdto,Model model,HttpServletRequest request)
-	{
-		MockDao mdao=sqlSession.getMapper(MockDao.class);
-		
-		// 페이징 =======================================================
-		// 페이지&index, curpage=========
-		int curpage=10; //한페이지당 나타낼 게시글 수 (조절 가능)
-		int page;
-		if(request.getParameter("page") ==null )
-		{
-			page=1;
-		}
-		else {
-			page=Integer.parseInt(request.getParameter("page"));
-		}
-		int index=(page-1)*curpage; //limit 시의 인덱스 값, 초기값은 0
-		// ======================
-		// 첫페이지, 마지막페이지
-		String field,word;
-		if(request.getParameter("field")==null)
-		{
-			field="code";
-			word="";
-		}
-		else {
-			field=request.getParameter("field");
-			word=request.getParameter("word");
-		}
-
-		
-		int startpage=(int)Math.floor((page-1)/curpage)*curpage+1; //한 블럭의 시작페이지
-		int lastpage=startpage+(curpage-1); //마지막 페이지
-		
-		int totalpage=mdao.get_pagecount(curpage,field,word);
-		
-		if(lastpage>totalpage) { //만일 마지막 페이지가 전체 페이지보다 크게 될 경우
-			lastpage=totalpage; //마지막 페이지는 전체 페이지와 같다.
-		}
-		// ========페이징 종료
-		ArrayList<StockDto> list=mdao.st_list(field,word,index,curpage);
-		model.addAttribute("list",list);
-		model.addAttribute("field", field);
-		model.addAttribute("word", word);
-		model.addAttribute("page",page);
-		model.addAttribute("startpage",startpage);
-		model.addAttribute("lastpage",lastpage);
-		model.addAttribute("totalpage",totalpage);
-		
-		return "/stocks/st_list";
-	}
-	
-	@RequestMapping("/stocks/s_content")
-	public String s_content(HttpServletRequest request,Model model) {
-		String code=request.getParameter("code");
-		model.addAttribute("code",code);
-		return "/stocks/s_content";
-	}
-	
 	//----매도
+	
+	/*
 	@RequestMapping("/stocks/buying")
 	public String buying(HttpServletRequest request,Model model,HttpSession session)
 	{
@@ -270,8 +213,8 @@ public class MockController {
 			return "/user/login";
 		}
 	}
-	
-
+	 
+	*/
 	//----매도
-
+	
 }

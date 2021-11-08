@@ -5,44 +5,32 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title> 게시글 목록 </title>
-<style>
-  table {
-    border: 1px solid #444444;
-    border-collapse: collapse;
-  }
-   td {
-    border: 1px solid #444444;
-    border-left: 1px solid #444444;
-    padding: 10px;
-   	text-align:center;
-  }
-</style>
+<title> 글목록 </title>
 </head>
 <body>
 <div id="main">
 <h3> 글목록 </h3>
 <hr>
- 	<table width="400" align="center">
+ 	<table width="500" align="center">
      <tr>
-      <td width="70"> 번 호 </td> 
-      <td width="180"> 제 목 </td>
-      <td width="70"> 이 름 </td>
-      <td width="80"> 작성일 </td> 
+      <td> 제 목 </td>
+      <td> 이 름 </td>
+      <td> 내 용 </td>
+      <td> 작성일 </td> 
      </tr>
      
     <c:forEach items="${list}" var="qdto">
      <tr>
-      <td> <a href="content?q_id=${qdto.q_id}"> ${qdto.q_id} </a></td>
       <td> <a href="content?q_id=${qdto.q_id}"> ${qdto.title} </a></td>
-      <td> <a href="content?q_id=${qdto.q_id}"> ${qdto.userid} </a></td>
-      <td> <a href="content?q_id=${qdto.q_id}"> ${qdto.writeday} </a></td>
+      <td> ${qdto.userid } </td>
+      <td> ${qdto.content} </td>
+      <td> ${qdto.writeday} </td>
      </tr>
     </c:forEach> 
      
      <!-- 페이지 시작 -->
      <tr>
-     <td colspan="5" align="center"> 
+     <td colspan="3" align="center"> 
       <!-- 현재 페이지 기준 이전 10페이지 이동 -->
       <c:if test="${pstart != 1}">
        <a href="list?page=${pstart-1}"> 
@@ -85,7 +73,7 @@
   	  <!--  페이지 끝 -->
    
       <tr>
-	  <td colspan="5" align="right"> 
+	  <td colspan="3" align="right"> 
 	  <!-- 로그인 및 회원가입 / 로그인을 했을 경우 글쓰기 탭-->
 	  <c:if test="${userid == null}">
 	  <!-- 로그인을 안했을 경우 -->
@@ -94,8 +82,8 @@
 	  </c:if>
 
       <c:if test="${userid != null}">
-      <!-- 로그인을 했을 경우 --> 
-      <a href="write"> 글쓰기 </a> 
+      <!-- 로그인을 했을 경우 -->
+  	  <a href="write"> 글쓰기 </a> 
       </c:if> 
       </td>
       </tr>

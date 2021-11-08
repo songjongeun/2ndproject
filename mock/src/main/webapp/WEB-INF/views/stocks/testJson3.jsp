@@ -41,7 +41,7 @@
 <script>
 
 $(document).ready(function(){
-	var reqData={code:"A035720"}
+	var reqData={code:"<c:out value='${code}'/>"}	// 변수
 
 	
 	$.ajax({

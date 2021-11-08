@@ -54,8 +54,9 @@
 	font-size:20px;
 	font-weight:bold;
 }
-</style>
 
+
+</style>
 
 </head>
 <body>
@@ -81,12 +82,12 @@
 	&nbsp;&nbsp;&nbsp;▷ 매매제한 종목을 제외한 거래소 및 코스닥, ELW 전종목을 대상으로 합니다.<br>
 	&nbsp;&nbsp;&nbsp;단, 실제 주식시장에서 거래가 발생하지 않았던 종목과 매매거래 정지종목은 투자 대상 종목에서 제외합니다.<br><br><br>
 	</div>
-	<c:if test="${diffdays==1}">
-		<div style="color:red">이미 신청한 적이 있고 종료날짜가 지나지 않아 재신청이 불가합니다.</div>
-	</c:if>
-	<c:if test="${diffdays!=1}">
 	<div id="conline">
-		<form name="regi_ok" method="post" action="../in_regi_ok">
+		<c:if test="${notday==1}">
+		이미 신청한 적이 있고 종료날짜가 지나지 않아 재신청이 불가합니다.
+		</c:if>
+		<c:if test="${notday!=1}">
+		<form name="aa" method="post" action="../in_regi_ok">
 		<div id="regist">
 			<div class="in_date date">투자 기간</div>
 			<div class="in date month">
@@ -106,12 +107,14 @@
 			</div>
 		</div>
 		
+		
+		
 		<div id="subm">
 			<input id="inv_input" type="submit" value="신청하기">
 		</div>	
 		</form>
+		</c:if>
 	</div>
-	</c:if>
 </div>
 </body>
 </html>

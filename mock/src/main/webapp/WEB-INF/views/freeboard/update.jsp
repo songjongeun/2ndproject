@@ -12,7 +12,7 @@
 	  <input type="hidden" name="f_id" value="${bdto.f_id}">
 	  <h3> 글수정 </h3>
 	  아이디 ${bdto.userid} <p>
-	  제목 <input type="text" name="title" style="width:700px;" value="${bdto.title}"> <p>
+	  제목 <input type="text" name="title" value="${bdto.title}"> <p>
 	  내용 <textarea cols="100" rows="20" name="content">${bdto.content}</textarea> <p>
 	  <input type="submit" value="수정">
 	  </form>
