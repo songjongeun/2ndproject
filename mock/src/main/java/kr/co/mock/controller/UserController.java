@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.mock.dao.MockDao;
 import kr.co.mock.dao.UserDao;
+import kr.co.mock.dto.BuyingDto;
+import kr.co.mock.dto.SellingDto;
 import kr.co.mock.dto.StockDto;
 import kr.co.mock.dto.UserDto;
 
@@ -30,15 +32,130 @@ public class UserController {
 	{
 		if(session.getAttribute("userid") != null)
 		{
-		 String userid=session.getAttribute("userid").toString();
-		 UserDao udao=sqlSession.getMapper(UserDao.class);
-		 UserDto udto=udao.mypage(userid);
-		 model.addAttribute("udto",udto);
-		 
-		 return "/mypage/mypage";
+			String userid=session.getAttribute("userid").toString();
+			UserDao udao=sqlSession.getMapper(UserDao.class);
+			MockDao mdao=sqlSession.getMapper(MockDao.class);
+			UserDto udto=udao.mypage(userid);
+			model.addAttribute("udto",udto);
+			
+			// 거래내역 가져오기
+			ArrayList<BuyingDto> bdto=udao.his_b(userid);
+			ArrayList<SellingDto> sdto=udao.his_s(userid);
+
+			if(!bdto.isEmpty())
+			{// 매수내역이 있을때
+				model.addAttribute("buy", 1);
+				BuyingDto bdto2=new BuyingDto();
+				ArrayList<BuyingDto> bdto3=new ArrayList<BuyingDto>();
+				for(int i=0;i<bdto.size();i++)
+				{
+					String name=udao.stocks_names(bdto.get(i).getCode());
+					bdto2.setB_id(bdto.get(i).getB_id());
+					bdto2.setN_buying(bdto.get(i).getN_buying());
+					bdto2.setAsk_spread(bdto.get(i).getAsk_spread());
+					bdto2.setUserid(bdto.get(i).getUserid());
+					bdto2.setCode(bdto.get(i).getCode());
+					bdto2.setB_day(bdto.get(i).getB_day());
+					bdto2.setName(name);
+					bdto3.add(bdto2);
+				}
+				model.addAttribute("bdto3",bdto3);
+			}
+			if(!sdto.isEmpty())
+			{// 매도내역이 있을때
+				model.addAttribute("sel", 1);
+				SellingDto sdto2=new SellingDto();
+				ArrayList<SellingDto> sdto3=new ArrayList<SellingDto>();
+				for(int i=0;i<sdto.size();i++)
+				{
+					String name=udao.stocks_names(sdto.get(i).getCode());
+					sdto2.setS_id(sdto.get(i).getS_id());
+					sdto2.setN_selling(sdto.get(i).getN_selling());
+					sdto2.setBid_spread(sdto.get(i).getBid_spread());
+					sdto2.setUserid(sdto.get(i).getUserid());
+					sdto2.setCode(sdto.get(i).getCode());
+					sdto2.setS_day(sdto.get(i).getS_day());
+					sdto2.setName(name);
+					sdto3.add(sdto2);
+					
+				}
+				model.addAttribute("sdto3",sdto3);
+			}
+			
+			int mileage=mdao.get_point(userid);
+			model.addAttribute("mileage",mileage);
+//
+//			ArrayList<BuyingDto> total=udao.total(userid);
+//			ArrayList<BuyingDto> b_total=udao.b_total(userid);
+//
+//			if(!total.isEmpty())
+//			{// 매수,매도내역이 있을때
+//				BuyingDto total2=new BuyingDto();
+//				ArrayList<BuyingDto> total3=new ArrayList<BuyingDto>();
+//
+//				for(int i=0;i<total.size();i++)
+//				{
+//					String name=udao.stocks_names(total.get(i).getCode());
+//					total2.setName(name);
+//					total2.setN_buying(total.get(i).getN_buying());
+//					total2.setTotal(total.get(i).getTotal());
+//					total2.setCode(total.get(i).getCode());
+//					total3.add(total2);
+//				}
+//				
+//				model.addAttribute("total",total);
+//				model.addAttribute("total3",total3);
+//			}if(!b_total.isEmpty())
+//			{				
+//				BuyingDto b_total2=new BuyingDto();
+//				ArrayList<BuyingDto> b_total3=new ArrayList<BuyingDto>();
+//				
+//				for(int i=0;i<b_total.size();i++)
+//				{
+//					String name=udao.stocks_names(b_total.get(i).getCode());
+//					b_total2.setName(name);
+//					b_total2.setN_buying(b_total.get(i).getN_buying());
+//					b_total2.setTotal(b_total.get(i).getTotal());
+//					b_total2.setCode(b_total.get(i).getCode());
+//					b_total3.add(b_total2);
+//				} 
+//				
+//				
+////				for(int i=0;i<b_total.size();i++)
+////				{
+////					String b_t_c=b_total.get(i).getCode();
+////					String b_t_t=b_total.get(i).getTotal();
+////					for(int j=0;j<total.size();j++)
+////					{
+////						String t_c=total.get(j).getCode();
+////						String t_t=total.get(j).getTotal();
+////						if(b_t_c.equals(t_c))
+////						{
+////							total2.setCode(b_t_c);
+////							total2.setTotal(t_t);
+////							total3.add(total2);
+////						}
+////						else
+////						{
+////							total2.setCode(b_t_c);
+////							total2.setTotal(b_t_t);
+////							total3.add(total2);
+////						}
+////						
+////					}
+////				}
+//				model.addAttribute("b_total",b_total);
+//				model.addAttribute("b_total3",b_total3);
+//			}
+//			
+			
+			
+			return "/mypage/mypage";
 		}
-		else
-			return "redirect:/user/login?chk=1";
+		else //("userid") == null
+		{
+			 return "redirect:/user/login?chk=1";
+		}
 	}
 	
 	// 마이페이지 수정 
@@ -281,5 +398,10 @@ public class UserController {
 		}
 		
 	}
+	
+	
+	
+	
+	
 	
 }
