@@ -49,7 +49,27 @@
   </select>
   
   <select id="my_mocks" resultType="kr.co.mock.dto.StockDto">
-	select * from stocks where code=#{param1} order by id asc limit 1
+	select * from stocks where code=#{param1} order by date desc limit 1
   </select>
+  
+  <select id="his_b" resultType="kr.co.mock.dto.BuyingDto">
+    select * from buying where userid=#{param1} order by b_id desc
+  </select>
+  
+  <select id="his_s" resultType="kr.co.mock.dto.SellingDto">
+    select * from selling where userid=#{param1} order by s_id desc
+  </select>
+  
+  <select id="b_total" resultType="kr.co.mock.dto.BuyingDto">
+	select code,sum(ask_spread) total,sum(n_buying) n_buying
+	from buying where userid=#{param1} group by code
+  </select>
+  
+  <select id="s_total" resultType="kr.co.mock.dto.SellingDto">
+	select code,sum(bid_spread) total,sum(n_selling) n_selling
+	from selling where code=#{param1} and userid=#{param2}
+  </select>
+  
+  
 
 </mapper>
