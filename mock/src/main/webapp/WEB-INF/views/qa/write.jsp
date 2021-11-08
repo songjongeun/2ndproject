@@ -15,7 +15,7 @@
 	  이름{qdto.userid} <p>
 	  내용 <textarea cols="100" rows="20" name="content"></textarea> <p>
 	  비밀번호<input type="password" name="pwd"> <p>
-	  <input type="submit" value="저장">
+	  <input class="btn btn-outline-danger btn-sm" type="submit" value="저장">
 	  </form>
 	  </div>
 </body>

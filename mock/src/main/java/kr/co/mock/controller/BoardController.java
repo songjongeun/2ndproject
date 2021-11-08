@@ -3,6 +3,7 @@ package kr.co.mock.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,21 +20,22 @@ public class BoardController {
 		@Autowired
 		private SqlSession sqlSession;
 		
-		@RequestMapping("/write")
+		@RequestMapping("/freeboard/write")
 		public String write()
 		{
-			return "/write";
+			return "/freeboard/write";
 		}
 		
-		@RequestMapping("/write_ok")
-		public String write_ok(BoardDto bdto)
+		@RequestMapping("/freeboard/write_ok")
+		public String write_ok(BoardDto bdto,HttpSession session)
 		{
-			BoardDao bdao=sqlSession.getMapper(BoardDao.class); 
+			BoardDao bdao=sqlSession.getMapper(BoardDao.class);
+			bdto.setUserid(session.getAttribute("userid").toString());
 			bdao.write_ok(bdto);
-			return "redirect:/list";
+			return "redirect:/freeboard/list";
 		}
 		
-		@RequestMapping("/list")
+		@RequestMapping("/freeboard/list")
 		public String list(Model model,HttpServletRequest request)
 		{
 			int page;
@@ -49,6 +51,7 @@ public class BoardController {
 			
 			BoardDao bdao=sqlSession.getMapper(BoardDao.class);
 			ArrayList<BoardDto> list=bdao.list(index);
+
 			// page출력을 위해 필요한 값
 			// 현재페이지:page, pstart,pend, page_cnt
 			// pstart,pend
@@ -67,58 +70,58 @@ public class BoardController {
 			model.addAttribute("page_cnt",page_cnt);
 			model.addAttribute("page",page);
 			model.addAttribute("list",list);
-			return "/list";
+			return "/freeboard/list";
 		}
 		
-		@RequestMapping("/hit")
+		@RequestMapping("/freeboard/hit")
 		public String hit(HttpServletRequest request)
 		{
 			// board테이블의 hit필드만 1증가 => content로이동
 			int f_id=Integer.parseInt(request.getParameter("f_id"));
 			BoardDao bdao=sqlSession.getMapper(BoardDao.class);
 	        bdao.hit(f_id);
-			return "redirect:/content?f_id="+f_id;
+			return "redirect:/freeboard/content?f_id="+f_id;
 		}
 		
-		@RequestMapping("/content")
+		@RequestMapping("/freeboard/content")
 		public String content(Model model,HttpServletRequest request)
 		{   // 사용자가 원하는 레코드의 값을 읽어 view에 전달
 			int f_id=Integer.parseInt(request.getParameter("f_id"));		
 			BoardDao bdao=sqlSession.getMapper(BoardDao.class);
-	        BoardDto bdto=bdao.content(f_id);
+			BoardDto bdto=bdao.content(f_id);
 	        bdto.setContent(bdto.getContent().replace("\r\n", "<br>"));
 	        model.addAttribute("bdto",bdto);
-			return "/content";
+			return "/freeboard/content";
 		}
 		
-		@RequestMapping("/update")
+		@RequestMapping("/freeboard/update")
 		public String update(Model model,HttpServletRequest request)
 		{
 			int f_id=Integer.parseInt(request.getParameter("f_id"));
 			BoardDao bdao=sqlSession.getMapper(BoardDao.class);
 			BoardDto bdto=bdao.update(f_id);
 			model.addAttribute("bdto",bdto);
-			return "/update";
+			return "/freeboard/update";
 		}
 		
-		@RequestMapping("/update_ok")
+		@RequestMapping("/freeboard/update_ok")
 		public String update_ok(BoardDto bdto)
 		{
 			// 정보를 수정하고 content로 이동
 			BoardDao bdao=sqlSession.getMapper(BoardDao.class);
 			bdao.update_ok(bdto);
 	 
-			return "redirect:/content?f_id="+bdto.getF_id();
+			return "redirect:/freeboard/content?f_id="+bdto.getF_id();
 		}
 		
-		@RequestMapping("/delete")
+		@RequestMapping("/freeboard/delete")
 		public String delete(HttpServletRequest request)
 		{
 			// 레코드를 삭제하고 list이동
 			int f_id=Integer.parseInt(request.getParameter("f_id"));
 			BoardDao bdao=sqlSession.getMapper(BoardDao.class);
 			bdao.delete(f_id);
-			return "redirect:/list";
+			return "redirect:/freeboard/list";
 		}
 		
 }

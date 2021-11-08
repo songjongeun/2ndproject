@@ -12,10 +12,27 @@
 	display:grid;
 	place-items: center;
 }
-td{
-	place-items: center;
-	text-align: center;
-	padding-top:10px;
+
+td:nth-chile(1){
+	text-align:center;
+	width:500px;
+}
+td:nth-chile(2){
+	text-align: left;
+	width:400px;
+}
+
+.search_st{
+	margin-bottom:20px;
+}
+.st_page{
+	margin-top:20px;
+}
+.st_listsize{
+  	width:40%;
+}
+.search_sub{
+	margin-bottom:3px;
 }
 </style>
 <script>
@@ -27,30 +44,32 @@ td{
 </head>
 <body>
 <div id="main" class="main">
-   <form name="search_st" method="post" action="st_list">
-    	<select name="field">
+	
+   <form class="search_st" name="search_st" method="post" action="st_list">
+    	<select name="field" class="search_st">
     	  	<option value="code">종목코드</option>
     	  	<option value="name">종목명</option>
     	 </select>
-    	  <input type="text" name="word" value="${word}">
-    	  <input type="submit" value="검색">
+    	  <input type="text" name="word" value="${word}" size="10px">
+    	  <input type="submit" class="btn btn-danger btn-sm search_sub" value="검색 " style="height:29px;">
     </form>
-  <table>
+    <div class="st_listsize">
+  <table class="table table-sm">
 	<tr>
-		<td>종목코드</td>
-		<td>종목명</td>
+		<th>종목코드</th>
+		<th>종목명</th>
 	</tr>
 	
 	<c:forEach items="${list}" var="sdto">
 	<tr>
-		<td><a href="/mock/stocks/s_content?code=${sdto.code}">${sdto.code}</a></td>
-		<td><a href="/mock/stocks/s_content?code=${sdto.code}">${sdto.name}</a></td>
+		<td class="s_code"><a href="/mock/stocks/s_content?code=${sdto.code}">${sdto.code}</a></td>
+		<td class="s_name"><a href="/mock/stocks/s_content?code=${sdto.code}">${sdto.name}</a></td>
 	</tr>
 	</c:forEach>
-	
+	</table>
+	</div>
 	<!-- 페이징 -->
-	<tr>
-		<td colspan="2">
+	<div class="st_page">
 		<c:if test="${page!=1}">
 			<a href="/mock/stocks/st_list?page=${page-1}">[PREV]</a>
 		</c:if>
@@ -71,10 +90,9 @@ td{
 		</c:if>
 		<c:if test="${page==totalpage}">
 		</c:if>
-		</td>
-	</tr>
-  </table>
-</div>
+	</div>
+	</div>
+
 
 </body>
 </html>

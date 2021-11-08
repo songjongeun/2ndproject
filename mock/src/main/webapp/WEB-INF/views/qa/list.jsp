@@ -11,7 +11,7 @@
 <div id="main">
 <h3> 글목록 </h3>
 <hr>
- 	<table width="500" align="center">
+ 	<table class="table table-striped table-hover" width="500" align="center">
      <tr>
       <td> 제 목 </td>
       <td> 이 름 </td>

@@ -5,7 +5,12 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
+<head><!-- 부트스트랩 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
@@ -25,11 +30,12 @@
 		"third"
 		"main"
 		"bottom";
+	margin-top:50px;
 }
 
 #first{ /*찻반쩨 로고 및 로그인 css*/
 	grid-area:first;
-	width:70%;
+	width:100%;
 	place-items: center;
 	display:flex;
 	justify-content: space-between; /*양끝으로 정렬. 아이템들 사이의 거리는 같음.*/
@@ -50,7 +56,7 @@
 #second{ /*메뉴*/
 	grid-area:second;
 	place-items: center;
-	width:70%;
+	width:100%;
   	min-width:auto;
 	height:30px;
 	display:flex;
@@ -58,13 +64,13 @@
 }
 #third{ /*메뉴 바 밑의 밑줄*/
 	grid-area:third;
-	width:70%;
+	width:100%;
 	min-width:auto;
 	height:5px;
 	border-bottom:2px solid;
 }
 #main{ /*모든 메인 페이지 적용*/
-	width:70%;
+	width:100%;
 	min-width:auto;
 	grid-area:main;
 	place-items: center;
@@ -113,12 +119,13 @@ button{
 }
 #bottom{
 	grid-area:bottom;
-	width:70%;
-	margin-top:150px;
+	width:100%;
+	margin-top:50px;
 	text-align:center;
 	background-color:#BDBDBD;
 }
-
+ input[type="text"] { border: solid 1px #DC3545; }
+ input[type="password"] { border: solid 1px #D2691E;}
 </style>
 
 </head>
@@ -135,7 +142,7 @@ button{
 		
 		<c:if test="${userid!=null}">
 			${username}님
-			<input type="button" onclick="location.href='/mock/invest/in_regi'" value="모의투자신청">			
+			<button class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/invest/in_regi'">모의투자신청</button>			
 			<div class="item mypage">
 			   <c:if test="${userid==null }">  <!-- 로그인 안했을때 -->
 			    <a href="/mock/user/login">마이페이지</a>
@@ -183,9 +190,7 @@ button{
 	</div>
 	<decorator:body/>
 	<div id="bottom"> 
-	상호명 : 경영기술개발원교육센터     대표자 : 한광두     사업자등록번호 : 334-81-00348     전화번호 : 1661-1429     팩스번호 : 02-856-1094
-	직업정보 제공사업 : 서울관악 제2011-37호     주소 : (우)08292 서울특별시 구로구 구로중앙로34길 33-4(구로동, 경영기술개발원빌딩)
-	Copyright © 경영기술개발원교육센터 All Rights Reserved. 
+	상호명 : 경영기술개발원교육센터│대표자 : 한광두│사업자등록번호 : 334-81-00348│TEL : 1661-1429│FAX : 02-856-1094│직업정보 제공사업 : 서울관악 제 2011-37호│주소 : (우)08292 서울특별시 구로구 구로중앙로34길 33-4(구로동, 경영기술개발원빌딩)│Copyrightⓒ경영기술개발원교육센터. All Rights Reserved. 
 	</div>
 	</div>
 </body>

@@ -26,8 +26,9 @@
 	grid-column:1;
   	grid-row:1/6;
 }
+
 .like{
-	grid-column:3/5;
+	grid-column:2;
 	grid-row:2;
 }
 .buy_con{
@@ -47,21 +48,7 @@
   	grid-row:4;
 }
 
-/* default button style */
-button {
-	border: 0;
-	padding: 15px 25px;
-	display: inline-block;
-	text-align: center;
-	color: white;
-}
-button:active {
-	top: 4px;	
-}
 
-/* color classes for .btn */
-button {box-shadow: 0px 4px #74a3b0;}
-button {box-shadow: 0 0 #74a3b0; background-color: #709CA8;}
 </style>
 <!-- 차트 그래프 스크립트 ===================== -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -83,21 +70,21 @@ button {box-shadow: 0 0 #74a3b0; background-color: #709CA8;}
 	${code}
 	</div>
 	<div class="like">
-		<button id="like" value="1">♡</button>
+		<button id="like"  class="btn btn-outline-danger btn-sm" value="1">♡</button>
 	</div>
 	<div class="buy_con">
-		<button onclick="location.href='/mock/stocks/buying?code=${code}'">매수</button>
+		<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/buying?code=${code}'">매수</button>
 	</div>
 	
 	<div class="sell_con">
-		<button onclick="location.href='/mock/stocks/selling?code=${code}'">매도</button>
+		<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/selling?code=${code}'">매도</button>
 	</div>
 	
 	<div class="realtime">
-		<button onclick="location.href='/mock/stocks/realtime?code=${code}'" >실시간데이터보기</button>
+		<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/realtime?code=${code}'" >실시간데이터보기</button>
 	</div>
 	<div class="ai_con">
-	<button>Ai 분석</button>
+	<button  class="btn btn-outline-danger btn-sm">Ai 분석</button>
 	</div>
 
 </div>
@@ -138,7 +125,7 @@ $(document).ready(function(){
 
 		    Highcharts.stockChart('stock-graph', {
 		        title: {
-		            text: "<c:out value='${name}'/>"
+		            text: "<c:out value='${name}'/>" 
 		        },
 		        yAxis: [{
 		            labels: {

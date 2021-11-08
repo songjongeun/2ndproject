@@ -15,7 +15,7 @@
 	  제목 <input type="text" name="title" value="${qdto.title}"> <p>
 	  내용 <textarea cols="80" rows="20" name="content">${qdto.content}</textarea> <p>
 	  비밀번호<input type="password" name="pwd"> <p>
-	  <input type="submit" value="수정">
+	  <input class="btn btn-outline-danger btn-sm" type="submit" value="수정">
 	  </form>
 	  </div>
 </body>

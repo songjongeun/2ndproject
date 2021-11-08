@@ -190,9 +190,9 @@ function diff_mil(){
 	  	</div>
 		<div class="week">거래주</div>
 		<div class="week_num">
-		<input type="button" id="minus" value= "-">
+		<input type="button" id="minus" class="btn btn-outline-danger btn-sm" value= "-">
 	  	<input type="text" class="n_buying" name="n_buying" value="0" size="4">주<!-- 거래개수 -->
-	  	<input type="button" id="plus" value="+" >
+	  	<input type="button" id="plus" class="btn btn-outline-danger btn-sm" value="+" >
 		</div>
 		<div class="sum">거래 합계</div>
 		<div class="sum_num">
@@ -216,7 +216,7 @@ function diff_mil(){
 		
 		<div class="submit_ok">
 		<c:if test="${mileage!=0}">
-			<input type="submit" value="구매">
+			<input class="btn btn-outline-danger btn-sm" type="submit" value="구매">
 		</c:if>
 		
 		</div>

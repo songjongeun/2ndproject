@@ -53,7 +53,7 @@
    </table>
    
 	<form method="post" action="mypage_delete" id="delform">
-	<input type="submit" value="삭제">
+	<input type="submit" class="btn btn-outline-danger btn-sm" value="삭제">
   </form>
   
   <p style="margin-top:70px;">

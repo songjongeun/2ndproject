@@ -37,8 +37,7 @@ public class MockController {
 	@RequestMapping("/invest/in_regi")
 	public String in_regi(HttpServletRequest request,Model model)
 	{
-		String diff=request.getParameter("diff");
-		model.addAttribute("diff",diff);
+		model.addAttribute("notday",request.getParameter("notday"));
 		return "/invest/in_regi";
 	}
 	
@@ -73,17 +72,19 @@ public class MockController {
 				todate = format.parse(oTime);//현재 날짜 Date
 				
 				int diffdays=todate.compareTo(enddate); //현날짜와 종료날짜 비교 값.
-				
+				String notday;
 
 				if(diffdays < 0) {//모의 투자 신청을 한 적이 있을 경우 마지막 신청 날짜와 비교한다.
 					//현재 날짜 > 종료날짜 //종료시점이 지나 다시 신청 가능.
 					int m_close=Integer.parseInt(request.getParameter("m_close"));
 					int mileage=Integer.parseInt(request.getParameter("mileage"));
 					mdao.in_regi_ok(mdto, userid, m_close, mileage);
+					notday=null;
 					return "redirect:/main_view";
 					}
 				else { //diffdays=0 or 음수 일 경우 현재 날짜와 같거나 종료이전 이므로 신청 불가
-					return "redirect:/invest/in_regi?diffdays=1";
+					notday="1";
+					return "redirect:/invest/in_regi?notday=1";
 				}			
 			} //로그인&모의 신청 if문 종료
 		}//로그인 했을 시의 if문 종료

@@ -4,6 +4,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원가입</title>
+<style>
+.id_chek{
+	margin-top:10px;
+}
+</style>
 <script>
 function check()
 { 
@@ -136,7 +141,7 @@ function email_hide()
 				<h3 style="text-align: center;">회원가입</h3>
 				<div class="form-group">
 					<input type="text" placeholder="아이디" name="userid" onkeyup="userid_hide()" maxlength="20"><p>
-					<input type="button" value="아이디 조회" onclick="userid_check()">
+					<input type="button"  class="btn btn-danger btn-sm id_chek" value="아이디 조회" onclick="userid_check()">
 					<span id="id_chk"></span>
         		    <span id="id_len"></span>
 				</div>
@@ -161,7 +166,7 @@ function email_hide()
 					회원가입 후 자동로그인<input type="checkbox" name="auto_check" >
 					<input type="hidden" name="auto" value="0" >
 				</div><p>
-				<input type="button" value="회원 가입" onclick="check()"><p>
+				<input type="button"  class="btn btn-danger btn-sm" value="회원 가입" onclick="check()"><p>
 			    <c:if test="${f==1}">
 			      <b style="color:red">아이디가 중복되었습니다</b>
 			    </c:if>
