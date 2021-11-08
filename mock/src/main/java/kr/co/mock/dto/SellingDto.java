@@ -1,49 +1,32 @@
 package kr.co.mock.dto;
 
 public class SellingDto {
-	private int r_id, cprice, diff, open, high, low, vol;
-	private String code,time;
-	public int getR_id() {
-		return r_id;
+	private int s_id,n_selling,bid_spread;
+	private String userid,code,s_day;
+	private String name;
+	public int getS_id() {
+		return s_id;
 	}
-	public void setR_id(int r_id) {
-		this.r_id = r_id;
+	public void setS_id(int s_id) {
+		this.s_id = s_id;
 	}
-	public int getCprice() {
-		return cprice;
+	public int getN_selling() {
+		return n_selling;
 	}
-	public void setCprice(int cprice) {
-		this.cprice = cprice;
+	public void setN_selling(int n_selling) {
+		this.n_selling = n_selling;
 	}
-	public int getDiff() {
-		return diff;
+	public int getBid_spread() {
+		return bid_spread;
 	}
-	public void setDiff(int diff) {
-		this.diff = diff;
+	public void setBid_spread(int bid_spread) {
+		this.bid_spread = bid_spread;
 	}
-	public int getOpen() {
-		return open;
+	public String getUserid() {
+		return userid;
 	}
-	public void setOpen(int open) {
-		this.open = open;
-	}
-	public int getHigh() {
-		return high;
-	}
-	public void setHigh(int high) {
-		this.high = high;
-	}
-	public int getLow() {
-		return low;
-	}
-	public void setLow(int low) {
-		this.low = low;
-	}
-	public int getVol() {
-		return vol;
-	}
-	public void setVol(int vol) {
-		this.vol = vol;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 	public String getCode() {
 		return code;
@@ -51,10 +34,19 @@ public class SellingDto {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public String getTime() {
-		return time;
+	public String getS_day() {
+		return s_day;
 	}
-	public void setTime(String time) {
-		this.time = time;
+	public void setS_day(String s_day) {
+		this.s_day = s_day;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+	
 }
