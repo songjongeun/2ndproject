@@ -45,10 +45,10 @@ public class UserController {
 			if(!bdto.isEmpty())
 			{// 매수내역이 있을때
 				model.addAttribute("buy", 1);
-				BuyingDto bdto2=new BuyingDto();
 				ArrayList<BuyingDto> bdto3=new ArrayList<BuyingDto>();
 				for(int i=0;i<bdto.size();i++)
 				{
+					BuyingDto bdto2=new BuyingDto();
 					String name=udao.stocks_names(bdto.get(i).getCode());
 					bdto2.setB_id(bdto.get(i).getB_id());
 					bdto2.setN_buying(bdto.get(i).getN_buying());
@@ -64,10 +64,10 @@ public class UserController {
 			if(!sdto.isEmpty())
 			{// 매도내역이 있을때
 				model.addAttribute("sel", 1);
-				SellingDto sdto2=new SellingDto();
 				ArrayList<SellingDto> sdto3=new ArrayList<SellingDto>();
 				for(int i=0;i<sdto.size();i++)
 				{
+					SellingDto sdto2=new SellingDto();
 					String name=udao.stocks_names(sdto.get(i).getCode());
 					sdto2.setS_id(sdto.get(i).getS_id());
 					sdto2.setN_selling(sdto.get(i).getN_selling());
