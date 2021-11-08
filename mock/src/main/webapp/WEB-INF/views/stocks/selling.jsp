@@ -15,87 +15,77 @@
 .sub_main{
 	display:grid;
 	place-items: center;
-	width:70%;
+	width:40%;
 	height:100%;
-	grid-template-columns:4fr 1fr 2fr;
-	grid-template-rows:repeat(7, 1fr)
-  	grid-gap: 10px;
+	grid-template-columns:1fr 1fr;
+	grid-template-rows:50px repeat(6, 30px);
+  	grid-gap:20px;
 
 }
 .s_name{
-	grid-column:1;
+	grid-column:1/3;
   	grid-row:1;
-}
-.graph{
-	grid-column:1;
-  	grid-row:2/8;
-  	justify-items:center;
-  	align-self:center;
-	background:pink;
+	text-decoration: underline;
+	text-underline-position: under;/*텍스트 밑의 밀줄을 간격을 좀 더 띄움*/
 }
 
 .mil_name{
-	grid-column:2;
-  	grid-row:1;
+	grid-column:1;
+  	grid-row:2;
 }
 
 .mil_num{
-	grid-column:3;
-  	grid-row:1;
+	grid-column:2;
+  	grid-row:2;
 }
 
 .price{
-	grid-column:2;
-  	grid-row:2;
+	grid-column:1;
+  	grid-row:3;
 }
 
 .price_num{
-	grid-column:3;
-  	grid-row:2;
+	grid-column:2;
+  	grid-row:3;
 }
 
 .week{
-	grid-column:2;
-  	grid-row:3;
+	grid-column:1;
+  	grid-row:4;
 }
 
 .week_num{
-	grid-column:3;
-  	grid-row:3;
+	grid-column:2;
+  	grid-row:4;
 }
 
 .sum{
-	grid-column:2;
-  	grid-row:4;
+	grid-column:1;
+  	grid-row:5;
 }
 
 .sum_num{
-	grid-column:3;
-  	grid-row:4;
-}
-
-.cuur_mil{
 	grid-column:2;
   	grid-row:5;
 }
 
-.cuur_mil_num{
-	grid-column:3;
-  	grid-row:5;
+.cuur_mil{
+	grid-column:1;
+  	grid-row:6;
 }
 
-.ai{
-	grid-column:2/4;
+.cuur_mil_num{
+	grid-column:2;
   	grid-row:6;
 }
 
 .mock_list{
-	grid-column:2;
+	grid-column:1;
   	grid-row:7;
 }
 
 .submit_ok{
-	grid-column:3;
+	grid-column:2;
   	grid-row:7;
 }
 
@@ -177,10 +167,9 @@ $(function(){//숫자를 직접 입력했을 경우 실시간 계산
 <div id="main" class="main">
 	<form class="sub_main" method="post" action="/mock/selling_ok">
 
-		<div class="s_name">${sdto.name} ${sdto.code}
+		<div class="s_name"><h1>${sdto.name} 매도</h1>
 		<input type="hidden" name="code" value="${sdto.code}">
 		</div>
-		<div class="graph">차트 그래프</div>
 		<div class="mil_name">포인트</div>
 		<div class="mil_num">
 			<c:if test="${mileage==0}">
@@ -208,8 +197,9 @@ $(function(){//숫자를 직접 입력했을 경우 실시간 계산
 	  	<input type="button" id="plus" value="+" >
 		</div>
 		<div class="sum">거래 합계</div>
+		<div class="sum_num">
 		<input type="text" class="sum_mil" size="4" value="${sdto.open*diff}">
-		
+		</div>
 		<div class="cuur_mil">
 			남은 마일리지
 		</div>
@@ -218,11 +208,9 @@ $(function(){//숫자를 직접 입력했을 경우 실시간 계산
 		  	마일리지 없음
 		</c:if>
 		 <c:if test="${mileage!=0}">
-		  	<input type="text" class ="curr_mil" name="curr_mil" value="${mileage-(sdto.open*diff)}" size="4">	
+		  	<input type="text" class ="curr_mil" name="curr_mil" value="${mileage+(sdto.open*diff)}" size="4">	
 		  </c:if>
 		</div>
-		
-		<div class="ai">ai 한마디?</div>
 		
 		<div class="mock_list">
 			<a href="/mock/stocks/st_list">주식 목록</a>

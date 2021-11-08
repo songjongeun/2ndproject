@@ -35,8 +35,10 @@ public class MockController {
 	}
 	
 	@RequestMapping("/invest/in_regi")
-	public String in_regi()
+	public String in_regi(HttpServletRequest request,Model model)
 	{
+		String diff=request.getParameter("diff");
+		model.addAttribute("diff",diff);
 		return "/invest/in_regi";
 	}
 	
@@ -162,6 +164,7 @@ public class MockController {
 	public String buying(HttpServletRequest request,Model model,HttpSession session)
 	{
 		String code=request.getParameter("code");
+		String name=request.getParameter("name");
 		MockDao mdao=sqlSession.getMapper(MockDao.class);
 		StockDto sdto=mdao.st_buysell(code);
 
@@ -173,17 +176,21 @@ public class MockController {
 				int mileage=0; //마일리지 값을 0으로 조정.
 				model.addAttribute("mileage",mileage);
 				model.addAttribute("sdto",sdto);
+				model.addAttribute("name",name);
 			}
 			else { //모의신청 신청한 아이디가 있을 시
 				int mileage=mdao.get_point(userid); //조회된 마일리지를 가져옴.			
 				model.addAttribute("sdto",sdto);
 				model.addAttribute("mileage",mileage);
+				model.addAttribute("name",name);
+
 			}
 		}else //로그인 X
 		{
 			int mileage=0; //마일리지 값을 0으로 조정.
 			model.addAttribute("mileage",mileage);
 			model.addAttribute("sdto",sdto);
+			model.addAttribute("name",name);
  		}
 	
 		return "/stocks/buying";
@@ -217,30 +224,42 @@ public class MockController {
 	{
 		String code=request.getParameter("code");
 		MockDao mdao=sqlSession.getMapper(MockDao.class);
-		StockDto sdto=mdao.st_buysell(code);
+		StockDto sdto=mdao.st_buysell(code); // ---------------
 		//mock 테이블에서 포인트 조회를 위해 가져오는 값
 		if(session.getAttribute("userid")!=null) { //로그인 
 			String userid=session.getAttribute("userid").toString();
-			int id_check=mdao.search_id(userid); //포인트 조회를 위해 먼저 신청했던 적이 있는지 확인
-			if(id_check==0) { //만약 아이디가 조회되지 않으면
+			int id_check=mdao.search_id(userid); //포인트 조회를 위해 먼저 신청했던 적이 있는지 확인 
+			if(id_check==0) { //만약 아이디가 조회되지 않으면-----------
 				int mileage=0; //마일리지 값을 0으로 조정.
 				model.addAttribute("mileage",mileage);
 				model.addAttribute("sdto",sdto);
 			}
 			else { //모의신청 신청한 아이디가 있을 시
-				int mileage=mdao.get_point(userid); //조회된 마일리지를 가져옴.	
+				int mileage=mdao.get_point(userid); //조회된 마일리지를 가져옴.	--------
 				 //해당 아이디가 구매한 총 매수 갯수를 가져옴
-				int buy=mdao.buy_get(code); //산 갯수가 있을 시
-				if(buy>0) {
+				int buy=mdao.buy_get(code,userid); //주식을 구매했는지  여부
+				int diff;
+				if(buy>0) { //주식을 구매했다면
 					int n_buying=mdao.buy_count(userid,code);
-					int n_selling=mdao.sell_count(userid,code); //해당 아이디가 판매한 총 매도 갯수를 가져옴
-					int diff=(n_buying-n_selling)-1;
-					model.addAttribute("sdto",sdto);
-					model.addAttribute("mileage",mileage);
-					model.addAttribute("diff",diff);
+					int sell=mdao.sell_get(code, userid); //판매주식이 있는지 확인
+					if(sell>0) {//판매한 내용이 있다면
+						int n_selling=mdao.sell_count(userid,code); //해당 아이디가 판매한 총 매도 갯수를 가져옴
+						diff=(n_buying-n_selling)-1;
+						model.addAttribute("sdto",sdto);
+						model.addAttribute("mileage",mileage);
+						model.addAttribute("diff",diff);
+					}
+					else { //판매한 내용이 없다면
+						sell=0;
+						diff=n_buying;
+						model.addAttribute("sdto",sdto);
+						model.addAttribute("mileage",mileage);
+						model.addAttribute("diff",diff);
+					}
+
 				}
 				else {
-					int diff=0;
+					diff=0;
 					model.addAttribute("sdto",sdto);
 					model.addAttribute("mileage",mileage);
 					model.addAttribute("diff",diff);

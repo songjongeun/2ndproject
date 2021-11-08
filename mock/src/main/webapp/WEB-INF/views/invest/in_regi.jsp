@@ -54,8 +54,6 @@
 	font-size:20px;
 	font-weight:bold;
 }
-
-
 </style>
 
 </head>
@@ -83,10 +81,10 @@
 	&nbsp;&nbsp;&nbsp;단, 실제 주식시장에서 거래가 발생하지 않았던 종목과 매매거래 정지종목은 투자 대상 종목에서 제외합니다.<br><br><br>
 	</div>
 	<div id="conline">
-		<c:if test="${notday==1}">
+		<c:if test="${diff!=null}">
 		이미 신청한 적이 있고 종료날짜가 지나지 않아 재신청이 불가합니다.
 		</c:if>
-		<c:if test="${notday!=1}">
+		<c:if test="${diff==null}">
 		<form name="aa" method="post" action="../in_regi_ok">
 		<div id="regist">
 			<div class="in_date date">투자 기간</div>
@@ -106,8 +104,6 @@
 				</select>
 			</div>
 		</div>
-		
-		
 		
 		<div id="subm">
 			<input id="inv_input" type="submit" value="신청하기">

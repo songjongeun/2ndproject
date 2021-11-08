@@ -135,7 +135,20 @@ button{
 		
 		<c:if test="${userid!=null}">
 			${username}님
-			<input type="button" onclick="location.href='/mock/invest/in_regi'" value="모의투자신청">
+			<input type="button" onclick="location.href='/mock/invest/in_regi'" value="모의투자신청">			
+			<div class="item mypage">
+			   <c:if test="${userid==null }">  <!-- 로그인 안했을때 -->
+			    <a href="/mock/user/login">마이페이지</a>
+			  </c:if>	 <!-- /로그인 안했을때 -->
+			  <c:if test="${userid!=null }">  <!-- 로그인 했을때 -->
+			    <c:if test="${userid=='admin' }"> <!-- 관리자 -->
+			      <a href="/mock/admin/adminpage">관리자페이지</a>
+			    </c:if>                                        <!-- /관리자 -->
+			    <c:if test="${userid!='admin' }"> 	<!-- 일반 사용자 -->
+			      <a href="/mock/mypage/mypage">마이페이지</a>
+			    </c:if>						      			  <!-- /일반 사용자 -->
+			   </c:if>                                   <!-- /로그인 했을때 -->
+		   </div>  <!--div item mypage 끝-->
 			<a href="/mock/user/logout">로그아웃</a>
 		</c:if>	
 		</div>
@@ -158,20 +171,6 @@ button{
 		  </c:if>
 		</div>
 		<div class="item m_free"><a href="/mock/freeboard/list">자유게시판</a></div>
-		<div class="item mypage">
-		  <c:if test="${userid==null }">  <!-- 로그인 안했을때 -->
-		    <a href="/mock/user/login">마이페이지</a>
-		  </c:if>	 <!-- /로그인 안했을때 -->
-		  <c:if test="${userid!=null }">  <!-- 로그인 했을때 -->
-		    <c:if test="${userid=='admin' }"> <!-- 관리자 -->
-		      <a href="/mock/admin/adminpage">관리자페이지</a>
-		    </c:if>                                        <!-- /관리자 -->
-		    <c:if test="${userid!='admin' }"> 	<!-- 일반 사용자 -->
-		      <a href="/mock/mypage/mypage">마이페이지</a>
-		    </c:if>						      			  <!-- /일반 사용자 -->
-		   </c:if>                                   <!-- /로그인 했을때 -->
-		</div>  <!--div item mypage 끝-->
-		
 		<div class="item Q&A"><a href="/mock/qa/list">Q&A</a></div>
 		
 		<!-- 아이템들 사이 조정을 위해 넣은 값 -->

@@ -55,7 +55,11 @@
 	</insert>
 	
 	<select id="buy_get" resultType="Integer">
-		select count(*) from buying where code=#{param1}
+		select count(*) from buying where code=#{param1} and userid=#{param2}
+	</select>
+	
+	<select id="sell_get" resultType="Integer">
+		select count(*) from selling where code=#{param1} and userid=#{param2}
 	</select>
 	
 	<select id="buy_count" resultType="Integer">

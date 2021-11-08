@@ -16,29 +16,52 @@
 	display:grid;
 	display:grid;
 	place-items: center;
- 	grid-template-columns: 5fr 1fr 1fr;	/*가로방향 비율*/
-  	grid-template-rows: 5fr 1fr 1fr 5fr; /*세로방향 비율*/
+ 	grid-template-columns: 5fr 30px 1fr 1fr 30px;	/*가로방향 비율*/
+  	grid-template-rows: 5fr 1fr 1fr 1fr 5fr; /*세로방향 비율*/
 	width:70%;
 	height:100%;
   	grid-gap: 10px;
 }
 .sc_graph{
 	grid-column:1;
-  	grid-row:1/5;
+  	grid-row:1/6;
+}
+.like{
+	grid-column:3/5;
+	grid-row:2;
 }
 .buy_con{
-	grid-column:2;
-  	grid-row:2;
-}
-.sell_con{
 	grid-column:3;
-  	grid-row:2;
-}
-.ai_con{
-	grid-column:2/4;
   	grid-row:3;
 }
+.sell_con{
+	grid-column:4;
+  	grid-row:3;
+}
+.realtime{
+	grid-column:3;
+	grid-row:4;
+}
+.ai_con{
+	grid-column:4;
+  	grid-row:4;
+}
 
+/* default button style */
+button {
+	border: 0;
+	padding: 15px 25px;
+	display: inline-block;
+	text-align: center;
+	color: white;
+}
+button:active {
+	top: 4px;	
+}
+
+/* color classes for .btn */
+button {box-shadow: 0px 4px #74a3b0;}
+button {box-shadow: 0 0 #74a3b0; background-color: #709CA8;}
 </style>
 <!-- 차트 그래프 스크립트 ===================== -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -59,17 +82,22 @@
 	<div id="stock-graph" class="sc_graph">차트 그래프
 	${code}
 	</div>
-	
+	<div class="like">
+		<button id="like" value="1">♡</button>
+	</div>
 	<div class="buy_con">
-	<input type="button" onclick="location.href='/mock/stocks/buying?code=${code}'" value="매수">
+		<button onclick="location.href='/mock/stocks/buying?code=${code}'">매수</button>
 	</div>
 	
 	<div class="sell_con">
-	<input type="button" onclick="location.href='/mock/stocks/selling?code=${code}'" value="매도">
+		<button onclick="location.href='/mock/stocks/selling?code=${code}'">매도</button>
 	</div>
 	
+	<div class="realtime">
+		<button onclick="location.href='/mock/stocks/realtime?code=${code}'" >실시간데이터보기</button>
+	</div>
 	<div class="ai_con">
-	<input type="button" value="Ai 분석">
+	<button>Ai 분석</button>
 	</div>
 
 </div>
