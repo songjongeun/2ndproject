@@ -17,30 +17,34 @@
       </c:if>
       <c:if test="${chk!=1}">  <!-- 가져온 정보가 있을시 -->
         <tr style="text-align:center">
-          <td colspan="4">실시간 종목</td>
+          <td colspan="5">실시간 종목</td>
         </tr>
+        <tr height="10">
         <tr style="text-align:center">
+          <td>종목코드</td>
           <td>종목명</td>
           <td>현재가</td>
           <td>등락(대비)</td>
           <td>거래량</td>
         </tr>
-        <tr><td colspan="4"><hr></td></tr>
+        <tr><td colspan="5"><hr></td></tr>
         <c:forEach items="${udto2}" var="udto2">
           <tr style="text-align:center">
 		    <%-- <c:if test="${udto2.err==1}">  <!-- 관심종목은 있지만 정보가 없을시 -->
 		      <td colspan="4"><a href="/mock/stocks/st_list?name=${udto2.name}">${udto2.name}의 정보를 찾을 수 없습니다</a></td>
 		    </c:if> --%>
 		    <c:if test="${udto2.err!=1}"> 
-              <td><a href="/mock/stocks/realtime">${udto2.name}</a></td><!-- 종목으로가기 -->
+              <td><a href="/mock/stocks/realtime?code=${udto2.code}">${udto2.code}</a></td><!-- 종목으로가기 -->
+              <td><a href="/mock/stocks/realtime?code=${udto2.code}">${udto2.name}</a></td><!-- 종목으로가기 -->
               <td><fmt:formatNumber value="${udto2.cprice}" pattern="#,##0" /></td>
               <td><fmt:formatNumber value="${udto2.diff}" pattern="#,##0" />%</td>
               <td><fmt:formatNumber value="${udto2.vol}" pattern="#,##0" /></td>
             </c:if>
           </tr>
         </c:forEach>
+      </c:if>
     </table>
-    <table width="700" >
+    <%-- <table width="700" >
         <tr style="text-align:center;margin-top:100px;">
           <td colspan="6">모의투자 종목</td>
         </tr>
@@ -68,8 +72,31 @@
             </c:if>
           </tr>
         </c:forEach>
-      </c:if>
+      </table> --%>
+      
+      <p style="margin-top:70px;">
+      
+      <c:if test="${chk!=1}">
+      <table width="300">
+        <tr style="text-align:center;">
+          <td colspan="2">모의투자 종목</td>
+        </tr>
+        <tr height="10">
+		<tr style="text-align:center;">
+		  <td>종목코드</td>
+		  <td>종목명</td>
+		</tr>
+        <tr><td colspan="2"><hr></td></tr>
+		<c:forEach items="${sdto}" var="sdto">
+		<tr style="text-align:center;">
+	      <td><a href="/mock/stocks/s_content?code=${sdto.code}">${sdto.code}</a></td>
+		  <td><a href="/mock/stocks/s_content?code=${sdto.code}">${sdto.name}</a></td>
+		</tr>
+	  </c:forEach>
     </table>
+    </c:if>
+      
+    
   </div>
   
 </body>
