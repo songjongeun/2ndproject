@@ -156,9 +156,9 @@
     </c:if>
     </div>
     
-    <div class="mypage mysell table table-striped table-hover">
+    <div>
     <c:if test="${mileage!=null}">
-    <table>
+    <table class="mypage mysell table table-striped table-hover">
       <c:if test="${sel!=1}">
         <tr align="center">
           <td>매도정보가 없습니다</td>
@@ -192,6 +192,7 @@
     </table>
     </c:if>
  </div>
+
   </div>
  </div>
 </body>

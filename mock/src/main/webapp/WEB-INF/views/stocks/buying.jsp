@@ -180,6 +180,7 @@ $(function(){/*숫자 증감 버튼*/
 		$(".curr_mil").val(curr_mil);
 	});
 }); 
+
 var buyval;
 $(function(){//숫자를 직접 입력했을 경우 실시간 계산
 	$(".n_buying").on("propertychange change keyup paste input",function(){
@@ -270,7 +271,7 @@ function diff_mil(){
 		</div>
 		<div class="sum">거래 합계</div>
 		<div class="sum_num">
-		<input type="text" name="ask_spread" class="sum_mil" size="4" value="${sdto.open*diff}" readonly
+		<input type="text" name="ask_spread" class="sum_mil" size="4" value="${sdto.open}" readonly
 		style="width:150px;text-align:right;">
 		</div>
 		<div class="cuur_mil">

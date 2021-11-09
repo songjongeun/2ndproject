@@ -4,7 +4,7 @@ public class SellingDto {
 	private int s_id,n_selling,bid_spread;
 	private String userid,code,s_day;
 	private String name;
-	private int total,avg;
+	private int total,avg,totalNum;
 	
 	public int getS_id() {
 		return s_id;
@@ -60,6 +60,12 @@ public class SellingDto {
 	}
 	public void setAvg(int avg) {
 		this.avg = avg;
+	}
+	public int getTotalNum() {
+		return totalNum;
+	}
+	public void setTotalNum(int totalNum) {
+		this.totalNum = totalNum;
 	}
 
 	

@@ -6,5 +6,10 @@
   <select id="adminpage" resultType="kr.co.mock.dto.UserDto">
      select * from user
   </select>
-
+  <select id="buyList" resultType="kr.co.mock.dto.BuyingDto">
+     select sum(n_buying) as totalNum,sum(ask_spread) as total,code,userid from buying group by userid order by b_day desc;
+  </select>
+ <select id="sellList" resultType="kr.co.mock.dto.SellingDto">
+     select sum(n_selling) as totalNum,sum(bid_spread) as total,code,userid from selling group by userid order by s_day desc;
+  </select>
 </mapper>
