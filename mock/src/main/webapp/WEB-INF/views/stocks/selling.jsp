@@ -192,13 +192,17 @@ $(function(){//숫자를 직접 입력했을 경우 실시간 계산
 		<input type="hidden" class="diff" value="${diff}">
 		</div>
 		<div class="week_num">
-		<input type="button" id="minus" class="btn btn-outline-danger btn-sm" value= "-">
-	  	<input type="text" class="n_selling" name="n_selling" value="${diff}" size="4">주<!-- 거래개수 -->
-	  	<input type="button" id="plus" class="btn btn-outline-danger btn-sm" value="+" >
+		<input type="button" id="minus" class="btn btn-outline-danger btn-sm" value= "-"
+		style="font-size:12px;margin-bottom:5px;">
+	  	<input type="text" class="n_selling" name="n_selling" value="${diff}" size="4"
+	  	style="text-align:right;">&nbsp;주<!-- 거래개수 -->
+	  	<input type="button" id="plus" class="btn btn-outline-danger btn-sm" value="+" 
+	  	style="font-size:12px;margin-bottom:5px;">
 		</div>
 		<div class="sum">거래 합계</div>
 		<div class="sum_num">
-		<input type="text" class="sum_mil" size="4" value="${sdto.open*diff}" readonly>
+		<input type="text" class="sum_mil" name="bid_spread" size="4" value="${sdto.open*diff}" readonly
+		style="width:150px;text-align:right;">
 		</div>
 		<div class="cuur_mil">
 			남은 마일리지
@@ -208,7 +212,8 @@ $(function(){//숫자를 직접 입력했을 경우 실시간 계산
 		  	마일리지 없음
 		</c:if>
 		 <c:if test="${mileage!=0}">
-		  	<input type="text" class ="curr_mil" name="curr_mil" value="${mileage+(sdto.open*diff)}" size="4" readonly>	
+		  	<input type="text" class ="curr_mil" name="curr_mil" value="${mileage+(sdto.open*diff)}" size="4" readonly
+		  	style="width:150px;text-align:right;">		  	
 		  </c:if>
 		</div>
 		
@@ -218,7 +223,8 @@ $(function(){//숫자를 직접 입력했을 경우 실시간 계산
 		
 		<div class="submit_ok">
 		<c:if test="${mileage!=0}">
-			<input type="submit" class="btn btn-outline-danger btn-sm" value="판매">
+			<input type="submit" class="btn btn-outline-danger btn-sm" value="판매"
+			style="width:150px;">
 		</c:if>
 		
 		</div>

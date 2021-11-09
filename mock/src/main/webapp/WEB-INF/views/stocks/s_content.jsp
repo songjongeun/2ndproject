@@ -49,10 +49,6 @@
 	grid-column:2;
   	grid-row:3;
 }
-.btn .btn-outline-danger .btn-sm{
-	
-}
-
 
 </style>
 
@@ -98,12 +94,9 @@
 		style="width:100%;">실시간 데이터</button>
 	</div>
 	<div class="ai_con">
-<<<<<<< HEAD
-	<button  class="btn btn-outline-danger btn-sm"
+	<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/aipredict?code=${code}'"
 	style="width:100%;">Ai 분석</button>
-=======
-	<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/aipredict?code=${code}'">Ai 분석</button>
->>>>>>> 318bebc926a663d3f331c06133cc5d14e6573c3e
+
 	</div>
   </div>
   </div>
