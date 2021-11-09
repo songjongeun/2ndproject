@@ -11,7 +11,49 @@
 <body>
   <div id="main" align="center">
 	<h3> 관리자페이지 </h3>
-    <table width="700" >
+	
+
+	<table class="table table-striped table-hover" >
+        <tr style="text-align:center">
+	      <td> 유저 </td>
+	      <td> 종목코드 </td>
+	      <td> 총 매수주 </td>
+	      <td> 매수 총 가격 </td>
+        </tr>
+        
+        <c:forEach items="${bdto}" var="bdto">
+          <c:if test="${bdto.userid!='admin'}">
+            <tr style="text-align:center">
+	          <td> ${bdto.userid} </td>
+	          <td> ${bdto.code} </td>
+	          <td> ${bdto.total} </td>
+	          <td> ${bdto.totalNum} </td>
+            </tr>
+          </c:if>
+        </c:forEach>
+    </table>
+	<hr>
+	<table class="table table-striped table-hover" >
+        <tr style="text-align:center">
+	      <td> 유저 </td>
+	      <td> 종목코드 </td>
+	      <td> 총 매도주 </td>
+	      <td> 매도 총 가격 </td>
+        </tr>
+        
+        <c:forEach items="${sdto}" var="sdto">
+          <c:if test="${sdto.userid!='admin'}">
+            <tr style="text-align:center">
+	          <td> ${sdto.userid} </td>
+	          <td> ${sdto.code} </td>
+	          <td> ${sdto.total} </td>
+	          <td> ${sdto.totalNum} </td>
+            </tr>
+          </c:if>
+        </c:forEach>
+    </table>
+    <hr>
+    <table class="table table-striped table-hover" >
         <tr style="text-align:center">
 	      <td> 아이디 </td>
 	      <td> 이름 </td>
