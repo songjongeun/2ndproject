@@ -151,7 +151,7 @@ public class UserController {
 	}
 	
 	// 마이페이지 회원 탈퇴 및 계정 삭제 
-	@RequestMapping("/mypage_delete")
+	@RequestMapping("mypage/mypage_delete")
 	public String delete(HttpSession session)
 	{
 		String userid=session.getAttribute("userid").toString();

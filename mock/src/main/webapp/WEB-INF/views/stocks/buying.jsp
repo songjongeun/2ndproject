@@ -14,31 +14,38 @@
 }
 .sub_main{
 	display:grid;
-	place-items: center;
-	width:30%;
+	justify-items:center;
+	width:40%;
 	height:100%;
 	grid-template-columns:1fr 1fr;
 	grid-template-rows:50px repeat(6, 30px);
   	grid-gap:10px;
-
-  	font-size:15px;
-  	justify-items:end;
+  	border: 1px dashed crimson;
+  	padding: 40px 15px 50px 15px;
+  	border-radius: 20px;
+  	box-shadow: 2px 2px 0 crimson;
+  	background:#F0F0F0;
+  	letter-spacing: -1px; 
 }
 .s_name{
 	grid-column:1/3;
   	grid-row:1;
 	text-decoration: underline;
 	text-underline-position: under;/*텍스트 밑의 밀줄을 간격을 좀 더 띄움*/
+	color:#DC3545;
 	margin-bottom:50px;
 }
-
 .mil_name{
 	grid-column:1;
   	grid-row:2;
   	border: 1px solid;
   	width:100%;
   	text-align:right;
-  	padding: 3px 0;
+  	padding: 3px 5px 3px 0;
+  	background:black;
+  	color:white;
+  	font-weight:bold;
+  	justify-items:end;
 }
 
 .mil_num{
@@ -49,6 +56,12 @@
 .price{
 	grid-column:1;
   	grid-row:3;
+  	text-align:right;
+ 	width:100%;
+ 	padding: 3px 5px 3px 0;
+  	background:black;
+  	color:white;
+  	font-weight:bold;
 }
 
 .price_num{
@@ -59,6 +72,12 @@
 .week{
 	grid-column:1;
   	grid-row:4;
+  	text-align:right;
+  	width:100%;
+  	padding: 3px 5px 3px 0;
+  	background:black;
+  	color:white;
+  	font-weight:bold;
 }
 
 .week_num{
@@ -69,6 +88,12 @@
 .sum{
 	grid-column:1;
   	grid-row:5;
+  	text-align:right;
+  	width:100%;
+  	padding: 3px 5px 3px 0;
+  	background:black;
+  	color:white;
+  	font-weight:bold;
 }
 
 .sum_num{
@@ -79,6 +104,12 @@
 .cuur_mil{
 	grid-column:1;
   	grid-row:6;
+  	text-align:right;
+  	width:100%;
+  	padding: 3px 5px 3px 0;
+  	background:black;
+  	color:white;
+  	font-weight:bold;
 }
 
 .cuur_mil_num{
@@ -89,6 +120,12 @@
 .mock_list{
 	grid-column:1;
   	grid-row:7;
+   	text-align:right;
+  	width:100%;
+  	padding: 3px 5px 0 0;
+  	background:black;
+  	color:white;
+  	font-weight:bold;
 }
 
 .submit_ok{
@@ -255,7 +292,8 @@ function diff_mil(){
 		
 		<div class="submit_ok">
 		<c:if test="${mileage!=0}">
-			<input class="btn btn-outline-danger btn-sm" type="submit" value="구매">
+			<input class="btn btn-danger btn-sm" type="submit" value="구매"
+			style="width:150px;">
 		</c:if>
 		
 		</div>

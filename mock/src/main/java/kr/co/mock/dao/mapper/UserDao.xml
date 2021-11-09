@@ -16,7 +16,7 @@
   </update>
   
   <delete id="mypage_delete">
-     delete from user where userid=#{userid}
+     delete from user where userid=#{param1}
   </delete>
   
   <select id="userid_check" resultType="Integer">

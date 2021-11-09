@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -61,13 +62,15 @@
 	height:30px;
 	display:flex;
 	justify-content: space-between;/*전체 같은 여백으로 정렬*/
+	font-size:18px;
+	font-weight:bold;
 }
 #third{ /*메뉴 바 밑의 밑줄*/
 	grid-area:third;
 	width:100%;
 	min-width:auto;
 	height:5px;
-	border-bottom:2px solid;
+	border-bottom:2px solid silver;
 }
 #main{ /*모든 메인 페이지 적용*/
 	width:100%;
@@ -126,7 +129,7 @@ button{
 	padding: 10px 0px;
 }
  input[type="text"] { border: solid 1px #DC3545; }
- input[type="password"] { border: solid 1px #D2691E;}
+ input[type="password"] { border: solid 1px #DC3545;}
 </style>
 
 </head>
@@ -134,7 +137,7 @@ button{
 <decorator:head/>
 <div class="container">
 	<div id="first">
-		<div class="item w_logo"><a href="/mock/main_view"><img src="https://i.imgur.com/P7URtSx.png"></a></div>
+		<div class="item w_logo"><a href="/mock/main_view"><img src="<spring:url value = '/img/logo.png'/>"></a></div>
 		<div class="item login">
 		<c:if test="${userid==null}">
 			<a href="/mock/user/login">로그인</a>

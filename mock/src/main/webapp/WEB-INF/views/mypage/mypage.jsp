@@ -8,41 +8,62 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title> 마이페이지 </title>
 <style>
-    #delform {
-      position:absolute;
-      visibility:hidden;
+    .main{
+      display:grid;
+      width:100%;
+      justify-items:start;
+    }
+    .main h3{
+    text-align:right;
+    margin-bottom:50px;
     }
     .mypage_view{
       display:grid;
-      place-items: center;
-      width:100%;
       grid-gap:70px;
+      place-items: center;
+    }
+    .myid{
+      width:50%;
+    }
+    .mymil{
+      width:80%;
+      border: 1px solid #D2691E;
+      text-align:center;
+      padding: 20px 0;
+      font-size:17px;
     }
 </style>
 
 </head>
 <body>
-<div id="main" class="mypage_view">
+<div id="main" class="main">
 	<h3> 마이페이지 </h3>
-	
+<div class="mypage_view">
 <div  class="mypage myid">
-  <table align="center" class="table table-striped table-hover">
-    <tr>
-      <td> 아이디 </td>
+  <table align="center" class="table table-light">
+    <tr class="table-danger">
+      <th> 아이디 </th>
       <td> ${udto.userid} </td>
-      <td> 이름 </td>
+      </tr>
+      
+      <tr>
+      <th> 이름 </th>
       <td> ${udto.username} </td>
-      <td> 이메일 </td>
+      </tr>
+      
+      <tr class="table-danger">
+      <th> 이메일 </th>
       <td> ${udto.email} </td>
     </tr>
+  
     <tr>
-
       <td>
-      <button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/mypage/mypage_update?userid=${udto.userid}'">수정</button>
+      <button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/mypage/mypage_update?userid=${udto.userid}'"
+      style="width:100%;">수정</button>
       </td>
       <td>
-       <button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/mypage/mypage_delete'">삭제</button>
-
+       <button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/mypage/mypage_delete'"
+       style="width:100%;">탈퇴</button>
       </td>
 
     </tr>
@@ -67,9 +88,9 @@
       </c:if>
       <c:if test="${buy==1}">
         <tr align="center">
-          <td colspan="6">보유 주 정보</td>
+          <td colspan="6" class="table-danger">보유 주 정보</td>
         </tr>
-        <tr height="10"/>
+        <tr><td colspan="6"><hr></td></tr>
         <tr align="center">
           <td>종목코드</td>
           <td>종목명</td>
@@ -77,7 +98,6 @@
           <td>주당 평균 매수금</td>
           <td>총 매수금</td>
         </tr>
-        <tr><td colspan="6"><hr></td></tr>
         <c:forEach items="${total3}" var="total3">
           <c:if test="${total3.n_buying!=0 }">
           <tr align="center">
@@ -96,12 +116,12 @@
    
  
 	<c:if test="${mileage!=null}">
-  		<div class="mypage mymil able table-striped table-hover">보유포인트 : <fmt:formatNumber value="${mileage}" pattern="#,##0" /></div>
+  		<div class="mypage mymil">보유포인트 : <fmt:formatNumber value="${mileage}" pattern="#,##0" /></div>
 	</c:if>
   
   <div class="mypage mybuy">
   <c:if test="${mileage!=null}">
-    <table>
+    <table class="table table-striped table-hover">
       <c:if test="${buy!=1}">
         <tr align="center">
           <td>매수정보가 없습니다</td>
@@ -109,7 +129,7 @@
       </c:if>
       <c:if test="${buy==1}">
         <tr align="center">
-          <td colspan="6">매수정보</td>
+          <td colspan="6" class="table-danger">매수정보</td>
         </tr>
         <tr height="10"/>
         <tr align="center">
@@ -146,7 +166,7 @@
       </c:if>
       <c:if test="${sel==1}">
         <tr align="center">
-          <td colspan="6">매도정보</td>
+          <td colspan="6" class="table-danger">매도정보</td>
         </tr>
         <tr height="10"/>
         <tr align="center">
@@ -162,7 +182,7 @@
           <tr>
             <td><a href="/mock/stocks/s_content?code=${sdto3.code}">${sdto3.code}</a></td>
             <td><a href="/mock/stocks/s_content?code=${sdto3.code}">${sdto3.name}</a></td>
-            <td><fmt:formatNumber value="${sdto3.n_selling}" pattern="#,##0" /></td>
+            <td align="center"><fmt:formatNumber value="${sdto3.n_selling}" pattern="#,##0" /></td>
             <td><fmt:formatNumber value="${sdto3.bid_spread / sdto3.n_selling}" pattern="#,##0" /></td>
             <td><fmt:formatNumber value="${sdto3.bid_spread}" pattern="#,##0" /></td>
             <td>${sdto3.s_day}</td>
@@ -171,15 +191,7 @@
       </c:if>
     </table>
     </c:if>
-
-
- 	<table class="table table-striped table-hover" align="center">
- 	<td>
- 	
-  <button id="withdrawal">탈퇴하기</button>
-  </td>
-	</table>
-
+ </div>
   </div>
  </div>
 </body>

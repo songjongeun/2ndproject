@@ -20,6 +20,12 @@
 	grid-template-columns:1fr 1fr;
 	grid-template-rows:50px repeat(6, 30px);
   	grid-gap:10px;
+  	border: 1px dashed crimson;
+  	padding: 40px 15px 50px 15px;
+  	border-radius: 20px;
+  	box-shadow: 2px 2px 0 crimson;
+  	background:#F0F0F0;
+  	letter-spacing: -1px; 
 
 }
 .s_name{
@@ -28,11 +34,20 @@
 	text-decoration: underline;
 	text-underline-position: under;/*텍스트 밑의 밀줄을 간격을 좀 더 띄움*/
 	margin-bottom:50px;
+	color:#DC3545;
 }
 
 .mil_name{
 	grid-column:1;
   	grid-row:2;
+  	border: 1px solid;
+  	width:100%;
+  	text-align:right;
+  	padding: 3px 5px 3px 0;
+  	background:black;
+  	color:white;
+  	font-weight:bold;
+  	justify-items:end;
 }
 
 .mil_num{
@@ -43,6 +58,13 @@
 .price{
 	grid-column:1;
   	grid-row:3;
+  	border: 1px solid;
+  	width:100%;
+  	text-align:right;
+  	padding: 3px 5px 3px 0;
+  	background:black;
+  	color:white;
+  	font-weight:bold;
 }
 
 .price_num{
@@ -53,6 +75,13 @@
 .week{
 	grid-column:1;
   	grid-row:4;
+  	border: 1px solid;
+  	width:100%;
+  	text-align:right;
+  	padding: 3px 5px 3px 0;
+  	background:black;
+  	color:white;
+  	font-weight:bold;  	
 }
 
 .week_num{
@@ -63,6 +92,13 @@
 .sum{
 	grid-column:1;
   	grid-row:5;
+  	border: 1px solid;
+  	width:100%;
+  	text-align:right;
+  	padding: 3px 5px 3px 0;
+  	background:black;
+  	color:white;
+  	font-weight:bold;  	
 }
 
 .sum_num{
@@ -73,6 +109,13 @@
 .cuur_mil{
 	grid-column:1;
   	grid-row:6;
+  	border: 1px solid;
+  	width:100%;
+  	text-align:right;
+  	padding: 3px 5px 3px 0;
+  	background:black;
+  	color:white;
+  	font-weight:bold;  	
 }
 
 .cuur_mil_num{
@@ -83,6 +126,13 @@
 .mock_list{
 	grid-column:1;
   	grid-row:7;
+  	border: 1px solid;
+  	width:100%;
+  	text-align:right;
+  	padding: 3px 5px 3px 0;
+  	background:black;
+  	color:white;
+  	font-weight:bold;
 }
 
 .submit_ok{
@@ -259,7 +309,7 @@ function diff_mil(){
 		
 		<div class="submit_ok">
 		<c:if test="${mileage!=0}">
-			<input type="submit" class="btn btn-outline-danger btn-sm" value="판매"
+			<input type="submit" class="btn btn-danger btn-sm" value="판매"
 			style="width:150px;">
 		</c:if>
 		

@@ -11,7 +11,7 @@
 <div id="main">
 	<h3> 글목록 </h3>
 	<hr>
- 	<table width="900" align="center">
+ 	<table width="900" align="center" class="table table-striped table-hover">
  	 <tr>
 	  <td colspan="5" align="center"> 
 
@@ -95,7 +95,7 @@
             <option value="userid"> 아이디 </option>
           </select>
           <input type="text" name="word" value="${word}">
-          <input type="submit" value="검색">
+          <input type="submit" value="검색" class="btn btn-danger btn-sm">
         </form>
        </td>
      </tr>
