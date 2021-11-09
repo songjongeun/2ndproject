@@ -5,24 +5,50 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title> Q&A 게시판 </title>
+<title>게시판 </title>
+ <script>
+  function dat_update(n,id)
+   {
+	   // 1. 작성자를 폼태그에 넣기
+	   document.inform.userid.value=document.getElementsByClassName("userid")[n].innerText;
+	   // 2. 댓글내용은 폼태그에 넣고
+	   document.inform.content.value=document.getElementsByClassName("content")[n].innetText;
+	   // 3. submit 버튼의 value를 수정으로 변경
+	   document.inform.submit.value="수정";
+	   // 4. action="dat_update.jsp"
+	   document.inform.action="dat_update";  
+	   // 5. 수정폼의 name="id"인곳에 id값을 전달
+	   document.inform.q_id.value=q_id;
+	   // 6. 수정취소버튼을 보이기 
+	   document.getElementById("upbtn").style.display="inline";
+   }
+  function init()  // 수정폼을 입력폼으로 
+  {
+	  // 1. 작성자와 내용칸을 빈칸으로 
+	  document.inform.userid.value="";
+	  document.inform.content.value="";
+	  // 2. submit 버튼의 value를 저장으로 변경
+	  document.inform.submit.value="저장";
+	  // 3. action="dat_ok.jsp"
+	  document.inform.action="dat_write_ok.jsp";
+	  // 4. 수정 취소버튼을 숨기기
+	  document.getElementById("upbtn").style.display="none";
+  }
+  </script>
 </head>
 <body>
 <div id="main">
 	<h3> Q&A </h3>
 	<hr>
-  <table width="500" align="center">
+  <table class="table table-striped table-hover" width="500" align="center">
     <tr>
-      <td> 제목 </td>
-      <td> ${qdto.title} </td>
+      <td><h1> ${qdto.title}</h1> </td>
+    </tr>
+    <tr>
+      <td>${qdto.userid} ⏰ ${qdto.writeday}  👀${qdto.hit} </td>
     </tr>
     <tr height="255">
-      <td> 내용 </td>
-      <td> ${qdto.content} </td>
-    </tr>
-    <tr>
-      <td> 작성일 </td>
-      <td> ${qdto.writeday} </td>
+      <td>${qdto.content} </td>
     </tr>
     <tr>
       <td colspan="2"> 
@@ -37,7 +63,7 @@
 	    <c:if test="${userid!=null}"> 
 		<a href="list"> 목 록 </a>
 		<a href="write"> 글쓰기 </a> 
-		  <c:if test="${userid==bdto.userid || userid=='admin'}">
+		  <c:if test="${userid==qdto.userid || userid=='admin'}">
 		    <a href="update?q_id=${qdto.q_id}"> 수정 </a>
 	        <a href="#" onclick="del()"> 삭제 </a>
 	      </c:if>  
@@ -71,90 +97,6 @@
     	document.getElementById("delform").style.visibility="hidden";
     }
   </script>
-  <hr>
-  
-  <!-- 댓글 목록 시작 -->
-	<table width="500" align="center">
-     <tr>
-      <td> 관리자 </td>
-      <td> 내 용 </td>
-     </tr>
-     
-    <c:forEach items="${dat_list}" var="qdto">
-     <tr>
-      <td> ${qdto.q_id } </td>
-      <td> ${qdto.qd_id} </td>
-      <td> ${qdto.pwd } </td>
-     </tr>
-    </c:forEach> 
-    
-    <!-- 페이지 시작 -->
-     <tr>
-     <td colspan="3" align="center"> 
-      <!-- 현재 페이지 기준 이전 10페이지 이동 -->
-      <c:if test="${pstart != 1}">
-       <a href="list?page=${pstart-1}"> 
-       </a> </c:if>
-      <c:if test="${pstart == 1}"> 
-       <<
-      </c:if>
-       <!-- 현재페이지 이전 1페이지 이동 -->
-      <c:if test="${page != 1}"> 
-       <a href="list?page=${page-1}"> < </a>
-      </c:if>
-      <c:if test="${page == 1}"> 
-       <
-      </c:if>
-       <!-- 현재페이지 기준으로 이동할 수 있는 페이지  -->
-        <c:forEach begin="${pstart}" end="${pend}" var="i">
-          <!-- 현재페이지 색은 다르게 => 빨강 -->
-         <c:if test="${page != i}"> 
-          <a href="list?page=${i}"> ${i} </a>
-         </c:if>
-         <c:if test="${page == i}"> 
-          <a href="list?page=${i}" style="color:red"> ${i} </a>
-         </c:if>
-        </c:forEach>
-        
-        <!-- 현재페이지 기준 다음1페이지 이동 -->
-       <c:if test="${page != page_cnt}"> 
-        <a href="list?page=${page+1}"> > </a>
-       </c:if>
-     
-       <c:if test="${page == page_cnt}"> > </c:if>
-      <c:if test="${page_cnt != pend}"> 
-       <a href="list?page=${pend+1}"> >> </a>
-      </c:if>
-      <c:if test="${page_cnt == pend}"> 
-       >>
-      </c:if> 
-      </td>     
-      </tr>
-      </table>
-  <!-- 댓글 목록 끝 -->
-  
-  <hr>
-  
-  <!-- 댓글 작성 시작 -->
-  <div>
-  <form name="dat_write" method="post" action="dat_write_ok">
-  <!-- 로그인을 안 했을 때 -->
-	<c:if test="${empty sessionScope.userid}">
-	<a href="list"> 목록가기 </a>
-	<a href="/mock/user/login">로그인 </a>
-	</c:if>
-	 
-	<!-- 로그인을 한 상태 -->
-	<c:if test="${userid!=null}"> 
-  	<p> 작성자 ${sessionScope.userid} </p> 
-  	<p><textarea rows="5" cols="65" placeholder="댓글 내용"></textarea></p>
-  	<input type="hidden" name="q_id" value="${dat.q_id}">
-  	<input type="submit" value="댓글 작성">
-  	</c:if>
-  </form>
-  </div>
-  <!-- 댓글 작성 끝 -->
-
 </div>
 </body>
 </html>

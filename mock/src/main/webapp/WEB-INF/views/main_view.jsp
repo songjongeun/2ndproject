@@ -14,6 +14,7 @@
        </c:if>
        <c:if test="${userid!=null}"><!-- 로그인을 했을 경우 -->
 		${username}님 로그인됨
+		${diffdays}
         <a href="logout">로그아웃</a> 
         
       </c:if>
