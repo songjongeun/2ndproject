@@ -108,6 +108,7 @@ $(function(){/*숫자 증감 버튼*/
 			alert('최저 매수 갯수는 1주입니다.');
 			num =1;
 		}
+		
 		sum_mil = curr*num;
 		curr_mil = mil-sum_mil;
 		
@@ -120,7 +121,13 @@ $(function(){/*숫자 증감 버튼*/
 		num = Number($(".n_buying").val());
 		mil = Number($("#mileage").val());
 		curr = Number($("#curr").val());
+		var maxbuy=parseInt(${mileage}/${sdto.open});
+
 		num++;
+		if(maxbuy<num){
+			alert("마일리지 한도 이상을 구매할 수 없습니다.");
+			num=maxbuy;
+		}
  
 		sum_mil = curr*num;
 		curr_mil = mil-sum_mil;
@@ -144,37 +151,40 @@ $(function(){//숫자를 직접 입력했을 경우 실시간 계산
 	sum_mil = curr*buyval;
 	curr_mil = mil-sum_mil;
 	
-	$(".sum_mil").val(setComma(sum_mil));
+	$(".sum_mil").val(sum_mil);
 	$(".curr_mil").val(curr_mil);
 	});
 });
 
 function diff_mil(){
 	curr_mil= Number($(".curr_mil").val());
-	if(curr_mil<0){
-		alert("매도 금액이 마일리지를 초과했습니다.");
+	num= Number($(".n_buying").val());
+	var maxbuy=parseInt(${mileage}/${sdto.open});
+	if(curr_mil<0){ //최종 마일리지의 값이 마이너스가 되면 구매할 수 없다.
+		alert("마일리지 한도 이상을 구매할 수 없습니다.");
+		num=maxbuy;
+		$(".n_buying").val(num);
+		num2 = Number($(".n_buying").val());
+		mil = Number($("#mileage").val()); //받은 포인트
+		curr = Number($("#curr").val()); //매수가
+		
+		sum_mil = curr*num2;
+		curr_mil = mil-sum_mil;
+		
+		$(".sum_mil").val(sum_mil);
+		$(".curr_mil").val(curr_mil);
 		return false;
-	}else{
+		
+	}else if(num==0){
+		alert("최소한 하나 이상을 구매해야합니다.");
+		num=1;
+		return false;
+	}
+	else{
 		return true;
 	}
 }
 
-$(function(){
-	$('input[class="sum_mil"]').on("propertychange change keyup paste input",function(){
-		var cost=$(this).val();
-		cost=cost.replace(/[^0-9]/g,"");
-		$(this).val(setComma(cost));
-		
-	})
-})
-function setComma(cost){
-	var reg=/(^[+-]?\d+)(\d{3})/;
-	cost +='';
-	while(reg.sum_mil(cost)){
-		cost=cost.replace(reg,'$1'+','+'&2');
-	}
-	return cost;
-}
 
 </script>
 <style>
@@ -210,7 +220,7 @@ function setComma(cost){
 		<div class="week_num">
 		<input type="button" id="minus" class="btn btn-outline-danger btn-sm" value= "-"
 		style="font-size:12px;margin-bottom:5px;">
-	  	<input type="text" class="n_buying" name="n_buying" value="0" size="4"
+	  	<input type="text" class="n_buying" name="n_buying" value="1" size="4"
 	  	style="text-align:right;">&nbsp;주<!-- 거래개수 -->
 	  	<input type="button" id="plus" class="btn btn-outline-danger btn-sm" value="+" 
 	  	style="font-size:12px;margin-bottom:5px;">
