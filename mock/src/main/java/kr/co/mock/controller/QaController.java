@@ -30,7 +30,8 @@ public class QaController {
 	
 	public String write_ok(QaDto qdto,HttpSession session)
 	{
-		QaDao qdao=sqlSession.getMapper(QaDao.class); 
+		QaDao qdao=sqlSession.getMapper(QaDao.class);
+		qdto.setUserid(session.getAttribute("userid").toString());
 		qdao.write_ok(qdto);
 		return "redirect:/qa/list";
 	}
@@ -71,6 +72,15 @@ public class QaController {
 		return "/qa/list";
 	}
 	
+	@RequestMapping("/qa/hit")
+	public String hit(HttpServletRequest request)
+	{
+		int q_id=Integer.parseInt(request.getParameter("q_id"));
+		QaDao qdao=sqlSession.getMapper(QaDao.class);
+        qdao.hit(q_id);
+		return "redirect:/qa/content?q_id="+q_id;
+	}
+	
 	@RequestMapping("/qa/content")
 	public String content(Model model,HttpServletRequest request)
 	{   
@@ -104,12 +114,37 @@ public class QaController {
 	
 	@RequestMapping("/qa/delete")
 	public String delete(HttpServletRequest request)
-	{
+	{ 
 		
 		int q_id=Integer.parseInt(request.getParameter("q_id"));
 		QaDao qdao=sqlSession.getMapper(QaDao.class);
 		qdao.delete(q_id);
 		return "redirect:/qa/list";
+	}
+	
+	@RequestMapping("/qa/list2")
+	public String list2(Model model,HttpServletRequest request)
+	{
+		// 검색필드와 검색단어를 가져오기
+		String field,word;
+		if(request.getParameter("field")==null)
+		{
+			field="title";
+			word="";
+		}
+		else  
+		{
+			field=request.getParameter("field");
+			word=request.getParameter("word");
+		}
+		   
+		QaDao qdao=sqlSession.getMapper(QaDao.class);
+		ArrayList<QaDto> list=qdao.list2(field,word);
+		model.addAttribute("list",list);
+		model.addAttribute("field",field);
+		model.addAttribute("word",word);
+		
+		return "/qa/list2";
 	}
 	
 }
