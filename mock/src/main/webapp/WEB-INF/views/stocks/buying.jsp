@@ -144,7 +144,7 @@ $(function(){//숫자를 직접 입력했을 경우 실시간 계산
 	sum_mil = curr*buyval;
 	curr_mil = mil-sum_mil;
 	
-	$(".sum_mil").val(sum_mil);
+	$(".sum_mil").val(setComma(sum_mil));
 	$(".curr_mil").val(curr_mil);
 	});
 });
@@ -158,6 +158,24 @@ function diff_mil(){
 		return true;
 	}
 }
+
+$(function(){
+	$('input[class="sum_mil"]').on("propertychange change keyup paste input",function(){
+		var cost=$(this).val();
+		cost=cost.replace(/[^0-9]/g,"");
+		$(this).val(setComma(cost));
+		
+	})
+})
+function setComma(cost){
+	var reg=/(^[+-]?\d+)(\d{3})/;
+	cost +='';
+	while(reg.sum_mil(cost)){
+		cost=cost.replace(reg,'$1'+','+'&2');
+	}
+	return cost;
+}
+
 </script>
 <style>
 

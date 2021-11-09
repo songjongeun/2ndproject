@@ -11,7 +11,7 @@ import kr.co.mock.dto.UserDto;
 public interface MockDao {
 	public void in_regi_ok(MockDto mdto,String userid,int m_close,int mileage);
 	public UserDto login_ok(UserDto udto);
-	public MockDto get_enddate(String userid);
+	public int get_enddate(String userid);
 	
 	//모의투자 리스트=============
 	public ArrayList<StockDto> st_list(String field,String word,int index,int curpage);
