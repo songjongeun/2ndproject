@@ -50,25 +50,28 @@
 
 
 </style>
-<!-- 차트 그래프 스크립트 ===================== -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- 차트 그래프 스크립트 ===================== -->
 <script src="https://code.highcharts.com/stock/highstock.js"></script>
 <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+
 <script src="https://code.highcharts.com/stock/indicators/indicators-all.js"></script>
 <script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
+
 <script src="https://code.highcharts.com/modules/annotations-advanced.js"></script>
 <script src="https://code.highcharts.com/modules/price-indicator.js"></script>
 <script src="https://code.highcharts.com/modules/full-screen.js"></script>
+
 <script src="https://code.highcharts.com/modules/stock-tools.js"></script>
+
 <script src="https://code.highcharts.com/stock/modules/heikinashi.js"></script>
 <script src="https://code.highcharts.com/stock/modules/hollowcandlestick.js"></script>
 <!-- 차트 그래프 스크랩트 ==================== -->
 </head>
 <body>
 <div id="main" class="main">
-	<div id="stock-graph" class="sc_graph">차트 그래프
-	${code}
-	</div>
+	<div id="stock-graph" class="sc_graph"></div>
 	<div class="like">
 		<button id="like"  class="btn btn-outline-danger btn-sm" value="1">♡</button>
 	</div>
@@ -91,7 +94,7 @@
 <script>
 
 $(document).ready(function(){
-	var reqData={code:"<c:out value='${code}'/>"}	// 변수
+	var reqData={code:"<c:out value='${code}'/>"}	;// 변수
 
 	
 	$.ajax({
@@ -201,6 +204,9 @@ $(document).ready(function(){
 		        }
 		    });
 
+		}, error : function( ){
+			
+			alert('dataError');	
 		}
 		
 		

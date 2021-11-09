@@ -49,9 +49,12 @@ public class StockController {
 		
 		
 		for(int i=0;i<list.size();i++) {
-				
-			String timestamp=list.get(i).getDate();
+					
+			String stamp=list.get(i).getDate();
+			String[] stamp1=stamp.split(" ");
+			String timestamp=stamp1[0];
 			timestamp=timestamp+"T00:00:00.000-0000";
+			
 			long date= tou.tsToSec8601(timestamp);
 			int open =list.get(i).getOpen();
 			int high =list.get(i).getHigh();
@@ -86,8 +89,10 @@ public class StockController {
 		
 		for(int i=0;i<list.size();i++) {
 				
-			String timestamp=list.get(i).getDate();
-			 timestamp=timestamp+"T00:00:00.000-0000";
+			String stamp=list.get(i).getDate();
+			String[] stamp1=stamp.split(" ");
+			String timestamp=stamp1[0];
+			timestamp=timestamp+"T00:00:00.000-0000";
 			
 			long date= tou.tsToSec8601(timestamp);
 			long open =list.get(i).getOpen();
@@ -115,14 +120,16 @@ public class StockController {
 	
 	@RequestMapping("/stocks/testJson")
 	public String testJson(Model model){
+		String code="A000660";
 		StockDao sdao=sqlSession.getMapper(StockDao.class);
-		String code="A035720";
 		ArrayList<StockDto> list=sdao.selectData(code);
-		model.addAttribute("list",list);
+		String timestamp= list.get(1).getDate();
+		String []time=timestamp.split(" ");
+		String time1=time[0];
+		model.addAttribute("date", timestamp);
+		model.addAttribute("time", time1);
 		return "/stocks/testJson";
 	}
-	
-	
 	
 	@RequestMapping("/stocks/testJson2")
 	public String testChart() {
