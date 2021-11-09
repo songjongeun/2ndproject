@@ -7,9 +7,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>내종목보기</title>
+<style>
+.main{
+	display:grid;
+	place-items: center;
+}
+
+td:nth-chile(1){
+	text-align:center;
+	width:500px;
+}
+td:nth-chile(2){
+	text-align: left;
+	width:400px;
+}
+
+.st_listsize{
+  	width:40%;
+}
+</style>
 </head>
 <body>
   <div id="main" align="center">
+	<h4> 내 종목 보기 </h3>
     <%-- <table width="700" >  <!--실시간종목 - 출력은 데이터 있는것(삼성전자)만 가능-->
       <c:if test="${chk==1}">  <!-- 가져온 정보가 없을시 -->
         <div style="padding-right:70px;padding-top:70px;text-align:center;">관심종목이 없습니다<p>
@@ -74,7 +94,7 @@
         </c:forEach>
       </table> --%>
       
-      <p style="margin-top:10px;">
+  		<p style="margin-top:70px;">
       
       <c:if test="${chk==1}">  <!-- 가져온 정보가 없을시 -->
         <div style="padding-right:70px;padding-top:70px;text-align:center;">관심종목이 없습니다<p>
@@ -82,23 +102,21 @@
       </c:if>
     <c:if test="${chk!=1}">
       
-      <table width="300">
-        <tr style="text-align:center;">
-          <td colspan="2">내 종목 보기</td>
-        </tr>
-        <tr height="10">
-		<tr style="text-align:center;">
-		  <td>종목코드</td>
-		  <td>종목명</td>
-		</tr>
-        <tr><td colspan="2"><hr></td></tr>
-		<c:forEach items="${sdto}" var="sdto">
-		  <tr style="text-align:center;">
-	        <td><a href="/mock/stocks/s_content?code=${sdto.code}">${sdto.code}</a></td>
-		    <td><a href="/mock/stocks/s_content?code=${sdto.code}">${sdto.name}</a></td>
-		  </tr>
-	    </c:forEach>
-      </table>
+    <div class="st_listsize">
+  <table class="table table-sm">
+	<tr>
+		<th>종목코드</th>
+		<th>종목명</th>
+	</tr>
+	
+	<c:forEach items="${sdto}" var="sdto">
+	<tr>
+		<td class="s_code"><a href="/mock/stocks/s_content?code=${sdto.code}">${sdto.code}</a></td>
+		<td class="s_name"><a href="/mock/stocks/s_content?code=${sdto.code}">${sdto.name}</a></td>
+	</tr>
+	</c:forEach>
+	</table>
+	</div>
     </c:if>
       
     
