@@ -76,8 +76,11 @@
       
       <p style="margin-top:10px;">
       
-      
-      <c:if test="${chk!=1}">
+      <c:if test="${chk==1}">  <!-- 가져온 정보가 없을시 -->
+        <div style="padding-right:70px;padding-top:70px;text-align:center;">관심종목이 없습니다<p>
+        관심종목을 등록해주세요</div>
+      </c:if>
+    <c:if test="${chk!=1}">
       
       <table width="300">
         <tr style="text-align:center;">
@@ -90,14 +93,12 @@
 		</tr>
         <tr><td colspan="2"><hr></td></tr>
 		<c:forEach items="${sdto}" var="sdto">
-		<tr style="text-align:center;">
-	      <td><a href="/mock/stocks/s_content?code=${sdto.code}">${sdto.code}</a></td>
-		  <td><a href="/mock/stocks/s_content?code=${sdto.code}">${sdto.name}</a></td>
-		</tr>
-	  </c:forEach>
-	  
-	  
-    </table>
+		  <tr style="text-align:center;">
+	        <td><a href="/mock/stocks/s_content?code=${sdto.code}">${sdto.code}</a></td>
+		    <td><a href="/mock/stocks/s_content?code=${sdto.code}">${sdto.name}</a></td>
+		  </tr>
+	    </c:forEach>
+      </table>
     </c:if>
       
     
