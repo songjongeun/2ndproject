@@ -54,4 +54,13 @@ INSERT INTO interests(userid,code) values(#{userid},#{code})
 DELETE FROM interests where userid=#{userid} and code=#{code}
 </delete>
 
+<select id="getImgName" parameterType="String" resultType="String">
+SELECT imgName FROM predict where code=#{code}
+</select>
+
+<select id="getPredictPrice" parameterType="String" resultType="Integer">
+select cprice from prestock where code=#{code} order by p_id desc limit 1
+
+</select>
+
 </mapper>

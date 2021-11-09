@@ -24,4 +24,7 @@ public interface StockDao {
  public void insertValueInterests(LikeDto ldto);
  public void deleteValueInterests(LikeDto ldto);
  
+ 
+ public String getImgName(String code);
+ public int getPredictPrice(String code);
 }

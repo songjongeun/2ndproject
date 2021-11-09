@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!-- 숫자서식을 위해 fmt 사용 -->'
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,29 +53,31 @@
 </style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<!-- 차트 그래프 스크립트 ===================== -->
-<script src="https://code.highcharts.com/stock/highstock.js"></script>
-<script src="https://code.highcharts.com/stock/modules/data.js"></script>
 
-<script src="https://code.highcharts.com/stock/indicators/indicators-all.js"></script>
-<script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
-
-<script src="https://code.highcharts.com/modules/annotations-advanced.js"></script>
-<script src="https://code.highcharts.com/modules/price-indicator.js"></script>
-<script src="https://code.highcharts.com/modules/full-screen.js"></script>
-
-<script src="https://code.highcharts.com/modules/stock-tools.js"></script>
-
-<script src="https://code.highcharts.com/stock/modules/heikinashi.js"></script>
-<script src="https://code.highcharts.com/stock/modules/hollowcandlestick.js"></script>
-<!-- 차트 그래프 스크랩트 ==================== -->
 </head>
 <body>
 <div id="main" class="main">
-	<div id="stock-graph" class="sc_graph"></div>
+	<div id="stock-graph" class="sc_graph">
+	<img src="<spring:url value = '/img/${imgName}'/>" >
+	</div>
 	<div class="like">
 		<button id="like"  class="btn btn-outline-danger btn-sm">♡</button>
 	</div>
+	<div id="predict">
+	
+	현재가  ${close}
+	<c:if test="${close>cprice}">
+	
+	<span style="color:blue;"> ai 예측 다음날 가격 ${cprice} </span>
+	</c:if>
+	<c:if test="${close<cprice}">
+	
+	<span style="color:red;"> ai 예측 다음날 가격 ${cprice} </span>
+	</c:if>
+
+		<!-- 종가, 예측가 -->
+	</div>
+	
 	<div class="buy_con">
 		<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/buying?code=${code}'">매수</button>
 	</div>
@@ -87,13 +90,23 @@
 		<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/realtime?code=${code}'" >실시간데이터보기</button>
 	</div>
 	<div class="ai_con">
-	<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/aipredict?code=${code}'">Ai 분석</button>
+	<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/s_content?code=${code}'"> 데이터 보기</button>
 	</div>
 
 </div>
 <script>
 
+
+
 $(document).ready(function(){
+	var imgName=null;
+	imgName="${imgName}";
+	
+	if (imgName==null){
+		alert("ai 분석 데이터가 없습니다");
+		history.back();
+	}
+	
 	
 	var param={userid:"${sessionScope.userid}", code:"${code}"};
 
@@ -106,7 +119,7 @@ $(document).ready(function(){
 	    success : function(data){
 	       var chk=	data.chk;
 	       if (chk==1){
-	    	   $("#like").text("♥");
+	    	   $("#like").text("♥"); 
 	       }else{
 	    	   $("#like").text("♡");
 	       }
@@ -251,13 +264,14 @@ $(document).ready(function(){
 
 		}, error : function( ){
 			
-			alert('data가 없습니다');
+			alert('data가 없습니다');	
 			history.back();
 		}
 		
 		
 	});
 
+	
 
 	});
 
