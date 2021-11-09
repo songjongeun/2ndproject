@@ -245,7 +245,8 @@ public String in_regi(Model model,HttpSession session)
 					int sell=mdao.sell_get(code, userid); //판매주식이 있는지 확인
 					if(sell>0) {//판매한 내용이 있다면
 						int n_selling=mdao.sell_count(userid,code); //해당 아이디가 판매한 총 매도 갯수를 가져옴
-						diff=(n_buying-n_selling)-1;
+						diff=(n_buying-n_selling);	// 여기 왜 1뺐지?
+
 						model.addAttribute("sdto",sdto);
 						model.addAttribute("mileage",mileage);
 						model.addAttribute("diff",diff);

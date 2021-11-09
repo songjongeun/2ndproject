@@ -62,7 +62,6 @@
 	    <!-- 로그인을 한 상태로 다른 사람이 쓴 글에 들어왔을 때 -->
 	    <c:if test="${userid!=null}"> 
 		<a href="list"> 목 록 </a>
-		<a href="write"> 글쓰기 </a> 
 		  <c:if test="${userid=='admin'}">
 		    <a href="update?q_id=${qdto.q_id}"> 수정 </a>
 	        <a href="#" onclick="del()"> 삭제 </a>
