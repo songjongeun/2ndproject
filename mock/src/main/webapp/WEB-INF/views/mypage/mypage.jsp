@@ -79,8 +79,8 @@
         <c:forEach items="${total3}" var="total3">
           <c:if test="${total3.n_buying!=0 }">
           <tr align="center">
-            <td>${total3.code}</td>
-            <td>${total3.name}</td>
+            <td><a href="/mock/stocks/s_content?code=${total3.code}">${total3.code}</a></td>
+            <td><a href="/mock/stocks/s_content?code=${total3.code}">${total3.name}</a></td>
             <td><fmt:formatNumber value="${total3.n_buying}" pattern="#,##0" /></td>
             <td><fmt:formatNumber value="${total3.total / total3.n_buying}" pattern="#,##0" /></td>
             <td><fmt:formatNumber value="${total3.total}" pattern="#,##0" /></td>
@@ -114,8 +114,8 @@
         <tr><td colspan="6"><hr></td></tr>
         <c:forEach items="${bdto3}" var="bdto3">
           <tr align="center">
-            <td>${bdto3.code}</td>
-            <td>${bdto3.name}</td>
+            <td><a href="/mock/stocks/s_content?code=${bdto3.code}">${bdto3.code}</a></td>
+            <td><a href="/mock/stocks/s_content?code=${bdto3.code}">${bdto3.name}</a></td>
             <td><fmt:formatNumber value="${bdto3.n_buying}" pattern="#,##0" /></td>
             <td><fmt:formatNumber value="${bdto3.ask_spread / bdto3.n_buying}" pattern="#,##0" /></td>
             <td><fmt:formatNumber value="${bdto3.ask_spread}" pattern="#,##0" /></td>
@@ -147,8 +147,8 @@
         <tr><td colspan="6"><hr></td></tr>
         <c:forEach items="${sdto3}" var="sdto3">
           <tr align="center">
-            <td>${sdto3.code}</td>
-            <td>${sdto3.name}</td>
+            <td><a href="/mock/stocks/s_content?code=${sdto3.code}">${sdto3.code}</a></td>
+            <td><a href="/mock/stocks/s_content?code=${sdto3.code}">${sdto3.name}</a></td>
             <td><fmt:formatNumber value="${sdto3.n_selling}" pattern="#,##0" /></td>
             <td><fmt:formatNumber value="${sdto3.bid_spread / sdto3.n_selling}" pattern="#,##0" /></td>
             <td><fmt:formatNumber value="${sdto3.bid_spread}" pattern="#,##0" /></td>
@@ -164,3 +164,4 @@
   </div>
 </body>
 </html>
+          
