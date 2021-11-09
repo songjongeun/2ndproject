@@ -14,4 +14,5 @@ public interface BoardDao {
 	   public void delete(int f_id);
 	   public Integer get_pagecount();
 	   public ArrayList<BoardDto> list2(String field, String word);
+	   
 }

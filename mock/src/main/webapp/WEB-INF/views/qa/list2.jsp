@@ -45,48 +45,6 @@
     </c:forEach> 
      
      <!-- 페이지 시작 -->
-     <tr>
-     <td colspan="5" align="center"> 
-      <!-- 현재 페이지 기준 이전 10페이지 이동 -->
-      <c:if test="${pstart != 1}">
-       <a href="list?page=${pstart-1}"> 
-       </a> </c:if>
-      <c:if test="${pstart == 1}"> 
-       <<
-      </c:if>
-       <!-- 현재페이지 이전 1페이지 이동 -->
-      <c:if test="${page != 1}"> 
-       <a href="list?page=${page-1}"> < </a>
-      </c:if>
-      <c:if test="${page == 1}"> 
-       <
-      </c:if>
-       <!-- 현재페이지 기준으로 이동할 수 있는 페이지  -->
-        <c:forEach begin="${pstart}" end="${pend}" var="i">
-          <!-- 현재페이지 색은 다르게 => 빨강 -->
-         <c:if test="${page != i}"> 
-          <a href="list?page=${i}"> ${i} </a>
-         </c:if>
-         <c:if test="${page == i}"> 
-          <a href="list?page=${i}" style="color:red"> ${i} </a>
-         </c:if>
-        </c:forEach>
-        
-        <!-- 현재페이지 기준 다음1페이지 이동 -->
-       <c:if test="${page != page_cnt}"> 
-        <a href="list?page=${page+1}"> > </a>
-       </c:if>
-     
-       <c:if test="${page == page_cnt}"> > </c:if>
-      <c:if test="${page_cnt != pend}"> 
-       <a href="list?page=${pend+1}"> >> </a>
-      </c:if>
-      <c:if test="${page_cnt == pend}"> 
-       >>
-      </c:if> 
-      </td>     
-      </tr>
-  	  <!--  페이지 끝 -->
     
    </table>
        <!-- search 시작 -->

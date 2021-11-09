@@ -169,7 +169,7 @@ public class StockController {
 		return map;
 	}
 
-	
+	/*
 	@RequestMapping("/stocks/testJson")
 	public String testJson(Model model){
 		String code="A000660";
@@ -206,5 +206,6 @@ public class StockController {
 		
 		return "/stocks/testJson4";
 	}
+	*/
 	
 }

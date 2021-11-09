@@ -60,13 +60,9 @@ public class MockController {
 			else { // 로그인&모의 신청 O 
 				int diff=mdao.get_enddate(userid);
 				String notday;
-<<<<<<< HEAD
 				if(diff ==0) {//모의 투자 신청을 한 적이 있을 경우 마지막 신청 날짜와 비교한다.
 					//현재 날짜 > 종료날짜 =1//종료시점이 지나 다시 신청 가능.
-=======
-				if(diff == 0) {//모의 투자 신청을 한 적이 있을 경우 마지막 신청 날짜와 비교한다.
-					//현재 날짜 > 종료날짜 = 참이면 0, 거짓이면 1, 0일 경우만 재신청 가능.
->>>>>>> 0631d3bc6b555d0370e1fe47659406369ef56b1f
+
 					int m_close=Integer.parseInt(request.getParameter("m_close"));
 					int mileage=Integer.parseInt(request.getParameter("mileage"));
 					mdao.in_regi_ok(mdto, userid, m_close, mileage);
@@ -200,6 +196,7 @@ public class MockController {
 			String code=request.getParameter("code");
 			int n_buying=Integer.parseInt(request.getParameter("n_buying"));
 			int ask_spread=Integer.parseInt(request.getParameter("ask_spread"));
+			ask_spread=ask_spread*n_buying;
 			MockDao mdao=sqlSession.getMapper(MockDao.class);
 			mdao.buying_ok(userid, code, n_buying, ask_spread);
 			mdao.mileage_update(mileage,userid);

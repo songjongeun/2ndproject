@@ -54,42 +54,13 @@
      <tr>
      <td colspan="5" align="center"> 
       <!-- 현재 페이지 기준 이전 10페이지 이동 -->
-      <c:if test="${pstart != 1}"> 
-       <a href="list2?page=${pstart-1}"> 
-       </a> </c:if>
-      <c:if test="${pstart == 1}"> 
-       ◁
-      </c:if>
+
        <!-- 현재페이지 이전 1페이지 이동 -->
-      <c:if test="${page != 1}"> 
-       <a href="./list?page=${page-1}&field=${field}&word=${word}"> < </a>
-      </c:if>
-      <c:if test="${page == 1}"> 
-       <
-      </c:if>
+
        <!-- 현재페이지 기준으로 이동할 수 있는 페이지  -->
-        <c:forEach begin="${pstart}" end="${pend}" var="i">
-          <!-- 현재페이지 색은 다르게 => 빨강 -->
-         <c:if test="${page != i}"> 
-          <a href="./list2?page=${i}&field=${field}&word=${word}"> ${i} </a>
-         </c:if>
-         <c:if test="${page == i}"> 
-          <a href="./list2?page=${i}&field=${field}&word=${word}" style="color:red"> ${i} </a>
-         </c:if>
-        </c:forEach>
+
         
-        <!-- 현재페이지 기준 다음1페이지 이동 -->
-       <c:if test="${page != page_cnt}"> 
-        <a href="./list2?page=${page+1}&field=${field}&word=${word}"> > </a>
-       </c:if>
      
-       <c:if test="${page == page_cnt}"> > </c:if>
-      <c:if test="${page_cnt != pend}"> 
-       <a href="./list2?page=${pend+1}&field=${field}&word=${word}"> ▷ </a>
-      </c:if>
-      <c:if test="${page_cnt == pend}"> 
-       ▷
-      </c:if> 
       </td>     
       </tr>
       </table>
