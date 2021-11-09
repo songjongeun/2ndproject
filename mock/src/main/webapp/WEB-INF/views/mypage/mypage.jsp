@@ -41,7 +41,7 @@
       <button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/mypage/mypage_update?userid=${udto.userid}'">수정</button>
       </td>
       <td>
-       <button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/mypage/mypage_delete'">삭제</button>
+       <button  class="btn btn-outline-danger btn-sm" onclick="return confirm('정말로 삭제하시겠습니까?')" href='/mock/mypage/mypage_delete?userid=${udto.userid}'">계정탈퇴</button>
 
       </td>
 
@@ -136,9 +136,9 @@
     </c:if>
     </div>
     
-    <div class="mypage mysell table table-striped table-hover">
+    <div>
     <c:if test="${mileage!=null}">
-    <table>
+    <table class="mypage mysell table table-striped table-hover">
       <c:if test="${sel!=1}">
         <tr align="center">
           <td>매도정보가 없습니다</td>
@@ -172,13 +172,6 @@
     </table>
     </c:if>
 
-
- 	<table class="table table-striped table-hover" align="center">
- 	<td>
- 	
-  <button id="withdrawal">탈퇴하기</button>
-  </td>
-	</table>
 
   </div>
  </div>
