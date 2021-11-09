@@ -12,40 +12,45 @@
 
 <title>Insert title here</title>
 <style type="text/css">
-.main{
+.st_main{
 	display:grid;
-	display:grid;
+	width:80%;
+	grid-template-rows: 1fr 5fr;
 	place-items: center;
- 	grid-template-columns: 5fr 30px 1fr 1fr 30px;	/*가로방향 비율*/
-  	grid-template-rows: 5fr 1fr 1fr 1fr 5fr; /*세로방향 비율*/
-	width:70%;
-	height:100%;
-  	grid-gap: 10px;
+	margin:auto;
 }
 .sc_graph{
-	grid-column:1;
-  	grid-row:1/6;
+}
+.stcon{ /*그래프와 매도매수...를 div로 감싸 플렉스로 정렬*/
+	display:grid;
+	place-items: center;
+	grid-template-columns: 3fr 1fr;
 }
 
-.like{
-	grid-column:2;
-	grid-row:2;
+.con_menu{/*버튼 메뉴들을 grid로 지정*/
+	display:grid;
+	grid-template-columns: repeat(2,1fr);	/*가로방향 비율*/
+  	grid-template-rows: repeat(4,1fr); /*세로방향 비율*/
+  	grid-gap: 10px;
 }
 .buy_con{
-	grid-column:3;
-  	grid-row:3;
+	grid-column:1;
+  	grid-row:2;
 }
 .sell_con{
-	grid-column:4;
-  	grid-row:3;
+	grid-column:2;
+  	grid-row:2;
 }
 .realtime{
-	grid-column:3;
-	grid-row:4;
+	grid-column:1;
+	grid-row:3;
 }
 .ai_con{
-	grid-column:4;
-  	grid-row:4;
+	grid-column:2;
+  	grid-row:3;
+}
+.btn .btn-outline-danger .btn-sm{
+	
 }
 
 
@@ -70,26 +75,35 @@
 <!-- 차트 그래프 스크랩트 ==================== -->
 </head>
 <body>
-<div id="main" class="main">
+<div id="main">
+  <div class="st_main">
+   <div class="stc_name">
+   <h1>${name}
+   <button id="like"  class="btn btn-outline-danger btn-sm">♡</button> </h1>  </div>
+   <div class="stcon"> <!-- 그래프 및 매수매도 -->
 	<div id="stock-graph" class="sc_graph"></div>
-	<div class="like">
-		<button id="like"  class="btn btn-outline-danger btn-sm">♡</button>
-	</div>
+   <div class="con_menu">
 	<div class="buy_con">
-		<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/buying?code=${code}'">매수</button>
+		<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/buying?code=${code}'"
+		style="width:100%;">매수</button>
 	</div>
 	
 	<div class="sell_con">
-		<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/selling?code=${code}'">매도</button>
+		<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/selling?code=${code}'"
+		style="width:100%;">매도</button>
 	</div>
 	
 	<div class="realtime">
-		<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/realtime?code=${code}'" >실시간데이터보기</button>
+		<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/realtime?code=${code}'"
+		style="width:100%;">실시간 데이터</button>
 	</div>
 	<div class="ai_con">
-	<button  class="btn btn-outline-danger btn-sm">Ai 분석</button>
+	<button  class="btn btn-outline-danger btn-sm"
+	style="width:100%;">Ai 분석</button>
 	</div>
-
+  </div>
+  </div>
+</div>
 </div>
 <script>
 
