@@ -60,7 +60,7 @@
   <table width="900" align="center">
       <c:if test="${buy!=1}">
         <tr align="center">
-          <td>매수정보가 없습니다</td>
+          <td>보유 주 정보가 없습니다</td>
         </tr>
       </c:if>
       <c:if test="${buy==1}">
@@ -77,6 +77,7 @@
         </tr>
         <tr><td colspan="6"><hr></td></tr>
         <c:forEach items="${total3}" var="total3">
+          <c:if test="${total3.n_buying!=0 }">
           <tr align="center">
             <td>${total3.code}</td>
             <td>${total3.name}</td>
@@ -84,6 +85,7 @@
             <td><fmt:formatNumber value="${total3.total / total3.n_buying}" pattern="#,##0" /></td>
             <td><fmt:formatNumber value="${total3.total}" pattern="#,##0" /></td>
           </tr>
+          </c:if>
         </c:forEach>
       </c:if>      
     </table> 
