@@ -38,4 +38,10 @@
     select ceil(count(*)/10) from freeboard;
   </select>
   
+  <select id="list2" resultType="kr.co.mock.dto.BoardDto">
+     select * from freeboard where (title like concat('%',#{param2},'%')) 
+     or (content like concat('%',#{param2},'%')) or (userid like concat('%',#{param2},'%'))
+    
+  </select>
+  
 </mapper>

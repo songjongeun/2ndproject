@@ -16,7 +16,7 @@
       <td> ${udto.userid} </td>
       </tr> <p>
 	  이름 <input type="text" name="username" value="${udto.username}"> <p>
-	  비밀번호 <input type="text" name="pwd" value="${udto.pwd}"> <p>
+	  비밀번호 <input type="password" name="pwd"> <p>
 	  이메일 <input type="text" name="email" value="${udto.email}"> <p> 
 	  <input type="submit" value="수정">
 	  </form>

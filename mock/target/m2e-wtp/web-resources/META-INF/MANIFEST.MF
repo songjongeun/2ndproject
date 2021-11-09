@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: Kouki
 Build-Jdk: 1.8.0_291
+=======
+Built-By: sangjin
+Build-Jdk: 1.8.0_181
+>>>>>>> 0ca4b7e9431a40d0699ca685ba42c334f1e47c72
 Created-By: Maven Integration for Eclipse
 

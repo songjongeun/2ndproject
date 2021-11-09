@@ -201,7 +201,7 @@ function diff_mil(){
 		<div class="mil_name">포인트</div>
 		<div class="mil_num">
 			<c:if test="${mileage==0}">
-		  	<a href="/mock/invest/in_regi">모의 투자 신청</a>
+		  	<a href="/mock/invest/in_regi">모의 투자 신청하세요</a>
 		  	</c:if>
 		  	
 		  	<c:if test="${mileage!=0}">

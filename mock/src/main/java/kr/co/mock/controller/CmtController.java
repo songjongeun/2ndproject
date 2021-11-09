@@ -21,85 +21,92 @@ public class CmtController {
 	private SqlSession sqlSession;
 	
 	@RequestMapping("/freeboard/content/cmt_list")
-	public String cmt_list(Model model,HttpServletRequest request)
+	public String cmt_list(CmtDto cdto,Model model,HttpServletRequest request,HttpSession session)
 	{
-		int c_id=Integer.parseInt(request.getParameter("c_id"));	
-		int page;
-		if(request.getParameter("page")==null)
+		int cpage;
+		if(request.getParameter("cpage")==null)
 		{
-			page=1;
+			cpage=1;
 		}
 		else
 		{
-			page=Integer.parseInt(request.getParameter("page"));
+			cpage=Integer.parseInt(request.getParameter("page"));
 		}
-		int index=(page-1)*10;
+		int cindex=(cpage-1)*10;
 		
-		CmtDao cdao=sqlSession.getMapper(CmtDao.class);
-		ArrayList<CmtDto> list=cdao.cmt_list(index);
+		CmtDao cdao=sqlSession.getMapper(CmtDao.class);;
+		ArrayList<CmtDto> clist=cdao.cmt_list(cindex);
 
 		// page출력을 위해 필요한 값
 		// 현재페이지:page, pstart,pend, page_cnt
 		// pstart,pend
-		int pstart=page/10;
-		if(page%10 == 0)
-			pstart=pstart-1;
-		pstart=(pstart*10)+1;
-		int pend=pstart+9;
-		int page_cnt=cdao.get_pagecount();
+		int cpstart=cpage/10;
+		if(cpage%10 == 0)
+			cpstart=cpstart-1;
+		cpstart=(cpstart*10)+1;
+		int cpend=cpstart+9;
+		int cpage_cnt=cdao.get_pagecount();
 		
-		if(pend>page_cnt)
-			pend=page_cnt;
+		if(cpend>cpage_cnt)
+			cpend=cpage_cnt;
 		
-		model.addAttribute("pstart",pstart);
-		model.addAttribute("pend",pend);
-		model.addAttribute("page_cnt",page_cnt);
-		model.addAttribute("page",page);
-		model.addAttribute("list",list);
-		return "redirect:/freeboard/content?c_id="+c_id;
+		model.addAttribute("cpstart",cpstart);
+		model.addAttribute("cpend",cpend);
+		model.addAttribute("cpage_cnt",cpage_cnt);
+		model.addAttribute("cpage",cpage);
+		model.addAttribute("clist", clist);
+		return "redirect:/freeboard/content?c_id="+cdto.getC_id();
 	}
 	
-	@RequestMapping("/freeboard/content/cmt_write")
+	@RequestMapping("/freeboard/cmt_write")
 	public String cmt_write()
 	{
-		return "/freeboard/content/cmt_write";
+		return "/freeboard/cmt_write";
 	}
-	
-	@RequestMapping("/freeboard/content/cmt_write_ok")
-	public String cmt_write_ok(CmtDto cdto,HttpServletRequest request,HttpSession session)
+	/*
+	@RequestMapping("/freeboard/cmt_write_ok")
+	public String cmt_write_ok(CmtDto cdto,HttpSession session)
 	{
-		int c_id=Integer.parseInt(request.getParameter("c_id"));		
 		CmtDao cdao=sqlSession.getMapper(CmtDao.class); 
 		cdto.setUserid(session.getAttribute("userid").toString());
+   
 		cdao.cmt_write_ok(cdto);
-		return "redirect:/freeboard/content?c_id="+c_id;
+		System.out.println(cdto.getF_id()+"DD");
+		return "redirect:/freeboard/content?f_id="+cdto.getF_id();
 	}
-	
-	@RequestMapping("/freeboard/content/cmt_update")
-	public String cmt_update(Model model,HttpServletRequest request)
+	*/
+	@RequestMapping("/freeboard/cmt_write_ok")
+	public String cmt_write_ok(CmtDto cdto,HttpSession session)
+	{
+		CmtDao cdao=sqlSession.getMapper(CmtDao.class);
+		cdto.setUserid(session.getAttribute("userid").toString());
+		cdao.cmt_write_ok(cdto);
+		return "redirect:/freeboard/content?id="+cdto.getF_id();
+	}
+	@RequestMapping("/freeboard/cmt_update")
+	public String cmt_update(CmtDto cdto,Model model,HttpServletRequest request)
 	{
 		int c_id=Integer.parseInt(request.getParameter("c_id"));
 		CmtDao cdao=sqlSession.getMapper(CmtDao.class); 
-		CmtDto cdto=cdao.cmt_update(c_id);
+		cdao.cmt_update(c_id);
 		model.addAttribute("cdto",cdto);
-		return "/freeboard/content/cmt_update";
+		return "redirect:/freeboard/content?f_id="+cdto.getF_id();
 	}
-	
-	@RequestMapping("/freeboard/content/cmt_update_ok")
+
+	@RequestMapping("/freeboard/cmt_update_ok")
 	public String cmt_update_ok(CmtDto cdto,HttpServletRequest request,HttpSession session)
 	{
 		int c_id=Integer.parseInt(request.getParameter("c_id"));		
 		CmtDao cdao=sqlSession.getMapper(CmtDao.class); 
 		cdao.cmt_update_ok(cdto);
-		return "redirect:/freeboard/content?f_id="+c_id;
+		return "redirect:/freeboard/content?f_id="+cdto.getF_id();
 	}
 	
-	@RequestMapping("/freeboard/content/cmt_delete")
-	public String cmt_delete(HttpServletRequest request)
+	@RequestMapping("/freeboard/cmt_delete")
+	public String cmt_delete(CmtDto cdto)
 	{
-		int c_id=Integer.parseInt(request.getParameter("c_id"));
 		CmtDao cdao=sqlSession.getMapper(CmtDao.class); 
-		cdao.cmt_delete(c_id);
-		return "redirect:/freeboard/content?f_id="+c_id;
+		cdao.cmt_delete(cdto.getC_id());
+		return "redirect:/freeboard/content?f_id="+cdto.getF_id();
 	}
 }
