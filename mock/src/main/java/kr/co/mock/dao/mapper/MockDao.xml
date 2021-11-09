@@ -17,6 +17,8 @@
 	</select>
 	
 	<!-- 페이징==================== -->
+	
+	
 	<select id="get_pagecount" resultType="Integer">
 		select ceil(count(*)/${param1}) from stocks_a where #{param2} like concat('%',#{param3},'%')
 	</select>

@@ -15,23 +15,30 @@
 .sub_main{
 	display:grid;
 	place-items: center;
-	width:40%;
+	width:30%;
 	height:100%;
 	grid-template-columns:1fr 1fr;
 	grid-template-rows:50px repeat(6, 30px);
-  	grid-gap:20px;
+  	grid-gap:10px;
 
+  	font-size:15px;
+  	justify-items:end;
 }
 .s_name{
 	grid-column:1/3;
   	grid-row:1;
 	text-decoration: underline;
 	text-underline-position: under;/*텍스트 밑의 밀줄을 간격을 좀 더 띄움*/
+	margin-bottom:50px;
 }
 
 .mil_name{
 	grid-column:1;
   	grid-row:2;
+  	border: 1px solid;
+  	width:100%;
+  	text-align:right;
+  	padding: 3px 0;
 }
 
 .mil_num{
@@ -122,7 +129,6 @@ $(function(){/*숫자 증감 버튼*/
 		mil = Number($("#mileage").val());
 		curr = Number($("#curr").val());
 		var maxbuy=parseInt(${mileage}/${sdto.open});
-
 		num++;
 		if(maxbuy<num){
 			alert("마일리지 한도 이상을 구매할 수 없습니다.");
@@ -176,7 +182,7 @@ function diff_mil(){
 		return false;
 		
 	}else if(num==0){
-		alert("최소한 하나 이상을 구매해야합니다.");
+		alert("최소한 하나 이상 구매해야합니다.");
 		num=1;
 		return false;
 	}
@@ -221,7 +227,7 @@ function diff_mil(){
 		<input type="button" id="minus" class="btn btn-outline-danger btn-sm" value= "-"
 		style="font-size:12px;margin-bottom:5px;">
 	  	<input type="text" class="n_buying" name="n_buying" value="1" size="4"
-	  	style="text-align:right;">&nbsp;주<!-- 거래개수 -->
+	  	style="text-align:right;" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>&nbsp;주<!-- 거래개수 -->
 	  	<input type="button" id="plus" class="btn btn-outline-danger btn-sm" value="+" 
 	  	style="font-size:12px;margin-bottom:5px;">
 		</div>
@@ -238,7 +244,7 @@ function diff_mil(){
 		  	마일리지 없음
 		</c:if>
 		 <c:if test="${mileage!=0}">
-		  	<input type="text" class ="curr_mil" name="curr_mil" value="${mileage+(sdto.open*diff)}"size="4" readonly
+		  	<input type="text" class ="curr_mil" name="curr_mil" value="${mileage-(sdto.open*diff)}"size="4" readonly
 		  	style="width:150px;text-align:right;">	
 		  </c:if>
 		</div>
