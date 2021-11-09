@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.mock.dao.MockDao;
 import kr.co.mock.dao.StockDao;
 import kr.co.mock.dto.BuyingDto;
+import kr.co.mock.dto.LikeDto;
 import kr.co.mock.dto.StockDto;
 import kr.co.mock.util.TimeToUnix;
 
@@ -115,7 +116,50 @@ public class StockController {
 	}
 	
 
-	
+	@RequestMapping(value="/stocks/like",produces="application/json",method=RequestMethod.GET)
+	@ResponseBody
+	public Map like(@RequestParam Map<String, Object> param) {
+		// 카운트
+		// sdto.setCode(code);
+		
+		LikeDto ldto=new LikeDto();
+		ldto.setUserid(param.get("userid").toString());
+		ldto.setCode(param.get("code").toString());
+		StockDao sdao=sqlSession.getMapper(StockDao.class);
+		int chk=sdao.selectCountInterests(ldto);
+		
+		Map<String,Object> map=new HashMap<>();
+		map.put("chk", chk);
+		
+		
+		return map;
+	}
+	@RequestMapping(value="/stocks/likeButton",produces="application/json",method=RequestMethod.GET)
+	@ResponseBody
+	public Map likeButton(@RequestParam Map<String, Object> param) {
+		// 카운트
+		// sdto.setCode(code);
+		LikeDto ldto=new LikeDto();
+		ldto.setUserid(param.get("userid").toString());
+		ldto.setCode(param.get("code").toString());
+		StockDao sdao=sqlSession.getMapper(StockDao.class);
+		int chk=sdao.selectCountInterests(ldto);
+		
+		if (chk==0) {
+			
+			sdao.insertValueInterests(ldto);
+			chk=1;
+		}else {
+			sdao.deleteValueInterests(ldto);
+			chk=0;
+		}
+		
+		Map<String,Object> map=new HashMap<>();
+		map.put("chk", chk);	
+		
+		
+		return map;
+	}
 
 	
 	@RequestMapping("/stocks/testJson")
