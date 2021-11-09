@@ -24,31 +24,32 @@
 <body>
 <div id="main" class="mypage_view">
 	<h3> 마이페이지 </h3>
+	
 <div  class="mypage myid">
-  <table align="center" class="table table-hover table-sm">
+  <table align="center" class="table table-striped table-hover">
     <tr>
       <td> 아이디 </td>
       <td> ${udto.userid} </td>
-    </tr>
-    <tr>
       <td> 이름 </td>
       <td> ${udto.username} </td>
-    </tr>
-    <tr>
       <td> 이메일 </td>
       <td> ${udto.email} </td>
     </tr>
     <tr>
+
       <td>
       <button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/mypage/mypage_update?userid=${udto.userid}'">수정</button>
       </td>
       <td>
        <button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/mypage/mypage_delete'">삭제</button>
+
       </td>
+
     </tr>
    </table>
 
   </div>
+
   
   <div class="mypage myspread">
   
@@ -58,7 +59,7 @@
      	</div>
     </c:if>
     <c:if test="${mileage!=null}">
-    <table width="900" align="center">
+    <table class="table table-striped table-hover" align="center">
       <c:if test="${buy!=1}">
         <tr align="center">
           <td>보유 주 정보가 없습니다</td>
@@ -93,9 +94,9 @@
      </c:if>
    </div>
    
-  
+ 
 	<c:if test="${mileage!=null}">
-  		<div class="mypage mymil">보유포인트 : <fmt:formatNumber value="${mileage}" pattern="#,##0" /></div>
+  		<div class="mypage mymil able table-striped table-hover">보유포인트 : <fmt:formatNumber value="${mileage}" pattern="#,##0" /></div>
 	</c:if>
   
   <div class="mypage mybuy">
@@ -135,7 +136,7 @@
     </c:if>
     </div>
     
-    <div class="mypage mysell">
+    <div class="mypage mysell table table-striped table-hover">
     <c:if test="${mileage!=null}">
     <table>
       <c:if test="${sel!=1}">
@@ -170,6 +171,14 @@
       </c:if>
     </table>
     </c:if>
+
+
+ 	<table class="table table-striped table-hover" align="center">
+ 	<td>
+ 	
+  <button id="withdrawal">탈퇴하기</button>
+  </td>
+	</table>
 
   </div>
  </div>

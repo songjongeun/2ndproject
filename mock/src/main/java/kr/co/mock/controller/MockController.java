@@ -35,11 +35,21 @@ public class MockController {
 	}
 	
 	@RequestMapping("/invest/in_regi")
-	public String in_regi(HttpServletRequest request,Model model)
-	{
-		model.addAttribute("notday",request.getParameter("notday"));
-		return "/invest/in_regi";
+public String in_regi(Model model,HttpSession session)
+{
+	String userid=null;
+	if(session.getAttribute("userid")!=null) {
+		userid=session.getAttribute("userid").toString();
 	}
+	
+	MockDao mdao=sqlSession.getMapper(MockDao.class);
+	int count=mdao.mockInvestCount(userid);
+	
+	model.addAttribute("count", count);
+	
+	
+	return "/invest/in_regi";
+}
 	
 	@RequestMapping("/in_regi_ok")
 	public String in_regi_ok(UserDto udto,MockDto mdto,HttpServletRequest request,Model model,HttpSession session) throws Exception
@@ -49,7 +59,7 @@ public class MockController {
 		
 		if(session.getAttribute("userid")!=null) {//로그인 한 상태라면			
 			userid=session.getAttribute("userid").toString();//로그인했을 경우 userid 세선에서 가져옴.
-			int id_count=mdao.search_id(userid); //모의신청한 적이 있는 userid 검색용
+			int id_count=mdao.mockInvestCount(userid); //모의신청한 적이 있는 userid 검색용
 			if(id_count==0)//로그인 상태에서 해당 userid가 모의신청 테이블에 정보가 없으면 모의신청가능.
 			{
 				int m_close=Integer.parseInt(request.getParameter("m_close"));
@@ -161,7 +171,7 @@ public class MockController {
 		//mock 테이블에서 포인트 조회를 위해 가져오는 값
 		if(session.getAttribute("userid")!=null) { //로그인 
 			String userid=session.getAttribute("userid").toString();
-			int id_check=mdao.search_id(userid); //포인트 조회를 위해 먼저 신청했던 적이 있는지 확인
+			int id_check=mdao.mockInvestCount(userid); //포인트 조회를 위해 먼저 신청했던 적이 있는지 확인
 			if(id_check==0) { //만약 아이디가 조회되지 않으면
 				int mileage=0; //마일리지 값을 0으로 조정.
 				model.addAttribute("mileage",mileage);
@@ -219,7 +229,7 @@ public class MockController {
 		//mock 테이블에서 포인트 조회를 위해 가져오는 값
 		if(session.getAttribute("userid")!=null) { //로그인 
 			String userid=session.getAttribute("userid").toString();
-			int id_check=mdao.search_id(userid); //포인트 조회를 위해 먼저 신청했던 적이 있는지 확인 
+			int id_check=mdao.mockInvestCount(userid); //포인트 조회를 위해 먼저 신청했던 적이 있는지 확인 
 			if(id_check==0) { //만약 아이디가 조회되지 않으면-----------
 				int mileage=0; //마일리지 값을 0으로 조정.
 				model.addAttribute("mileage",mileage);

@@ -114,8 +114,10 @@ public class StockController {
 		StockDao sdao= sqlSession.getMapper(StockDao.class);
 		
 		String imgName=sdao.getImgName(code);
+		String name=sdao.selectName(code);
 		int close= sdao.selectPrice(code);
 		int cprice = sdao.getPredictPrice(code);
+		model.addAttribute("name", name);
 		model.addAttribute("imgName", imgName);
 		model.addAttribute("code", code);
 		model.addAttribute("close", close);
@@ -129,14 +131,25 @@ public class StockController {
 	public Map like(@RequestParam Map<String, Object> param) {
 		// 카운트
 		// sdto.setCode(code);
-		
+		Map<String,Object> map=new HashMap<>();
+		int chk;
+		String userid;
+		if (param.get("userid").toString()=="") {
+			
+			chk=0;
+			map.put("chk", chk);
+			return map;
+		}else {
+			userid=param.get("userid").toString();
+		}
+			
 		LikeDto ldto=new LikeDto();
-		ldto.setUserid(param.get("userid").toString());
+		ldto.setUserid(userid);
 		ldto.setCode(param.get("code").toString());
 		StockDao sdao=sqlSession.getMapper(StockDao.class);
-		int chk=sdao.selectCountInterests(ldto);
+		chk=sdao.selectCountInterests(ldto);
 		
-		Map<String,Object> map=new HashMap<>();
+		
 		map.put("chk", chk);
 		
 		
@@ -147,27 +160,41 @@ public class StockController {
 	public Map likeButton(@RequestParam Map<String, Object> param) {
 		// 카운트
 		// sdto.setCode(code);
-		LikeDto ldto=new LikeDto();
-		ldto.setUserid(param.get("userid").toString());
-		ldto.setCode(param.get("code").toString());
-		StockDao sdao=sqlSession.getMapper(StockDao.class);
-		int chk=sdao.selectCountInterests(ldto);
-		
-		if (chk==0) {
-			
-			sdao.insertValueInterests(ldto);
-			chk=1;
-		}else {
-			sdao.deleteValueInterests(ldto);
-			chk=0;
-		}
-		
 		Map<String,Object> map=new HashMap<>();
-		map.put("chk", chk);	
+		int chk;
+		String userid;
+		if (param.get("userid").toString()=="") {
+			
+			chk=0;
+			map.put("chk", chk);
+			return map;
+		}
+			userid=param.get("userid").toString();
+		
+			LikeDto ldto=new LikeDto();
+			ldto.setUserid(userid);
+			ldto.setCode(param.get("code").toString());
+			StockDao sdao=sqlSession.getMapper(StockDao.class);
+			chk=sdao.selectCountInterests(ldto);
+			
+			if (chk==0) {
+				
+				sdao.insertValueInterests(ldto);
+				chk=1;
+			}else {
+				sdao.deleteValueInterests(ldto);
+				chk=0;
+			}
+			
+			map.put("chk", chk);	
+			
+			
+			return map;
 		
 		
-		return map;
-	}
+		}
+
+}
 
 	/*
 	@RequestMapping("/stocks/testJson")
@@ -208,4 +235,4 @@ public class StockController {
 	}
 	*/
 	
-}
+
