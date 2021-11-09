@@ -133,7 +133,7 @@ $(document).ready(function(){
 			    	   $("#like").text("♡");
 			       }
 		    },error : function(){
-		    	 alert("likeButtonError");
+		    	 alert("로그인 해주세요");
 		        //Ajax 실패시
 		    }
 		});
