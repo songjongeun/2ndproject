@@ -26,7 +26,7 @@
 	</select>
 	
 	<select id="get_point" resultType="Integer">
-		select mileage from mock_invest order by userid=#{param1} desc limit 1;
+		select mileage from mock_invest where userid=#{param1} order by userid desc limit 1;
 	</select>
 	
 	<select id="search_id" resultType="Integer">

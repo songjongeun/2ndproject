@@ -53,7 +53,9 @@
   </form>
   
   <p style="margin-top:70px;">
-  <table width="900" align="center">
+  
+    <c:if test="${mileage!=null}">
+    <table width="900" align="center">
       <c:if test="${buy!=1}">
         <tr align="center">
           <td>보유 주 정보가 없습니다</td>
@@ -87,6 +89,7 @@
     </table> 
   <p style="margin-top:70px;">
   <div align="center">보유포인트 : <fmt:formatNumber value="${mileage}" pattern="#,##0" /></div>
+  
   <p style="margin-top:70px;">
     <table width="900" align="center">
       <c:if test="${buy!=1}">
@@ -157,6 +160,7 @@
 
  	
   
+  </c:if>
   </div>
 </body>
 </html>
