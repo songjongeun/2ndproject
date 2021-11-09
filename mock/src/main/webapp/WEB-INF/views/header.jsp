@@ -40,19 +40,17 @@
 	display:flex;
 	justify-content: space-between; /*양끝으로 정렬. 아이템들 사이의 거리는 같음.*/
 	height:80px;
+	font-size:15px;
 }
 #first .item{
 
 	padding-right:10px;
 }
 
-#first .item .w_logo{
-}
-
 #first .item .login{
-	margin-top: 10px;;
+	margin-top: 10px;
+	place-items: center;
 }
-
 #second{ /*메뉴*/
 	grid-area:second;
 	place-items: center;
@@ -120,9 +118,10 @@ button{
 #bottom{
 	grid-area:bottom;
 	width:100%;
-	margin-top:50px;
 	text-align:center;
-	background-color:#BDBDBD;
+	background-color:#C0C0C0;
+	color:white;
+	padding: 10px 0px;
 }
  input[type="text"] { border: solid 1px #DC3545; }
  input[type="password"] { border: solid 1px #D2691E;}
@@ -141,22 +140,12 @@ button{
 		</c:if>
 		
 		<c:if test="${userid!=null}">
-			${username}님
-			<button class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/invest/in_regi'">모의투자신청</button>			
-			<div class="item mypage">
-			   <c:if test="${userid==null }">  <!-- 로그인 안했을때 -->
-			    <a href="/mock/user/login">마이페이지</a>
-			  </c:if>	 <!-- /로그인 안했을때 -->
-			  <c:if test="${userid!=null }">  <!-- 로그인 했을때 -->
-			    <c:if test="${userid=='admin' }"> <!-- 관리자 -->
-			      <a href="/mock/admin/adminpage">관리자페이지</a>
-			    </c:if>                                        <!-- /관리자 -->
-			    <c:if test="${userid!='admin' }"> 	<!-- 일반 사용자 -->
-			      <a href="/mock/mypage/mypage">마이페이지</a>
-			    </c:if>						      			  <!-- /일반 사용자 -->
-			   </c:if>                                   <!-- /로그인 했을때 -->
-		   </div>  <!--div item mypage 끝-->
-			<a href="/mock/user/logout">로그아웃</a>
+			${username}님<br>
+			<button class="btn btn-outline-danger btn-sm"
+			onclick="location.href='/mock/invest/in_regi'"
+			style="width:80px;font-size:10px;"
+			>모의신청</button><br>
+			<a href="/mock/user/logout">로그아웃</a>			
 		</c:if>	
 		</div>
 	</div>
@@ -180,8 +169,23 @@ button{
 		<div class="item m_free"><a href="/mock/freeboard/list">자유게시판</a></div>
 		<div class="item Q&A"><a href="/mock/qa/list">Q&A</a></div>
 		
+		<div class="item mypage">
+		   <c:if test="${userid==null }">  <!-- 로그인 안했을때 -->
+		    <!-- 로그인 안했을 때 빈 페이지 표시 -->
+		  </c:if>
+		  
+		  <c:if test="${userid!=null }">  <!-- 로그인 했을때 -->
+		    <c:if test="${userid=='admin' }"> <!-- 관리자 -->
+		      <a href="/mock/admin/adminpage">관리자페이지</a>
+		    </c:if>                                        
+		    <c:if test="${userid!='admin' }"> 	<!-- 일반 사용자 -->
+		      <a href="/mock/mypage/mypage">마이페이지</a>
+		    </c:if>						      			 
+		   </c:if>                                   <!-- /로그인 했을때 -->
+			   
+		  </div>  <!--div item mypage 끝-->
+		
 		<!-- 아이템들 사이 조정을 위해 넣은 값 -->
-		<div class="item"></div>
 		<div class="item"></div>
 		<!-- 아이템들 사이 조정을 위해 넣은 값 -->
  	</div>
@@ -190,7 +194,9 @@ button{
 	</div>
 	<decorator:body/>
 	<div id="bottom"> 
-	상호명 : 경영기술개발원교육센터│대표자 : 한광두│사업자등록번호 : 334-81-00348│TEL : 1661-1429│FAX : 02-856-1094│직업정보 제공사업 : 서울관악 제 2011-37호│주소 : (우)08292 서울특별시 구로구 구로중앙로34길 33-4(구로동, 경영기술개발원빌딩)│Copyrightⓒ경영기술개발원교육센터. All Rights Reserved. 
+	상호명 : 경영기술개발원교육센터│대표자 : 한광두│사업자등록번호 : 334-81-00348│TEL : 1661-1429│FAX : 02-856-1094│<br>
+	직업정보 제공사업 : 서울관악 제 2011-37호│주소 : (우)08292 서울특별시 구로구 구로중앙로34길 33-4(구로동, 경영기술개발원빌딩)│<br>
+	Copyrightⓒ경영기술개발원교육센터. All Rights Reserved. 
 	</div>
 	</div>
 </body>

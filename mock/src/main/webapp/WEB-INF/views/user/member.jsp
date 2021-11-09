@@ -5,8 +5,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원가입</title>
 <style>
+.main{
+	display:grid;
+  	place-items: center;  	
+}
+.main_mem{
+	width: 450px;
+	border:2px solid silver;
+	padding: 40px;
+}
 .id_chek{
-	margin-top:10px;
+ 	margin:0 0 5px 2px;
 }
 </style>
 <script>
@@ -136,42 +145,51 @@ function email_hide()
 </script>
 </head>
 <body>
-<div id="main" align="center" style="padding-right:70px;">
-				<form name="member" method="post" action="/mock/user/member_ok" onsubmit="return check()">
-				<h3 style="text-align: center;">회원가입</h3>
-				<div class="form-group">
-					<input type="text" placeholder="아이디" name="userid" onkeyup="userid_hide()" maxlength="20"><p>
-					<input type="button"  class="btn btn-danger btn-sm id_chek" value="아이디 조회" onclick="userid_check()">
-					<span id="id_chk"></span>
-        		    <span id="id_len"></span>
-				</div>
-				<div class="form-group">
-					<input type="text" class="form-control" placeholder="이름" name="username" onkeyup="username_hide()" maxlength="20">
-					<span id="name_len"></span>
-				</div><p>
-				<div class="form-group">
-					<input type="password" class="form-control" placeholder="비밀번호" name="pwd" onkeyup="pwd_check(),pwd_hide()" maxlength="20">
-					<span id="pwd_len"></span>
-				</div><p>
-				<div class="form-group">
-					<input type="password" class="form-control" placeholder="비밀번호 확인" name="pwd2" onkeyup="pwd_check(),pwd2_hide()" maxlength="20">
-					<span id="pwd_chk"></span>
-  			        <span id="pwd2_len"></span>
-				</div><p>
-				<div class="form-group">
-					<input type="text" placeholder="이메일" name="email" onkeyup="email_hide()" maxlength="20">
-					<span id="email_len"></span>
-				</div><p>
-				<div class="form-group">
-					회원가입 후 자동로그인<input type="checkbox" name="auto_check" >
-					<input type="hidden" name="auto" value="0" >
-				</div><p>
-				<input type="button"  class="btn btn-danger btn-sm" value="회원 가입" onclick="check()"><p>
-			    <c:if test="${f==1}">
-			      <b style="color:red">아이디가 중복되었습니다</b>
-			    </c:if>
-				</form>	
+<div id="main" class="main" align="center">
+  <div class="main_mem">
+	<form name="member" method="post" action="/mock/user/member_ok" onsubmit="return check()">
+		<h3 style="text-align: center;margin-bottom:30px;">회원가입</h3>
+		<div class="form-group">
+			<input type="text" placeholder="아이디" name="userid" onkeyup="userid_hide()" maxlength="20"
+			style="width:70%;"
+			>
+			<input type="button"  class="btn btn-danger btn-sm id_chek" value="아이디 조회" onclick="userid_check()">
+			<span id="id_chk"></span>
+	     		    <span id="id_len"></span>
 		</div>
+		<div class="form-group">
+			<input type="text" placeholder="이름" name="username" onkeyup="username_hide()" maxlength="20"
+			style="width:100%">
+			<span id="name_len"></span>
+		</div><p>
+		<div class="form-group">
+			<input type="password" placeholder="비밀번호" name="pwd" onkeyup="pwd_check(),pwd_hide()" maxlength="20"
+			style="width:100%">
+			<span id="pwd_len"></span>
+		</div><p>
+		<div class="form-group">
+			<input type="password" placeholder="비밀번호 확인" name="pwd2" onkeyup="pwd_check(),pwd2_hide()" maxlength="20"
+			style="width:100%">
+			<span id="pwd_chk"></span>
+			        <span id="pwd2_len"></span>
+		</div><p>
+		<div class="form-group">
+			<input type="text"  placeholder="이메일" name="email" onkeyup="email_hide()" maxlength="20"
+			style="width:100%">
+			<span id="email_len"></span>
+		</div><p>
+		<div class="form-group">
+			회원가입 후 자동로그인<input type="checkbox" name="auto_check" >
+			<input type="hidden" name="auto" value="0" >
+		</div><p>
+		<input type="button"  class="btn btn-danger btn-sm" value="회원 가입" onclick="check()"
+		style="width:130px"><p>
+	    <c:if test="${f==1}">
+	      <b style="color:red">아이디가 중복되었습니다</b>
+	    </c:if>
+	</form>
+  </div>
+</div>
 </body>
 </html> 
 
