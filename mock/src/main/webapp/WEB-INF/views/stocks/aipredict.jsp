@@ -79,11 +79,11 @@
 	현재가  ${close}<br>
 	<c:if test="${close>cprice}">
 	
-	<span style="color:blue;"> ai 예측 다음날 가격 ${cprice} </span><br>
+	<span style="color:blue;"> ai 예측 가격 ${cprice} </span><br>
 	</c:if>
 	<c:if test="${close<cprice}">
 	
-	<span style="color:red;"> ai 예측 다음날 가격 ${cprice} </span><br>
+	<span style="color:red;"> ai 예측 가격 ${cprice} </span><br>
 	</c:if>
 
 		<!-- 종가, 예측가 -->

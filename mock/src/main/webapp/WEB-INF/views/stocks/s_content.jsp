@@ -94,7 +94,7 @@
 	</div>
 	<div class="ai_con">
 	<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/aipredict?code=${code}'"
-	style="width:100%;">Ai 분석</button>
+	style="width:100%;">여기 오를까</button>
 
 	</div>
   </div>
