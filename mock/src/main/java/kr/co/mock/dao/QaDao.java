@@ -15,5 +15,6 @@ public interface QaDao {
 	   public void delete(int q_id);
 	   public Integer get_pagecount();
 	   public ArrayList<QaDto> list2(String field, String word);
+	   public Integer count();
 }
 
