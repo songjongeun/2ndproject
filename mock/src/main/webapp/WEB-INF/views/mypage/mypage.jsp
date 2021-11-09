@@ -37,10 +37,6 @@
       <td> ${udto.username} </td>
     </tr>
     <tr>
-      <td> 비밀번호 </td>
-      <td> ${udto.pwd} </td>
-    </tr>
-    <tr>
       <td> 이메일 </td>
       <td> ${udto.email} </td>
     </tr>
