@@ -9,12 +9,8 @@
 <script>
 function check()
 { 
-	var auto=document.write.auto_check.checked;
-	if(auto) {
-		  document.write.auto.value="1";}
-	
 	var title=document.write.title.value;
-	var titlelen=title.trim();
+	var titlelen=title.trim().replace("<br>,<b>,</b>,</br>");
 	var titlelen=titlelen.length;
 	  
 	var content=document.write.content.value;
@@ -35,15 +31,29 @@ function check()
 				 	document.write.submit();	
 	 		 	}
 }
+function title_hide()
+{
+	document.getElementById("titlelen").innerHTML="";
+}
+
+function content_hide()
+{
+	document.getElementById("contentlen").innerHTML="";
+}
+
 </script>
 </head>
 <body>
 <div id="main">	
 	  <form name="write" method="post" action="write_ok">
 	  <h3> 글쓰기 </h3>
-	  제목 <input type="text" name="title"> <p>
-	  내용 <textarea cols="100" rows="20" name="content"></textarea> <p>
-	  <input type="submit" value="저장">
+	  제목 <input type="text" name="title" onkeyup="title_hide()"> <p>
+	  내용 <textarea cols="100" rows="20" name="content" onkeyup="content_hide()"></textarea> <p>
+	  <input type="button" value="저장" onclick="check()">
+	  <span id="titlelen">
+	  </span>
+	  <span id="contentlen">
+	  </span>
 	  </form>
 	  </div>
 </body>
