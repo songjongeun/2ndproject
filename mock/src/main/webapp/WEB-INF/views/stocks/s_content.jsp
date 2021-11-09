@@ -73,7 +73,7 @@
 <div id="main" class="main">
 	<div id="stock-graph" class="sc_graph"></div>
 	<div class="like">
-		<button id="like"  class="btn btn-outline-danger btn-sm" value="1">♡</button>
+		<button id="like"  class="btn btn-outline-danger btn-sm">♡</button>
 	</div>
 	<div class="buy_con">
 		<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/buying?code=${code}'">매수</button>
@@ -94,10 +94,55 @@
 <script>
 
 $(document).ready(function(){
+	
+	var param={userid:"${sessionScope.userid}", code:"${code}"};
+
+	$.ajax({
+	    type: "get",
+	    url : "./like",
+	    data : param,
+	    contentType: "application/json",
+	    dataType : "json",	// 받아오는 값
+	    success : function(data){
+	       var chk=	data.chk;
+	       if (chk==1){
+	    	   $("#like").text("♥");
+	       }else{
+	    	   $("#like").text("♡");
+	       }
+	    },error : function(){
+	    	 alert("likeError");
+	        //Ajax 실패시
+	    }
+	});
+	
+	$("#like").on('click',function(){
+		
+		$.ajax({
+		    type: "get",
+		    url : "./likeButton",
+		    data : {userid:"${sessionScope.userid}", code:"${code}"},
+		    contentType: "application/json",
+		    dataType : "json",	// 받아오는 값
+		    success : function(data){
+		        //Ajax l
+		    	var chk=	data.chk;
+			       if (chk==1){
+			    	   $("#like").text("♥");
+			       }else{
+			    	   $("#like").text("♡");
+			       }
+		    },error : function(){
+		    	 alert("likeButtonError");
+		        //Ajax 실패시
+		    }
+		});
+	});
+	
+	
 	var reqData={code:"<c:out value='${code}'/>"}	;// 변수
 
-	
-	$.ajax({
+		$.ajax({
 		url:"./testData2",
 		type:'post',
 		data:reqData,

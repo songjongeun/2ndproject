@@ -15,7 +15,7 @@
 </select>
 
 <select id="selectData" resultType="kr.co.mock.dto.StockDto" parameterType="String">
-	SELECT open,high,low,close,vol,date FROM STOCKS WHERE code=#{code} order by date
+	SELECT open,high,low,close,vol,date FROM STOCKS WHERE code=#{param1} order by date
 </select>
 
 <!-- 모의투자 sql -->
@@ -40,5 +40,18 @@ insert into buying(userid,code,n_buying,ask_spread,b_day)
 
 </insert>
 
+<select id="selectCountInterests" resultType="Integer" parameterType="kr.co.mock.dto.LikeDto">
+SELECT COUNT(*) FROM interests where userid=#{userid} and code=#{code}
+
+
+</select>
+
+<insert id="insertValueInterests" parameterType="kr.co.mock.dto.LikeDto">
+INSERT INTO interests(userid,code) values(#{userid},#{code})
+
+</insert>
+<delete id="deleteValueInterests" parameterType="kr.co.mock.dto.LikeDto">
+DELETE FROM interests where userid=#{userid} and code=#{code}
+</delete>
 
 </mapper>
