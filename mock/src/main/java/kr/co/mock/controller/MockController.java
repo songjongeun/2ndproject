@@ -60,7 +60,7 @@ public class MockController {
 			else { // 로그인&모의 신청 O 
 				int diff=mdao.get_enddate(userid);
 				String notday;
-				if(diff > 0) {//모의 투자 신청을 한 적이 있을 경우 마지막 신청 날짜와 비교한다.
+				if(diff ==0) {//모의 투자 신청을 한 적이 있을 경우 마지막 신청 날짜와 비교한다.
 					//현재 날짜 > 종료날짜 =1//종료시점이 지나 다시 신청 가능.
 					int m_close=Integer.parseInt(request.getParameter("m_close"));
 					int mileage=Integer.parseInt(request.getParameter("mileage"));
