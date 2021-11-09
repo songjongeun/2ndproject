@@ -51,6 +51,14 @@ public class QaController {
 		int index=(page-1)*10;
 		
 		QaDao qdao=sqlSession.getMapper(QaDao.class);
+		
+		
+		int count=qdao.count();
+		model.addAttribute("count",count);
+		
+		
+		
+		
 		ArrayList<QaDto> list=qdao.list(index);
 
 
