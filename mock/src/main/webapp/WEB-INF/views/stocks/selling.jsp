@@ -15,11 +15,11 @@
 .sub_main{
 	display:grid;
 	place-items: center;
-	width:40%;
+	width:30%;
 	height:100%;
 	grid-template-columns:1fr 1fr;
 	grid-template-rows:50px repeat(6, 30px);
-  	grid-gap:20px;
+  	grid-gap:10px;
 
 }
 .s_name{
@@ -27,6 +27,7 @@
   	grid-row:1;
 	text-decoration: underline;
 	text-underline-position: under;/*텍스트 밑의 밀줄을 간격을 좀 더 띄움*/
+	margin-bottom:50px;
 }
 
 .mil_name{
@@ -148,6 +149,12 @@ $(function(){//숫자를 직접 입력했을 경우 실시간 계산
 			return;
 		}
 	sellval = inputval;
+	num = Number($(".n_selling").val());
+	diff = Number($(".diff").val());
+	if(num>diff){
+		alert("가지고 있는 주 이상을 매도할 수 없습니다.");
+        num=diff;
+	}
 	mil = Number($("#mileage").val()); //받은 포인트
 	curr = Number($("#curr").val()); //매도가
 	
@@ -158,6 +165,35 @@ $(function(){//숫자를 직접 입력했을 경우 실시간 계산
 	$(".curr_mil").val(curr_mil);
 	});
 });
+
+function diff_mil(){
+	curr_mil= Number($(".curr_mil").val());
+	num= Number($(".n_selling").val());
+	diff = Number($(".diff").val());
+	if(num>diff){ //매도를 구매한 수 이상 구매하면 
+		alert("가지고 있는 주 이상을 매도할 수 없습니다.");
+		num=diff;
+		$(".n_selling").val(num);
+		num2 = Number($(".n_selling").val());
+		mil = Number($("#mileage").val()); //받은 포인트
+		curr = Number($("#curr").val()); //매도가
+		
+		sum_mil = curr*num2;
+		curr_mil = mil-sum_mil;
+		
+		$(".sum_mil").val(sum_mil);
+		$(".curr_mil").val(curr_mil);
+		return false;
+		
+	}else if(num==0){
+		alert("최소한 하나 이상 판매할 수 있습니다.");
+		num=1;
+		return false;
+	}
+	else{
+		return true;
+	}
+}
 </script>
 <style>
 
@@ -165,7 +201,7 @@ $(function(){//숫자를 직접 입력했을 경우 실시간 계산
 </head>
 <body>
 <div id="main" class="main">
-	<form class="sub_main" method="post" action="/mock/selling_ok">
+	<form class="sub_main" method="post" action="/mock/selling_ok" onsubmit="return diff_mil()">
 
 		<div class="s_name"><h1>${sdto.name} 매도</h1>
 		<input type="hidden" name="code" value="${sdto.code}">
@@ -195,7 +231,7 @@ $(function(){//숫자를 직접 입력했을 경우 실시간 계산
 		<input type="button" id="minus" class="btn btn-outline-danger btn-sm" value= "-"
 		style="font-size:12px;margin-bottom:5px;">
 	  	<input type="text" class="n_selling" name="n_selling" value="${diff}" size="4"
-	  	style="text-align:right;">&nbsp;주<!-- 거래개수 -->
+	  	style="text-align:right;" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>&nbsp;주<!-- 거래개수 -->
 	  	<input type="button" id="plus" class="btn btn-outline-danger btn-sm" value="+" 
 	  	style="font-size:12px;margin-bottom:5px;">
 		</div>

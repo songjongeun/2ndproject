@@ -210,7 +210,7 @@ public String in_regi(Model model,HttpSession session)
 			MockDao mdao=sqlSession.getMapper(MockDao.class);
 			mdao.buying_ok(userid, code, n_buying, ask_spread);
 			mdao.mileage_update(mileage,userid);
-			return "redirect:/stocks/st_list";
+			return "redirect:/mypage/mypage";
 		}
 		else {
 			return "/user/login";
@@ -287,10 +287,11 @@ public String in_regi(Model model,HttpSession session)
 			String code=request.getParameter("code");
 			int n_selling=Integer.parseInt(request.getParameter("n_selling"));
 			int bid_spread=Integer.parseInt(request.getParameter("bid_spread"));
+			bid_spread=bid_spread*n_selling;
 			MockDao mdao=sqlSession.getMapper(MockDao.class);
 			mdao.selling_ok(userid, code, n_selling, bid_spread);
 			mdao.mileage_update(mileage,userid);
-			return "redirect:/stocks/st_list";
+			return "redirect:/mypage/mypage";
 		}
 		else {
 			return "/user/login";

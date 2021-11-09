@@ -12,15 +12,21 @@
       position:absolute;
       visibility:hidden;
     }
+    .mypage_view{
+      display:grid;
+      place-items: center;
+      width:100%;
+      grid-gap:70px;
+    }
 </style>
-<script>
-</script>
+
 </head>
 <body>
-<div id="main">
+<div id="main" class="mypage_view">
 	<h3> 마이페이지 </h3>
-	<hr>
-  <table class="table table-striped table-hover" align="center">
+	
+<div  class="mypage myid">
+  <table align="center" class="table table-striped table-hover">
     <tr>
       <td> 아이디 </td>
       <td> ${udto.userid} </td>
@@ -30,19 +36,28 @@
       <td> ${udto.email} </td>
     </tr>
     <tr>
-      <td> 
-      	<form method="post" action="./mypage_update">
-      	<input type="hidden" name="userid" value="${udto.userid}">
-      	
-       	<button>정보 수정하기</button>
-       </form>
+
+      <td>
+      <button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/mypage/mypage_update?userid=${udto.userid}'">수정</button>
+      </td>
+      <td>
+       <button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/mypage/mypage_delete'">삭제</button>
+
       </td>
 
     </tr>
    </table>
+
+  </div>
+
   
-  <p style="margin-top:70px;">
+  <div class="mypage myspread">
   
+    <c:if test="${mileage==null}">
+     	<div>마일리지 신청한 내역이 없습니다.
+     	<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/invest/in_regi'">마일리지 신청</button>
+     	</div>
+    </c:if>
     <c:if test="${mileage!=null}">
     <table class="table table-striped table-hover" align="center">
       <c:if test="${buy!=1}">
@@ -75,12 +90,18 @@
           </c:if>
         </c:forEach>
       </c:if>      
-    </table> 
-  <p style="margin-top:70px;">
-  <div align="center">보유포인트 : <fmt:formatNumber value="${mileage}" pattern="#,##0" /></div>
+    </table>
+     </c:if>
+   </div>
+   
+ 
+	<c:if test="${mileage!=null}">
+  		<div class="mypage mymil able table-striped table-hover">보유포인트 : <fmt:formatNumber value="${mileage}" pattern="#,##0" /></div>
+	</c:if>
   
-  <p style="margin-top:70px;">
-    <table class="table table-striped table-hover" align="center">
+  <div class="mypage mybuy">
+  <c:if test="${mileage!=null}">
+    <table>
       <c:if test="${buy!=1}">
         <tr align="center">
           <td>매수정보가 없습니다</td>
@@ -112,8 +133,12 @@
         </c:forEach>
       </c:if>      
     </table>
-  <p style="margin-top:70px;">
-    <table class="table table-striped table-hover" align="center">
+    </c:if>
+    </div>
+    
+    <div class="mypage mysell table table-striped table-hover">
+    <c:if test="${mileage!=null}">
+    <table>
       <c:if test="${sel!=1}">
         <tr align="center">
           <td>매도정보가 없습니다</td>
@@ -134,7 +159,7 @@
         </tr>
         <tr><td colspan="6"><hr></td></tr>
         <c:forEach items="${sdto3}" var="sdto3">
-          <tr align="center">
+          <tr>
             <td><a href="/mock/stocks/s_content?code=${sdto3.code}">${sdto3.code}</a></td>
             <td><a href="/mock/stocks/s_content?code=${sdto3.code}">${sdto3.name}</a></td>
             <td><fmt:formatNumber value="${sdto3.n_selling}" pattern="#,##0" /></td>
@@ -145,18 +170,18 @@
         </c:forEach>
       </c:if>
     </table>
-  
+    </c:if>
 
- 
-  
-  </c:if>
+
  	<table class="table table-striped table-hover" align="center">
  	<td>
  	
   <button id="withdrawal">탈퇴하기</button>
   </td>
 	</table>
+
   </div>
+ </div>
 </body>
 </html>
           

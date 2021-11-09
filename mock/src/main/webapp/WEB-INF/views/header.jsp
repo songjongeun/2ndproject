@@ -49,8 +49,9 @@
 
 #first .item .login{
 	margin-top: 10px;
-	place-items: center;
+	justify-content: center;
 	text-align:center;
+	margin: 0 auto;
 }
 #second{ /*메뉴*/
 	grid-area:second;
@@ -145,7 +146,7 @@ button{
 			onclick="location.href='/mock/invest/in_regi'"
 			style="width:80px;font-size:10px;"
 			>모의신청</button><br>
-			${username}님<br>
+			${username}님 &nbsp;&nbsp;
 			<a href="/mock/user/logout">로그아웃</a>			
 		</c:if>	
 		</div>
