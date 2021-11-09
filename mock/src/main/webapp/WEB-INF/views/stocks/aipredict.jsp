@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!-- 숫자서식을 위해 fmt 사용 -->'
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,106 +13,100 @@
 
 <title>Insert title here</title>
 <style type="text/css">
-.st_main{
+.main{
 	display:grid;
-	width:80%;
-	grid-template-rows: 1fr 5fr;
-	place-items: center;
-	margin:auto;
-}
-.sc_graph{
-}
-.stcon{ /*그래프와 매도매수...를 div로 감싸 플렉스로 정렬*/
 	display:grid;
 	place-items: center;
-	grid-template-columns: 3fr 1fr;
-}
-
-.con_menu{/*버튼 메뉴들을 grid로 지정*/
-	display:grid;
-	grid-template-columns: repeat(2,1fr);	/*가로방향 비율*/
-  	grid-template-rows: repeat(4,1fr); /*세로방향 비율*/
+ 	grid-template-columns: 5fr 30px 1fr 1fr 30px;	/*가로방향 비율*/
+  	grid-template-rows: 5fr 1fr 1fr 1fr 5fr; /*세로방향 비율*/
+	width:70%;
+	height:100%;
   	grid-gap: 10px;
 }
+.sc_graph{
+	grid-column:1;
+  	grid-row:1/6;
+}
+
+.like{
+	grid-column:2;
+	grid-row:2;
+}
 .buy_con{
-	grid-column:1;
-  	grid-row:2;
-}
-.sell_con{
-	grid-column:2;
-  	grid-row:2;
-}
-.realtime{
-	grid-column:1;
-	grid-row:3;
-}
-.ai_con{
-	grid-column:2;
+	grid-column:3;
   	grid-row:3;
 }
-.btn .btn-outline-danger .btn-sm{
-	
+.sell_con{
+	grid-column:4;
+  	grid-row:3;
+}
+.realtime{
+	grid-column:3;
+	grid-row:4;
+}
+.ai_con{
+	grid-column:4;
+  	grid-row:4;
 }
 
 
 </style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<!-- 차트 그래프 스크립트 ===================== -->
-<script src="https://code.highcharts.com/stock/highstock.js"></script>
-<script src="https://code.highcharts.com/stock/modules/data.js"></script>
 
-<script src="https://code.highcharts.com/stock/indicators/indicators-all.js"></script>
-<script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
-
-<script src="https://code.highcharts.com/modules/annotations-advanced.js"></script>
-<script src="https://code.highcharts.com/modules/price-indicator.js"></script>
-<script src="https://code.highcharts.com/modules/full-screen.js"></script>
-
-<script src="https://code.highcharts.com/modules/stock-tools.js"></script>
-
-<script src="https://code.highcharts.com/stock/modules/heikinashi.js"></script>
-<script src="https://code.highcharts.com/stock/modules/hollowcandlestick.js"></script>
-<!-- 차트 그래프 스크랩트 ==================== -->
 </head>
 <body>
-<div id="main">
-  <div class="st_main">
-   <div class="stc_name">
-   <h1>${name}
-   <button id="like"  class="btn btn-outline-danger btn-sm">♡</button> </h1>  </div>
-   <div class="stcon"> <!-- 그래프 및 매수매도 -->
-	<div id="stock-graph" class="sc_graph"></div>
-   <div class="con_menu">
+<div id="main" class="main">
+	<div id="stock-graph" class="sc_graph">
+	<img src="<spring:url value = '/img/${imgName}'/>" >
+	</div>
+	<div class="like">
+		<button id="like"  class="btn btn-outline-danger btn-sm">♡</button>
+	</div>
+	<div id="predict">
+	
+	현재가  ${close}
+	<c:if test="${close>cprice}">
+	
+	<span style="color:blue;"> ai 예측 다음날 가격 ${cprice} </span>
+	</c:if>
+	<c:if test="${close<cprice}">
+	
+	<span style="color:red;"> ai 예측 다음날 가격 ${cprice} </span>
+	</c:if>
+
+		<!-- 종가, 예측가 -->
+	</div>
+	
 	<div class="buy_con">
-		<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/buying?code=${code}'"
-		style="width:100%;">매수</button>
+		<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/buying?code=${code}'">매수</button>
 	</div>
 	
 	<div class="sell_con">
-		<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/selling?code=${code}'"
-		style="width:100%;">매도</button>
+		<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/selling?code=${code}'">매도</button>
 	</div>
 	
 	<div class="realtime">
-		<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/realtime?code=${code}'"
-		style="width:100%;">실시간 데이터</button>
+		<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/realtime?code=${code}'" >실시간데이터보기</button>
 	</div>
 	<div class="ai_con">
-<<<<<<< HEAD
-	<button  class="btn btn-outline-danger btn-sm"
-	style="width:100%;">Ai 분석</button>
-=======
-	<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/aipredict?code=${code}'">Ai 분석</button>
->>>>>>> 318bebc926a663d3f331c06133cc5d14e6573c3e
+	<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/s_content?code=${code}'"> 데이터 보기</button>
 	</div>
-  </div>
-  </div>
-</div>
+
 </div>
 <script>
 
+
+
 $(document).ready(function(){
+	var imgName=null;
+	imgName="${imgName}";
+	
+	if (imgName==null){
+		alert("ai 분석 데이터가 없습니다");
+		history.back();
+	}
+	
 	
 	var param={userid:"${sessionScope.userid}", code:"${code}"};
 
@@ -124,7 +119,7 @@ $(document).ready(function(){
 	    success : function(data){
 	       var chk=	data.chk;
 	       if (chk==1){
-	    	   $("#like").text("♥");
+	    	   $("#like").text("♥"); 
 	       }else{
 	    	   $("#like").text("♡");
 	       }
@@ -269,13 +264,14 @@ $(document).ready(function(){
 
 		}, error : function( ){
 			
-			alert('data가 없습니다');
+			alert('data가 없습니다');	
 			history.back();
 		}
 		
 		
 	});
 
+	
 
 	});
 

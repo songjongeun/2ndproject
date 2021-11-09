@@ -168,7 +168,7 @@ button{
 		  </c:if>
 		</div>
 		<div class="item m_free"><a href="/mock/freeboard/list">자유게시판</a></div>
-		<div class="item Q&A"><a href="/mock/qa/list">Q&A</a></div>
+		<div class="item Q&A"><a href="/mock/qa/list">공지사항</a></div>
 		
 		<div class="item mypage">
 		   <c:if test="${userid==null }">  <!-- 로그인 안했을때 -->

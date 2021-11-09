@@ -6,22 +6,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.mock.dao.MockDao;
 import kr.co.mock.dao.StockDao;
-import kr.co.mock.dto.BuyingDto;
 import kr.co.mock.dto.LikeDto;
 import kr.co.mock.dto.StockDto;
 import kr.co.mock.util.TimeToUnix;
@@ -114,7 +108,21 @@ public class StockController {
 		 
 		return data;
 	}
-	
+	@RequestMapping("/stocks/aipredict")
+	public String aipredict(@RequestParam("code") String code,Model model) {
+		
+		StockDao sdao= sqlSession.getMapper(StockDao.class);
+		
+		String imgName=sdao.getImgName(code);
+		int close= sdao.selectPrice(code);
+		int cprice = sdao.getPredictPrice(code);
+		model.addAttribute("imgName", imgName);
+		model.addAttribute("code", code);
+		model.addAttribute("close", close);
+		model.addAttribute("cprice", cprice);
+		
+		return "/stocks/aipredict";
+	}
 
 	@RequestMapping(value="/stocks/like",produces="application/json",method=RequestMethod.GET)
 	@ResponseBody

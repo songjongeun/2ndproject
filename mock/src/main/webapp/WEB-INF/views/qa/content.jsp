@@ -5,19 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title> Q&A 게시판 </title>
-<style>
-  table {
-    border: 1px solid #444444;
-    border-collapse: collapse;
-  }
-   td {
-    border: 1px solid #444444;
-    border-left: 1px solid #444444;
-    padding: 10px;
-    text-align:center;
-  }
-</style>
+<title>게시판 </title>
  <script>
   function dat_update(n,id)
    {
@@ -52,7 +40,7 @@
 <div id="main">
 	<h3> Q&A </h3>
 	<hr>
-  <table width="900" align="center">
+  <table class="table table-striped table-hover" width="500" align="center">
     <tr>
       <td><h1> ${qdto.title}</h1> </td>
     </tr>
