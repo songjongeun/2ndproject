@@ -29,7 +29,8 @@ td:nth-chile(2){
 </head>
 <body>
   <div id="main" align="center">
-	<h4> 내 종목 보기 </h3>
+	<h3 align="left"> 내 종목 보기 </h3>
+	<hr>
     <%-- <table width="700" >  <!--실시간종목 - 출력은 데이터 있는것(삼성전자)만 가능-->
       <c:if test="${chk==1}">  <!-- 가져온 정보가 없을시 -->
         <div style="padding-right:70px;padding-top:70px;text-align:center;">관심종목이 없습니다<p>
