@@ -29,8 +29,8 @@
 		select mileage from mock_invest where userid=#{param1} order by userid desc limit 1;
 	</select>
 	
-	<select id="search_id" resultType="Integer">
-		select count(*)from mock_invest where userid=#{param1}
+		<select id="mockInvestCount" resultType="Integer" parameterType="String">
+		select count(*)from mock_invest where userid=#{param1} and m_apply=1
 	</select>
 	<!-- 모의투자 신청시 신청한 적이 있는지 조회함 -->
 	

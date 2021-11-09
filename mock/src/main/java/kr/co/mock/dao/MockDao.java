@@ -22,7 +22,7 @@ public interface MockDao {
 	public Integer get_pagecount(int curpage,String field,String word);
 
 	public Integer get_point(String userid);
-	public int search_id(String userid);
+	public int mockInvestCount(String userid);
 	
 	//매수매도
 	public void buying_ok(String userid,String code,int n_buying,int ask_spread);

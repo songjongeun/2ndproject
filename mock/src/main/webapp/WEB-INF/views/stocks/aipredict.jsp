@@ -99,12 +99,11 @@
 	</div>
 	
 	<div class="realtime">
-		<button  class="btn btn-outline-danger btn-sm" onclick="location.href='/mock/stocks/realtime?code=${code}'"
-		style="width:100%;">실시간 데이터</button>
+		<button  class="btn btn-outline-danger btn-sm" style="width:100%;">실시간 데이터</button>
 	</div>
 	<div class="ai_con">
-	<button  class="btn btn-outline-danger btn-sm"
-	style="width:100%;">Ai 분석</button>
+	<button  class="btn btn-outline-danger btn-sm" onclick="location.href='./s_content?code=${code}'"
+	style="width:100%;">데이터 보기</button>
 
 	</div>
   </div>

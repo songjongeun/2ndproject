@@ -14,48 +14,37 @@
     }
 </style>
 <script>
-    function del()
-    {
-    	var delform=document.getElementById("delform");
-    	delform.style.visibility="visible";
-    	delform.style.left=event.clientX+"px";
-    	delform.style.top=event.clientY+"px";
-    }
 </script>
 </head>
 <body>
 <div id="main">
 	<h3> 마이페이지 </h3>
 	<hr>
-  <table width="500" align="center">
+  <table class="table table-striped table-hover" align="center">
     <tr>
       <td> 아이디 </td>
       <td> ${udto.userid} </td>
-    </tr>
-    <tr>
       <td> 이름 </td>
       <td> ${udto.username} </td>
-    </tr>
-    <tr>
       <td> 이메일 </td>
       <td> ${udto.email} </td>
     </tr>
     <tr>
-      <td align="center"> 
-       <a href="/mock/mypage/mypage_update?userid=${udto.userid}"> 수정 </a>
-       <a href="#" onclick="del()"> 삭제 </a>
+      <td> 
+      	<form method="post" action="./mypage_update">
+      	<input type="hidden" name="userid" value="${udto.userid}">
+      	
+       	<button>정보 수정하기</button>
+       </form>
       </td>
+
     </tr>
    </table>
-   
-	<form method="post" action="mypage_delete" id="delform">
-	<input type="submit" class="btn btn-outline-danger btn-sm" value="삭제">
-  </form>
   
   <p style="margin-top:70px;">
   
     <c:if test="${mileage!=null}">
-    <table width="900" align="center">
+    <table class="table table-striped table-hover" align="center">
       <c:if test="${buy!=1}">
         <tr align="center">
           <td>보유 주 정보가 없습니다</td>
@@ -91,7 +80,7 @@
   <div align="center">보유포인트 : <fmt:formatNumber value="${mileage}" pattern="#,##0" /></div>
   
   <p style="margin-top:70px;">
-    <table width="900" align="center">
+    <table class="table table-striped table-hover" align="center">
       <c:if test="${buy!=1}">
         <tr align="center">
           <td>매수정보가 없습니다</td>
@@ -124,7 +113,7 @@
       </c:if>      
     </table>
   <p style="margin-top:70px;">
-    <table width="900" align="center">
+    <table class="table table-striped table-hover" align="center">
       <c:if test="${sel!=1}">
         <tr align="center">
           <td>매도정보가 없습니다</td>
@@ -158,9 +147,15 @@
     </table>
   
 
- 	
+ 
   
   </c:if>
+ 	<table class="table table-striped table-hover" align="center">
+ 	<td>
+ 	
+  <button id="withdrawal">탈퇴하기</button>
+  </td>
+	</table>
   </div>
 </body>
 </html>
