@@ -63,7 +63,7 @@
 	    <c:if test="${userid!=null}"> 
 		<a href="list"> 목 록 </a>
 		<a href="write"> 글쓰기 </a> 
-		  <c:if test="${userid==qdto.userid || userid=='admin'}">
+		  <c:if test="${userid=='admin'}">
 		    <a href="update?q_id=${qdto.q_id}"> 수정 </a>
 	        <a href="#" onclick="del()"> 삭제 </a>
 	      </c:if>  

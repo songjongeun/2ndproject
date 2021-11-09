@@ -82,7 +82,8 @@ public class UserController {
 				model.addAttribute("sdto3",sdto3);
 			}
 			
-			int mileage=mdao.get_point(userid);
+			Integer mileage=mdao.get_point(userid);
+			
 			model.addAttribute("mileage",mileage);
 
 			ArrayList<BuyingDto> b_total=udao.b_total(userid);

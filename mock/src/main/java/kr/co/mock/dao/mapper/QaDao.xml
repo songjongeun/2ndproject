@@ -11,6 +11,10 @@
 	<select id="list" resultType="kr.co.mock.dto.QaDto">
 		select * from qa order by q_id desc limit #{param1},10
 	</select>
+	
+	<select id="count" resultType="Integer">
+		select count(*) from qa;
+	</select>
 
 	<update id="hit">
 		update qa set hit=hit+1

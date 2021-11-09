@@ -21,7 +21,7 @@ public interface MockDao {
 	//pageing============
 	public Integer get_pagecount(int curpage,String field,String word);
 
-	public int get_point(String userid);
+	public Integer get_point(String userid);
 	public int search_id(String userid);
 	
 	//매수매도

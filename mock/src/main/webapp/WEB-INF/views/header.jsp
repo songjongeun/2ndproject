@@ -50,6 +50,7 @@
 #first .item .login{
 	margin-top: 10px;
 	place-items: center;
+	text-align:center;
 }
 #second{ /*메뉴*/
 	grid-area:second;
@@ -140,11 +141,11 @@ button{
 		</c:if>
 		
 		<c:if test="${userid!=null}">
-			${username}님<br>
 			<button class="btn btn-outline-danger btn-sm"
 			onclick="location.href='/mock/invest/in_regi'"
 			style="width:80px;font-size:10px;"
 			>모의신청</button><br>
+			${username}님<br>
 			<a href="/mock/user/logout">로그아웃</a>			
 		</c:if>	
 		</div>

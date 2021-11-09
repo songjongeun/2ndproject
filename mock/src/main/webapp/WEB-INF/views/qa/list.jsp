@@ -18,13 +18,14 @@
 	  <!-- 로그인을 안했을 경우 -->
 	  </c:if>
 
-      <c:if test="${userid=='admin'}">
       <!-- 로그인을 했을 경우 --> 
       <form action="write">
-        <input type="submit"  value="글쓰기">
+        <div>공지사항이 ${count}건있습니다</div>
+      <c:if test="${userid=='admin'}">
+        <input type="submit"  value="글쓰기" >
+      </c:if> 
       </form>
       
-      </c:if> 
 </span>
 
  	<table class="table table-striped table-hover" width="500" align="center">
