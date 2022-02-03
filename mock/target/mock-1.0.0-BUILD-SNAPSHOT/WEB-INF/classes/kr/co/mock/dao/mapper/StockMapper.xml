@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybats-3-mapper.dtd">
+
+<mapper namespace="kr.co.mock.dao.StockDao">
+
+
+<select id="selectCode" resultType="kr.co.mock.dto.StockDto">
+	SELECT * FROM STOCKS_A
+
+</select>
+
+<!--  이름 가져오기 -->
+<select id="selectName" parameterType="String" resultType="String">
+	SELECT name FROM STOCKS_A WHERE code=#{param1}
+</select>
+
+<select id="selectData" resultType="kr.co.mock.dto.StockDto" parameterType="String">
+	SELECT open,high,low,close,vol,date FROM STOCKS WHERE code=#{param1} order by date
+</select>
+
+<!-- 모의투자 sql -->
+
+<select id="selectCountMock" resultType="Integer" parameterType="String">
+select count(*) from mock_invest where userid=#{userid} and m_apply=1
+
+</select>
+
+<select id="selectMileage" resultType="Integer" parameterType="String">
+select mileage from mock_invest where userid=#{userid}
+</select>
+
+<select id="selectPrice" resultType="Integer" parameterType="String">
+select close from stocks where code=#{code} order by date desc limit 1
+
+</select>
+
+<insert id="insertBuying" parameterType="kr.co.mock.dto.BuyingDto">
+insert into buying(userid,code,n_buying,ask_spread,b_day)
+ values(#{userid},#{code},#{n_buying},#{ask_spread},now())
+
+</insert>
+
+<select id="selectCountInterests" resultType="Integer" parameterType="kr.co.mock.dto.LikeDto">
+SELECT COUNT(*) FROM interests where userid=#{userid} and code=#{code}
+
+
+</select>
+
+<insert id="insertValueInterests" parameterType="kr.co.mock.dto.LikeDto">
+INSERT INTO interests(userid,code) values(#{userid},#{code})
+
+</insert>
+<delete id="deleteValueInterests" parameterType="kr.co.mock.dto.LikeDto">
+DELETE FROM interests where userid=#{userid} and code=#{code}
+</delete>
+
+<select id="getImgName" parameterType="String" resultType="String">
+SELECT imgName FROM predict where code=#{code}
+</select>
+
+<select id="getPredictPrice" parameterType="String" resultType="Integer">
+select cprice from prestock where code=#{code} order by p_id desc limit 1
+
+</select>
+
+</mapper>

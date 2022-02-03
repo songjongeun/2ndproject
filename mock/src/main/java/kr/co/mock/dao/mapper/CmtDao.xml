@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.mock.dao.CmtDao">
+
+   <select id="cmt_list" resultType="kr.co.mock.dto.CmtDto">
+	 select * from freeboard_dat WHERE f_id=#{param1} order by c_id desc 
+  </select>
+
+  <insert id="cmt_write_ok" parameterType="kr.co.mock.dto.CmtDto">
+    insert into freeboard_dat(f_id,userid,content,writeday)
+    values(#{f_id},#{userid},#{content},now())
+  </insert>
+  
+  <select id="cmt_update" resultType="kr.co.mock.dto.CmtDto">
+    select * from freeboard_dat where c_id=#{param1}
+  </select>
+
+   <update id="cmt_update_ok" parameterType="kr.co.mock.dto.CmtDto">
+     update freeboard_dat set content=#{content} 
+     where c_id=#{c_id}
+  </update>
+  
+  <delete id="cmt_delete">
+     delete from freeboard_dat where c_id=#{param1}
+  </delete>
+  
+  <select id="get_pagecount" resultType="Integer">
+    select ceil(count(*)/10) from freeboard_dat;
+  </select>
+
+</mapper>

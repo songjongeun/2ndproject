@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybats-3-mapper.dtd">
+
+<mapper namespace="kr.co.mock.dao.AdminDao">
+
+  <select id="adminpage" resultType="kr.co.mock.dto.UserDto">
+     select * from user
+  </select>
+  <select id="buyList" resultType="kr.co.mock.dto.BuyingDto">
+     select sum(n_buying) as totalNum,sum(ask_spread) as total,code,userid from buying group by userid order by b_day desc;
+  </select>
+ <select id="sellList" resultType="kr.co.mock.dto.SellingDto">
+     select sum(n_selling) as totalNum,sum(bid_spread) as total,code,userid from selling group by userid order by s_day desc;
+  </select>
+</mapper>

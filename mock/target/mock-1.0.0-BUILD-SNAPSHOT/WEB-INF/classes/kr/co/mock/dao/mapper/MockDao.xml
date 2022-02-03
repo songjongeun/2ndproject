@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybats-3-mapper.dtd">
+
+<mapper namespace="kr.co.mock.dao.MockDao">
+	<insert id="in_regi_ok" parameterType="kr.co.mock.dto.MockDto">
+		insert into mock_invest(userid,m_open,m_close,mileage,m_apply)
+		values(#{param2},now(),date_add(m_open,interval ${param3} month),${param4},1)
+	</insert>
+
+	<select id="get_enddate" resultType="Integer">
+		SELECT if(NOW()>m_close,0,1) AS diff from mock_invest  where userid=#{param1} order BY m_id DESC limit 1;
+	<!-- 신청한 아이디 중 가장 최신에 신청한 날짜와 현재 날짜를 종료 날짜와 비교 -->
+	</select>
+	
+	<select id="st_list" resultType="kr.co.mock.dto.Stock_aDto">
+		select * from stocks_a where ${param1} like concat('%',#{param2},'%') limit ${param3},${param4}
+	</select>
+	
+	<!-- 페이징==================== -->
+	
+	
+	<select id="get_pagecount" resultType="Integer">
+		select ceil(count(*)/${param1}) from stocks_a where #{param2} like concat('%',#{param3},'%')
+	</select>
+	
+	<select id="st_content" resultType="kr.co.mock.dto.StockDto">
+		select * from stocks where id=#{param1}
+	</select>
+	
+	<select id="get_point" resultType="Integer">
+		select mileage from mock_invest where userid=#{param1} order by userid desc limit 1;
+	</select>
+	
+		<select id="mockInvestCount" resultType="Integer" parameterType="String">
+		select count(*)from mock_invest where userid=#{param1} and m_apply=1
+	</select>
+	<!-- 모의투자 신청시 신청한 적이 있는지 조회함 -->
+	
+	
+	<!-- 매수매도 -->
+	<insert id="buying_ok" parameterType="kr.co.mock.dto.BuyingDto">
+		insert into buying(userid,code,n_buying,ask_spread,b_day)
+		values(#{param1},#{param2},${param3},${param4},now());
+	</insert>
+	
+	<update id="mileage_update" parameterType="kr.co.mock.dto.MockDto">
+		update mock_invest set mileage=${param1} where userid=#{param2}
+	</update>
+	
+	<select id="st_buysell" resultType="kr.co.mock.dto.StockDto">
+		select * from stocks where code=#{param1} order by date desc limit 1
+	</select>
+	
+	<insert id="selling_ok" parameterType="kr.co.mock.dto.SellingDto">
+		insert into selling(userid,code,n_selling,bid_spread,s_day)
+		values(#{param1},#{param2},${param3},${param4},now());
+	</insert>
+	
+	<select id="buy_get" resultType="Integer">
+		select count(*) from buying where code=#{param1} and userid=#{param2}
+	</select>
+	
+	<select id="sell_get" resultType="Integer">
+		select count(*) from selling where code=#{param1} and userid=#{param2}
+	</select>
+	
+	<select id="buy_count" resultType="Integer">
+		select sum(n_buying) from buying where userid=#{param1} and code=#{param2}
+	</select>
+	
+	<select id="sell_count" resultType="Integer">
+		select sum(n_selling) from selling where userid=#{param1} and code=#{param2}
+	</select>
+</mapper>

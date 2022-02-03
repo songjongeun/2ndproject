@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.mock.dao.QaDao">
+
+	<insert id="write_ok" parameterType="kr.co.mock.dto.QaDto">
+		insert into qa(title,content,userid,writeday)
+		values(#{title},#{content},#{userid},now())
+	</insert>
+
+	<select id="list" resultType="kr.co.mock.dto.QaDto">
+		select * from qa order by q_id desc limit #{param1},10
+	</select>
+	
+	<select id="count" resultType="Integer">
+		select count(*) from qa;
+	</select>
+
+	<update id="hit">
+		update qa set hit=hit+1
+		where q_id=#{param1}
+	</update>
+
+	<select id="content" resultType="kr.co.mock.dto.QaDto">
+		select * from qa where q_id=#{param1}
+	</select>
+
+	<select id="update" resultType="kr.co.mock.dto.QaDto">
+		select * from qa where q_id=#{param1}
+	</select>
+
+	<update id="update_ok" parameterType="kr.co.mock.dto.QaDto">
+		update qa set q_id=#{q_id},title=#{title}, content=#{content}
+		where q_id=#{q_id}
+	</update>
+
+	<delete id="delete">
+		delete from qa where q_id=#{param1}
+	</delete>
+
+	<select id="get_pagecount" resultType="Integer">
+		select ceil(count(*)/10) from qa;
+	</select>
+
+	<select id="list2" resultType="kr.co.mock.dto.QaDto">
+		select * from qa where (title like concat('%',#{param2},'%')) or (content like concat('%',#{param2},'%'))
+	</select>
+</mapper>

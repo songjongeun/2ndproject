@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybats-3-mapper.dtd">
+
+<mapper namespace="kr.co.mock.dao.UserDao">
+
+  <select id="mypage" resultType="kr.co.mock.dto.UserDto">
+     select * from user where userid=#{userid}
+  </select>
+  <select id="mypage_update" resultType="kr.co.mock.dto.UserDto">
+     select * from user where userid=#{userid}
+  </select>
+  
+  <update id="mypage_update_ok" parameterType="kr.co.mock.dto.UserDto">
+     update user set userid=#{userid},username=#{username},pwd=#{pwd},email=#{email} 
+     where userid=#{userid}
+  </update>
+  
+  <delete id="mypage_delete">
+     delete from user where userid=#{param1}
+  </delete>
+  
+  <select id="userid_check" resultType="Integer">
+    select count(*) from user where userid=#{param1}
+  </select>
+
+  <insert id="member_ok" parameterType="kr.co.mock.dto.UserDto">
+    insert into user(userid,pwd,username,email) 
+    values(#{userid},#{pwd},#{username},#{email})
+  </insert>
+  
+  <select id="login_ok" parameterType="kr.co.mock.dto.UserDto" resultType="kr.co.mock.dto.UserDto">
+    select * from user where userid=#{userid} and pwd=#{pwd}
+  </select>
+  
+  <select id="ip_search_ok" parameterType="kr.co.mock.dto.UserDto" resultType="kr.co.mock.dto.UserDto">
+    select * from user where username=#{username} and email=#{email} and userid like #{userid}
+  </select>
+  
+  <select id="my_interests" resultType="kr.co.mock.dto.UserDto">
+    select * from interests where userid=#{param1}
+  </select>
+  
+  <select id="stk_rt" resultType="kr.co.mock.dto.UserDto">
+    select s.code,s.name,r.r_id,r.cprice,r.diff,r.vol from stocks_a s,realtime r where s.code=r.code and s.code=#{param1} order by r.r_id desc limit 1
+  </select>
+  
+  <select id="stocks_names" resultType="string">
+    select name from stocks_a where code=#{param1}
+  </select>
+  
+  <select id="my_mocks" resultType="kr.co.mock.dto.StockDto">
+	select * from stocks where code=#{param1} order by date desc limit 1
+  </select>
+  
+  <select id="his_b" resultType="kr.co.mock.dto.BuyingDto">
+    select * from buying where userid=#{param1} order by b_id desc
+  </select>
+  
+  <select id="his_s" resultType="kr.co.mock.dto.SellingDto">
+    select * from selling where userid=#{param1} order by s_id desc
+  </select>
+  
+  <select id="b_total" resultType="kr.co.mock.dto.BuyingDto">
+	select code,sum(ask_spread) total,sum(n_buying) n_buying
+	from buying where userid=#{param1} group by code
+  </select>
+  
+  <select id="s_total" resultType="kr.co.mock.dto.SellingDto">
+	select code,sum(bid_spread) total,sum(n_selling) n_selling
+	from selling where code=#{param1} and userid=#{param2}
+  </select>
+  
+  
+
+</mapper>
