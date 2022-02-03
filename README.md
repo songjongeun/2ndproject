@@ -184,7 +184,64 @@ $(function(){/*숫자 증감 버튼*/
 	  	style="font-size:12px;margin-bottom:5px;">
 		</div>
 ```
+![project_ex2](https://user-images.githubusercontent.com/89518067/152391786-9737a921-9c27-45a2-bc90-dbad0fe6eba6.png)<br>
+모의포인트 신청 시 신청한 날을 기준으로 포인트를 운용할 수 있는 기간 선택 <br>
+해당 기간이 지난 후 다시 신청 가능 - SQL문으로 구현 <br>
+#### MockController.java
+```
+@RequestMapping("/in_regi_ok")
+	public String in_regi_ok(UserDto udto,MockDto mdto,HttpServletRequest request,Model model,HttpSession session) throws Exception
+	{
+		MockDao mdao=sqlSession.getMapper(MockDao.class);
+		String userid;
+		
+		if(session.getAttribute("userid")!=null) {//로그인 한 상태라면			
+			userid=session.getAttribute("userid").toString();//로그인했을 경우 userid 세선에서 가져옴.
+			int id_count=mdao.mockInvestCount(userid); //모의신청한 적이 있는 userid 검색용
+			if(id_count==0)//로그인 상태에서 해당 userid가 모의신청 테이블에 정보가 없으면 모의신청가능.
+			{
+				int m_close=Integer.parseInt(request.getParameter("m_close"));
+				int mileage=Integer.parseInt(request.getParameter("mileage"));
+				mdao.in_regi_ok(mdto, userid, m_close, mileage);
+				return "redirect:/main_view";
+			} //로그인&모의 신청 X
+			else { // 로그인&모의 신청 O 
+				int diff=mdao.get_enddate(userid);
+				String notday;
+				if(diff ==0) {//모의 투자 신청을 한 적이 있을 경우 마지막 신청 날짜와 비교한다.
+					//현재 날짜 > 종료날짜 =1//종료시점이 지나 다시 신청 가능.
 
+					int m_close=Integer.parseInt(request.getParameter("m_close"));
+					int mileage=Integer.parseInt(request.getParameter("mileage"));
+					mdao.in_regi_ok(mdto, userid, m_close, mileage);
+					notday=null;
+					return "redirect:/main_view";
+					 
+					}
+				else { //diff=0 or 음수 일 경우 현재 날짜와 같거나 종료이전 이므로 신청 불가
+					notday="1";
+					return "redirect:/invest/in_regi?notday=1";
+					
+				}			
+			} //로그인&모의 신청 if문 종료
+		}//로그인 했을 시의 if문 종료
+		
+		else { // 로그인을 하지 않았다면 로그인 페이지로
+			return "/user/login";
+		}//전체 if 문 종료
+	}
+	//---모의 신청 완료
+```
+#### MockDao.xml
+```
+	<insert id="in_regi_ok" parameterType="kr.co.mock.dto.MockDto">
+		insert into mock_invest(userid,m_open,m_close,mileage,m_apply)
+		values(#{param2},now(),date_add(m_open,interval ${param3} month),${param4},1)
+	</insert> <!-- 모의 포인트 신청시 데이터 삽입 -->
+	<select id="get_enddate" resultType="Integer">
+		SELECT if(NOW()>m_close,0,1) AS diff from mock_invest  where userid=#{param1} order BY m_id DESC limit 1;
+	<!-- 신청한 아이디 중 가장 최신에 신청한 날짜와 현재 날짜를 종료 날짜와 비교 -->
+```
 
 ### 맡은 부분
 모의신청(가상포인트신청),주식 매수, 매도 페이지 및 전체 UI <br>
