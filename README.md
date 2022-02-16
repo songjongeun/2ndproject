@@ -9,7 +9,7 @@
 - 모의 주식 사이트의 포인트 신청 게시판<br>
 
 ### 사용 기술
-Java / python / HTML / CSS 
+**Java** / python / HTML / CSS 
 Spring MVC Framework / JQuery / ajax / Pandas/ Beautifulsoup / jason / Apache Tomcat<br>
 Maria DB <br>
 STS <br>
