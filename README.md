@@ -8,12 +8,13 @@
 - 모의 주식 사이트의 매도, 매수 및 주식 목록 게시판 작성<br>
 - 모의 주식 사이트의 포인트 신청 게시판<br>
 
-### 사용 기술
-**Java** / python / HTML / CSS 
-Spring MVC Framework / JQuery / ajax / Pandas/ Beautifulsoup / jason / Apache Tomcat<br>
-Maria DB <br>
-STS <br>
-Windows
+### 사용 기술 (직접 사용한 것은 볼드)
+**Java** / python / **HTML** / **CSS** 
+**Spring MVC Framework** / **JQuery** / ajax / Pandas/ Beautifulsoup<br>
+/ jason / **Apache Tomcat** <br>
+**Maria DB** <br>
+**STS** <br>
+**Windows**
 
 ### 상세 안내
 ![project_ex1](https://user-images.githubusercontent.com/89518067/152289683-f9c09eaa-5dd6-4813-a10c-d6867152ef7c.png) <br>
