@@ -2,12 +2,20 @@
 여기 오를까?
 ### 프로젝트 소개
 주식이 활성화됨에 따라 주요 주식 몇가지로 주식 모의 투자를 할 수 있는 웹사이트를 팀 프로젝트를 통해 구성
-### 사용 기술
-SpringFramework <br>
-Maria DB <br>
-HTML <br>
 
-### Advanced Feature
+### 맡은 분야
+- 전체적인 레이아웃 구성 <br>
+- 모의 주식 사이트의 매도, 매수 및 주식 목록 게시판 작성<br>
+- 모의 주식 사이트의 포인트 신청 게시판<br>
+
+### 사용 기술
+Java / python / HTML / CSS 
+Spring MVC Framework / JQuery / ajax / Pandas/ Beautifulsoup / jason / Apache Tomcat<br>
+Maria DB <br>
+STS <br>
+Windows
+
+### 상세 안내
 ![project_ex1](https://user-images.githubusercontent.com/89518067/152289683-f9c09eaa-5dd6-4813-a10c-d6867152ef7c.png) <br>
 거래 증감버튼: -와 +버튼으로 숫자를 줄이거나 늘림(자바스크립트),숫자만 입력가능 
 #### MockController.java
@@ -242,10 +250,6 @@ $(function(){/*숫자 증감 버튼*/
 		SELECT if(NOW()>m_close,0,1) AS diff from mock_invest  where userid=#{param1} order BY m_id DESC limit 1;
 	<!-- 신청한 아이디 중 가장 최신에 신청한 날짜와 현재 날짜를 종료 날짜와 비교 -->
 ```
-
-### 맡은 부분
-모의신청(가상포인트신청),주식 매수, 매도 페이지 및 전체 UI <br>
-### 상세 안내
 #### 매도&매수
 제목 - 주식명 확인 <br>
 포인트 - 포인트가 모의신청으로 연결, 포인트가 있을 시 현재 남아있는 포인트 확인, fmt 태그로 3자리 단위로 금액 단위 표시 <br>
@@ -260,7 +264,7 @@ $(function(){/*숫자 증감 버튼*/
 신청한 날을 기준으로 포인트를 운용할 수 있는 기간 선택 <br>
 해당 기간이 지난 후 다시 신청 가능 - SQL문으로 구현 <br>
 #### 전체 UI
-Grid와 flex사용하여 페이지 구성.
+Html5와 css 사용, Grid와 flex사용하여 페이지 구성.
 
 ### 개선사항
 거래 합계 및 남은 마일리지에 숫자 단위 콤마 넣기 <br>
