@@ -199,6 +199,7 @@ $(function(){/*숫자 증감 버튼*/
 	  	style="font-size:12px;margin-bottom:5px;">
 		</div>
 ```
+-------------
 ![project_ex2](https://user-images.githubusercontent.com/89518067/152391786-9737a921-9c27-45a2-bc90-dbad0fe6eba6.png)<br>
 모의포인트 신청 시 신청한 날을 기준으로 포인트를 운용할 수 있는 기간 선택 <br>
 해당 기간이 지난 후 다시 신청 가능 - SQL문으로 구현 <br>
